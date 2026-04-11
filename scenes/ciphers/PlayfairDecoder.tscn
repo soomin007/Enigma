@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxrp02rvyw6g4"]
+
+[ext_resource type="Script" path="res://scripts/PlayfairDecoder.gd" id="1_playfair"]
+
+[node name="PlayfairDecoder" type="Control"]
+script = ExtResource("1_playfair")

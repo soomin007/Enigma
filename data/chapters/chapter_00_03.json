@@ -1,0 +1,104 @@
+{
+  "id": 0,
+  "level_id": 3,
+  "title": "마지막 신호",
+  "subtitle": "CHAPTER 0",
+  "difficulty": "심화",
+  "description": "주파수 변경, 단서는 단편적이고 적의 연막도 섞여 있습니다. 단서들을 교차 검증해야 이동 칸 수를 특정할 수 있습니다.",
+  "cipher_type": "caesar",
+  "plain_text": "ALL UNITS FALL BACK",
+  "cipher_params": {
+    "shift": 9,
+    "shift_right": true
+  },
+  "clues": [
+    {
+      "id": "c00c_interr01",
+      "type": "interrogation",
+      "title": "포로 심문 기록 #9",
+      "content": "[심문 기록 제9호]  분류: 기밀\n심문관: 대위 L. Whitmore  피심문자: 포로 #9 (코드명 EISEN)\n일시: 1942년 11월 7일  장소: 제3심문소\n\n심문관: 어느 부대에 있었나?\n포로: (천천히) ...제9기갑연대입니다. IX Panzer.\n심문관: 그 통신에 사용된 숫자가 얼마인지 아나?\n포로: 모릅니다. 저는 전령이었을 뿐이에요.\n심문관: 뭔가 들은 건 없나?\n포로: (잠시 침묵) ...교관이 로마 숫자로 부르더라고요.\n      IX라고. 그게 전부예요.\n심문관: 방향은?\n포로: (고개를 끄덕인다) 오른쪽이라고 했습니다.\n\n[비고: 진술 신뢰도 보통. 로마 숫자 관련 진술 주목.]",
+      "hint_value": "IX가 어떤 숫자인지 생각해보라."
+    },
+    {
+      "id": "c00c_photo01",
+      "type": "photo",
+      "title": "독일군 막사 벽 사진",
+      "content": "포획한 독일군 막사 내벽을 촬영한 사진.\n나무 판자에 못으로 박힌 달력이 보인다.\n9월 페이지가 펼쳐진 채로 걸려 있다.\n날짜 중에서 특별히 표시된 것은 없다.\n달력 상단에 'NEUN' 이라고 굵은 글씨로 적혀 있다.",
+      "hint_value": "NEUN이 독일어로 무엇인지 생각해보라."
+    },
+    {
+      "id": "c00c_doc01",
+      "type": "document",
+      "title": "통신 절차 문서 조각",
+      "content": "[기밀 — 일부 소실]\n...각 구역 통신소는 지정된 구역 번호를\n암호 이동 수치와 직결하여 사용할 것...\n...제9구역 통신소는 이하 지침에 따르며...\n...이동 방향: 시계 방향 (→ 오른쪽)...\n\n[이하 소실]",
+      "hint_value": "구역 번호와 이동 수치가 어떤 관계인지 두 번째 단서와 연결해보라."
+    },
+    {
+      "id": "c00c_torn01",
+      "type": "torn_paper",
+      "title": "장교 주머니 쪽지",
+      "content": "구겨진 쪽지. 오른쪽 절반이 찢겨 있다.\n\n'제7보병대대 전령에게 —\n 제3소대의 집결 시각은 오전 6시로 변경한다.\n 확인 후 소각할 것.'\n\n[서명: 대위 M...(판독 불가)]",
+      "hint_value": "이 쪽지의 '3'과 '7'은 이번 암호와 무관한 다른 부대의 내용이다."
+    }
+  ],
+  "connections": [
+    ["c00c_interr01", "c00c_photo01"],
+    ["c00c_photo01", "c00c_doc01"]
+  ],
+  "extra_clues": [
+    {
+      "id": "c00c_fake01",
+      "type": "torn_paper",
+      "title": "취사반 주간 식단표",
+      "content": "독일군 막사 취사반에서 발견된 주간 식단 계획표.\n요일별로 메뉴가 적혀 있다.\n\n월: 보리죽, 흑빵\n화: 감자 수프\n수: 콩 스튜, 소시지\n목: 보리죽, 치즈\n금: 감자 수프, 흑빵\n토: 콩 스튜\n일: 지급 없음 (금식)\n\n하단에 손으로 '3주차' 라고 덧붙여 쓰여 있다.",
+      "hint_value": ""
+    }
+  ],
+  "report_questions": [
+    {
+      "id": "q1",
+      "question": "적에게 내려진 명령은 무엇입니까?",
+      "answer_key": "FALL",
+      "answer_display": "후퇴 (FALL BACK)",
+      "choices": ["ADVANCE", "HOLD", "FALL", "ATTACK"],
+      "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오.",
+      "specific_wrong_feedback": {
+        "ADVANCE": "전진(advance) 명령이 아닙니다. 로마 숫자 IX와 독일어 NEUN의 관계를 재확인하십시오.",
+        "HOLD":    "사수(hold) 명령이 아닙니다. shift 9를 정확히 적용하였는지 점검하십시오.",
+        "ATTACK":  "공격(attack) 명령이 아닙니다. 9구역 통신 절차 문서와 포로 진술을 교차 확인하십시오."
+      }
+    },
+    {
+      "id": "q2",
+      "question": "명령 대상은 누구입니까?",
+      "answer_key": "UNITS",
+      "answer_display": "전 부대 (UNITS)",
+      "choices": ["COMMAND", "UNITS", "PATROL", "SCOUT"],
+      "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
+      "specific_wrong_feedback": {
+        "COMMAND": "지휘부(command)가 아닙니다. shift 9를 적용한 결과 두 번째 단어를 재확인하십시오.",
+        "PATROL":  "초계대(patrol)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
+        "SCOUT":   "정찰대(scout)가 아닙니다. NEUN=9=IX 연결고리를 검토하고 해독 결과를 재확인하십시오."
+      }
+    }
+  ],
+  "completion_log_text": "독일군 전선 전체 후퇴 명령이 사전에 확보됐다. 아군 기갑 부대가 퇴로 예상 지점을 선점, 후퇴 중인 독일군 제9기갑연대 2개 중대를 포위했다. 포로 47명, 장비 다수 노획. 해독 정보의 활용 가치가 입증됐다.",
+  "completion_log": {
+    "date": "1942년 11월 8일",
+    "time": "23:15",
+    "sender": "OKW-WEST",
+    "receiver": "GRUPPE-9",
+    "frequency": "663.7 kHz",
+    "decoded": "ALL UNITS FALL BACK"
+  },
+  "stars_criteria": {
+    "3_stars": "힌트 없이, 오답 없이 완료",
+    "2_stars": "힌트 1회 이하, 오답 1회 이하",
+    "1_star":  "어떤 방법으로든 완료"
+  },
+  "hints": [
+    "세 단서가 각각 다른 방식으로 같은 숫자를 표현하고 있다. 로마 숫자, 독일어, 구역 번호를 서로 대조해보라.",
+    "IX(로마 숫자) = NEUN(독일어 아홉) = 제9구역 — 세 표현이 모두 숫자 9를 가리킨다. 방향은 오른쪽이다.",
+    "이동값은 9, 방향은 오른쪽이다. 식단표의 '3주차'는 암호와 무관한 가짜 단서다."
+  ]
+}

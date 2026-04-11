@@ -1,0 +1,73 @@
+{
+  "id": 0,
+  "title": "첫 교신",
+  "subtitle": "TUTORIAL",
+  "description": "블레츨리 파크 입소 첫날. 지도관이 가장 기초적인 암호문을 건네며 당신을 시험합니다.",
+  "radio_frequency": 437.5,
+  "cipher_type": "caesar",
+  "cipher_text": "DWWDFN DW GDZQ",
+  "plain_text": "ATTACK AT DAWN",
+  "cipher_params": {
+	"shift": 3,
+	"shift_right": true
+  },
+  "clues": [
+	{
+	  "id": "c00_doc01",
+	  "type": "document",
+	  "title": "내부 훈령 제7호",
+	  "content": "[최고 기밀]\n발신: 제7통신연대 암호반  수신: 야전 전 요원\n분류번호: CR-07  날짜: 1942년 11월 1일\n─────────────────────────────────\n본 연대 소속 전 요원에게.\n\n금일부로 정기 로터리 규약 제7호가 발효된다.\n각 요원은 지정 수치와 방향을 엄수할 것.\n이전 수치의 재사용은 일절 금지한다.\n\n수치 및 방향은 별도 채널을 통해 통보된다.\n규약 위반 시 통신 자격은 즉시 박탈된다.\n\n████ 하단 서명 검열 ████\n[수령 후 소각 — 보관 금지]",
+	  "hint_value": "훈령에 이동 방향이 명시되어 있다."
+	},
+	{
+	  "id": "c00_doc02",
+	  "type": "torn_paper",
+	  "title": "찢겨진 쪽지",
+	  "content": "...완전 짜증나.\n\nW 선생이 또 수치를 바꿨다. 이번 주는 수요일 기준이래.\n매주 바뀌니까 헷갈려 죽겠어. 월요일부터 셀지 일요일부터\n셀지도 모르겠고. (월요일부터라고 어디서 들은 것 같기도 하고.)\n\n방향은 항상 오른쪽이라는 건 변함없군.\n\n—  낙서",
+	  "hint_value": "쪽지와 압수 사진에 같은 서명이 있다. 연결해서 생각해보라."
+	},
+	{
+	  "id": "c00_photo01",
+	  "type": "photo",
+	  "title": "압수 사진",
+	  "content": "탁자 위에서 발견된 낡은 탁상 달력.\n모서리가 접히고 표지가 닳은 것이 오랫동안 손에 쥐었던 물건이다.\n수요일 칸 위에 짙은 붉은 잉크로 원이 그어져 있다.\n달력 하단 여백에 굵은 필체로 'W' 한 자가 적혀 있다.",
+	  "hint_value": "달력에 표시된 요일이 몇 번째인지 세어보라."
+	}
+  ],
+  "connections": [
+	["c00_doc01", "c00_doc02"],
+	["c00_doc02", "c00_photo01"]
+  ],
+  "report_questions": [
+	{
+	  "id": "q1",
+	  "question": "적군의 공격 시각은 언제입니까?",
+	  "answer_key": "DAWN",
+	  "answer_display": "새벽 (DAWN)",
+	  "choices": ["DUSK", "DAWN", "NOON", "MIDNIGHT"],
+	  "wrong_feedback": "해독된 평문의 마지막 단어를 다시 확인하십시오."
+	},
+	{
+	  "id": "q2",
+	  "question": "통신에 담긴 적의 작전은 무엇입니까?",
+	  "answer_key": "ATTACK",
+	  "answer_display": "공격 (ATTACK)",
+	  "choices": ["ATTACK", "RETREAT", "DEFEND", "PATROL"],
+	  "wrong_feedback": "해독된 평문의 첫 번째 단어를 다시 확인하십시오."
+	}
+  ],
+  "completion_log_text": "통신 내용이 영국 해협 해안 초소에 즉각 전달됐다. 독일군 새벽 기습 경보를 받은 경비대는 3분 만에 진지를 재편성했다. 적 돌격정 4척이 어둠 속으로 퇴각했다. 귀관은 첫 임무를 완수했다.",
+  "completion_log": {
+	"date": "1942년 11월 3일",
+	"time": "04:12",
+	"sender": "WOLF-7",
+	"receiver": "COMMAND",
+	"frequency": "437.5 kHz",
+	"decoded": "ATTACK AT DAWN"
+  },
+  "stars_criteria": {
+	"3_stars": "힌트 없이, 오답 없이 완료",
+	"2_stars": "힌트 1회 이하, 오답 1회 이하",
+	"1_star":  "어떤 방법으로든 완료"
+  }
+}

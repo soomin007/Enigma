@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxrp02rvyw6g4"]
+
+[ext_resource type="Script" uid="uid://sgmbwmm11wq5" path="res://scripts/PlayfairDecoder.gd" id="1_playfair"]
+
+[node name="PlayfairDecoder" type="Control" unique_id=1428790797]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_playfair")

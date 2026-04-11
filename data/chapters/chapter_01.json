@@ -1,0 +1,89 @@
+{
+  "id": 1,
+  "title": "작전명 WOLF",
+  "subtitle": "CHAPTER 1",
+  "description": "독일군 통신 하나를 감청했습니다. 이번에는 이동 칸 수를 스스로 찾아내야 합니다.",
+  "radio_frequency": 523.0,
+  "cipher_type": "caesar",
+  "cipher_text": "UVYAO OHYIVY TVCL HA TPKUPNOA",
+  "plain_text": "NORTH HARBOR MOVE AT MIDNIGHT",
+  "cipher_params": {
+	"shift": 7,
+	"shift_right": true
+  },
+  "clues": [
+	{
+	  "id": "c01_doc01",
+	  "type": "interrogation",
+	  "title": "포로 심문 기록 #14",
+	  "content": "[심문 기록 제14호]  분류: 기밀\n심문관: 소령 K. Hartmann  피심문자: 포로 #14\n일시: 1942년 11월 8일  장소: 제3심문소\n\n심문관: 이 통신에 사용된 수치를 아는가?\n포로: (한참 천장을 바라보다가)\n      ...딸이 태어난 지 일곱 번째 생일이 이번 달이었는데. 집에 있었다면.\n심문관: 지금 수치를 묻고 있다.\n포로: (쓴웃음) 저는 편지만 날랐습니다. 일주일에 한 번씩.\n      그때마다 다이얼 숫자가 달라져 있었어요. 그 이상은 물어보지 않았고요.\n심문관: 그 숫자가 얼마였나?\n포로: (고개를 젓는다) 그게... 일주일이 숫자가 됩니까?\n\n[비고: 이후 진술 거부. 추가 심문 예정.]",
+	  "hint_value": "포로가 한 말을 곱씹어보라. 숫자가 숨어 있다."
+	},
+	{
+	  "id": "c01_doc02",
+	  "type": "torn_paper",
+	  "title": "압수된 코드북 조각",
+	  "content": "두꺼운 수첩의 한 장. 본문 대부분이 뜯겨 나갔고,\n오른쪽 여백에 굵은 연필로 급하게 휘갈겨 쓴 메모만 남아 있다:\n\n'SHIFT → RIGHT / ALWAYS'\n\n밑줄이 두 번 그어져 있다. 나머지 페이지는 소실.",
+	  "hint_value": "코드북 여백의 메모를 읽어보라."
+	},
+	{
+	  "id": "c01_photo01",
+	  "type": "photo",
+	  "title": "독일군 막사 내부 사진",
+	  "content": "독일군 막사 내부를 찍은 사진.\n벽에 못으로 박힌 달력이 있다.\n오늘 날짜 칸 위에 붉은 펜으로 'TAG 7'이라 적혀 있다.\n다른 날짜에는 아무 표시도 없다.",
+	  "hint_value": "TAG는 독일어다. 그 의미를 생각해보라."
+	},
+	{
+	  "id": "c01_map01",
+	  "type": "map",
+	  "title": "해안선 약도",
+	  "content": "손으로 그린 해안선 약도. 축척은 기재되어 있지 않다.\n북쪽 방면 항구 옆에 작은 글씨로 '집결 지점'이라 적혀 있고,\n그 옆에 화살표가 그려져 있다.\n지도 하단에 날짜와 서명 대신 검게 지워진 흔적만 남아 있다.",
+	  "hint_value": "약도에서 집결 지점의 방향을 확인하라."
+	}
+  ],
+  "connections": [
+	["c01_doc01", "c01_photo01"],
+	["c01_doc02", "c01_doc01"],
+	["c01_map01", "c01_photo01"]
+  ],
+  "report_questions": [
+	{
+	  "id": "q1",
+	  "question": "적의 집결 장소는 어디입니까?",
+	  "answer_key": "HARBOR",
+	  "answer_display": "항구 (HARBOR)",
+	  "choices": ["FOREST", "HARBOR", "AIRFIELD", "BRIDGE"],
+	  "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오."
+	},
+	{
+	  "id": "q2",
+	  "question": "집결 시각은 언제입니까?",
+	  "answer_key": "MIDNIGHT",
+	  "answer_display": "자정 (MIDNIGHT)",
+	  "choices": ["MIDNIGHT", "DAWN", "NOON", "DUSK"],
+	  "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오."
+	},
+	{
+	  "id": "q3",
+	  "question": "집결 지점은 해안의 어느 방향입니까?",
+	  "answer_key": "NORTH",
+	  "answer_display": "북쪽 (NORTH)",
+	  "choices": ["NORTH", "SOUTH", "EAST", "WEST"],
+	  "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오."
+	}
+  ],
+  "completion_log_text": "해독 보고서가 해군 사령부에 90분 만에 전달됐다. HMS Vautour 함이 선제적으로 북부 항구 입구를 봉쇄했고, 독일군 해안 상륙 시도는 여명 전에 철수로 끝났다. 적 보급선 1척 나포. 아군 부상자 없음.",
+  "completion_log": {
+	"date": "1942년 11월 10일",
+	"time": "22:47",
+	"sender": "WOLF-2",
+	"receiver": "WOLF-7",
+	"frequency": "523.0 kHz",
+	"decoded": "NORTH HARBOR MOVE AT MIDNIGHT"
+  },
+  "stars_criteria": {
+	"3_stars": "힌트 없이, 오답 없이 완료",
+	"2_stars": "힌트 1회 이하, 오답 1회 이하",
+	"1_star":  "어떤 방법으로든 완료"
+  }
+}

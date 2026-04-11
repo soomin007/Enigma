@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://q2ucnbvjo3mu"
+path="res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Cursor - 5.ogg-e5dffcc54f9b4fb7db4006346d79b02f.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/JDSherbert - Ultimate UI SFX Pack (FREE)/Stereo/ogg/JDSherbert - Ultimate UI SFX Pack - Cursor - 5.ogg"
+dest_files=["res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Cursor - 5.ogg-e5dffcc54f9b4fb7db4006346d79b02f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

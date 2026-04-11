@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dveywb3n35408"
+path="res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.wav-2b1212f70cb2bc332a6295171aaa1d4a.sample"
+
+[deps]
+
+source_file="res://sounds/JDSherbert - Ultimate UI SFX Pack (FREE)/Mono/wav (SD)/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.wav"
+dest_files=["res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.wav-2b1212f70cb2bc332a6295171aaa1d4a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
