@@ -1,0 +1,96 @@
+{
+  "id": 4,
+  "level_id": 3,
+  "title": "플레이페어 — 진실",
+  "subtitle": "CHAPTER 4",
+  "difficulty": "심화",
+  "description": "최소한의 단서만 남아 있습니다. 격자 키워드를 찾아내 마지막 통신을 해독하십시오.",
+  "cipher_type": "playfair",
+  "plain_text": "HARRISON IS THE MOLE",
+  "cipher_params": {
+    "key": "BLETCHLEY"
+  },
+  "clues": [
+    {
+      "id": "c05c_doc01",
+      "type": "document",
+      "title": "차단된 내부 발신 전문",
+      "content": "[최고 기밀 — 발신처: 블레츨리 파크 내부]\n수신처: 독일군 연락망\n분류번호: INTERNAL  날짜: 1942년 12월 5일\n─────────────────────────────────\n이 전문은 우리 내부에서 발신됐다.\n\n키워드는 발신자가 매일 보고 있는 것에서 왔다.\n자신이 일하는 곳의 이름을 담았다.\n\n[통신감청부 주석]\n이 통신의 발신자는 블레츨리 파크 내부 인원이다.\n그들이 쓰는 키워드는 그들이 있는 장소 자체에서\n비롯됐을 가능성이 매우 높다.",
+      "hint_value": "발신자가 있는 장소의 이름이 키워드가 된다."
+    },
+    {
+      "id": "c05c_torn01",
+      "type": "torn_paper",
+      "title": "지워진 내부 메모",
+      "content": "분석동 7호실 쓰레기통에서 발견된 종이.\n\n'격자: BL...EY'\n\n중간이 지워진 채로 발견됐다.\n첫 두 글자와 마지막 두 글자만 남아 있다.",
+      "hint_value": "'BL'로 시작하고 'EY'로 끝나는, 8글자짜리 장소 이름을 생각해보라."
+    },
+    {
+      "id": "c05c_interr01",
+      "type": "interrogation",
+      "title": "내부 보안 심사 기록",
+      "content": "[보안 심사 기록 — 최고 기밀]\n심사관: 소령 T. Birch  대상: 내부 요원 (신원 비공개)\n일시: 1942년 12월 5일  장소: 블레츨리 파크 심사실\n\n심사관: 마지막으로 확인하겠습니다. 귀관이 사용한 키워드는?\n대상: (오랫동안 침묵) ...제가 근무한 곳 이름이었습니다.\n      매일 보는 간판이었어요.\n심사관: 구체적으로.\n대상: 이 건물. 이 파크.\n      그게 전부입니다.\n\n[비고: 심사 종료. 내용 최고 기밀 처리.]",
+      "hint_value": "이 게임의 배경이 되는 장소 이름 자체가 키워드다."
+    }
+  ],
+  "connections": [
+    ["c05c_doc01", "c05c_torn01"],
+    ["c05c_torn01", "c05c_interr01"]
+  ],
+  "extra_clues": [
+    {
+      "id": "c05c_fake01",
+      "type": "torn_paper",
+      "title": "영국 저택 목록 메모",
+      "content": "분석동 복도에서 줍힌 여행 안내 책자 조각.\n누군가 영국 저택 이름에 밑줄을 쳐놨다.\n\n— Blenheim Palace (블레넘 궁전)\n— Blendon Hall\n— Blundell Park\n\n밑줄 이유 불명. 하단에 낙서:\n'다음에 꼭 가보고 싶다 — H'",
+      "hint_value": ""
+    }
+  ],
+  "report_questions": [
+    {
+      "id": "q1",
+      "question": "두더지의 정체는 누구입니까?",
+      "answer_key": "HARRISON",
+      "answer_display": "해리슨 (HARRISON)",
+      "choices": ["HARRISON", "CHAMBERS", "FLETCHER", "HARTLEY"],
+      "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
+      "specific_wrong_feedback": {
+        "CHAMBERS": "채임버스(Chambers)가 아닙니다. BL...EY 메모와 '이 파크' 진술을 다시 연결하십시오. 블레츨리 파크 격자를 재구성했는지 점검하십시오.",
+        "FLETCHER": "플레처(Fletcher)가 아닙니다. 분석동 쓰레기통 메모의 BL...EY와 내부 발신 전문의 단서를 교차 확인하십시오.",
+        "HARTLEY":  "하틀리(Hartley)가 아닙니다. 영국 저택 목록은 가짜 단서입니다. BLETCHLEY 키워드 격자를 다시 적용하십시오."
+      }
+    },
+    {
+      "id": "q2",
+      "question": "이 통신이 최종 확인한 사실은?",
+      "answer_key": "MOLE",
+      "answer_display": "내부 첩자 (MOLE)",
+      "choices": ["SPY", "TRAITOR", "MOLE", "AGENT"],
+      "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
+      "specific_wrong_feedback": {
+        "SPY":     "스파이(spy)가 아닙니다. BLETCHLEY 격자를 정확히 구성하고 해독 결과 마지막 단어를 재확인하십시오.",
+        "TRAITOR": "배신자(traitor)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오. 마지막 단어가 무엇입니까?",
+        "AGENT":   "요원(agent)이 아닙니다. BLETCHLEY 키워드 격자로 해독한 마지막 단어를 재확인하십시오."
+      }
+    }
+  ],
+  "completion_log_text": "해독 결과가 MI6 방첩 지휘부에 전달됐다. 해리슨은 그날 오후 블레츨리 파크 경내에서 조용히 체포됐다. 본인은 아무 말도 하지 않았다.\n\n1942년 12월 5일 이후, 해리슨이라는 이름은 모든 공식 문서에서 삭제됐다.\n귀관이 해독한 전문들이 그를 특정하는 데 결정적인 역할을 했다.\n\n— 끝 —",
+  "completion_log": {
+    "date": "1942년 12월 5일",
+    "time": "15:30",
+    "sender": "MOLE",
+    "receiver": "BERLIN",
+    "frequency": "312.4 kHz",
+    "decoded": "HARRISON IS THE MOLE"
+  },
+  "stars_criteria": {
+    "3_stars": "힌트 없이, 오답 없이 완료",
+    "2_stars": "힌트 1회 이하, 오답 1회 이하",
+    "1_star":  "어떤 방법으로든 완료"
+  },
+  "hints": [
+    "키워드는 발신자가 매일 보고 있는 장소 이름이다. 이 게임의 배경 무대가 어디인지 생각해보라.",
+    "메모의 'BL...EY' — BL로 시작하고 EY로 끝나는 8글자 장소 이름이 키워드다. 심문 기록도 같은 장소를 가리킨다.",
+    "키워드는 BLETCHLEY(8글자)다. 영국 저택 목록은 가짜 단서다. 이 격자를 구성하면 마지막 진실이 밝혀진다."
+  ]
+}

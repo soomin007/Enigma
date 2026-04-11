@@ -1,0 +1,107 @@
+{
+  "id": 3,
+  "level_id": 2,
+  "title": "ENIGMA — 심층",
+  "subtitle": "CHAPTER 3",
+  "difficulty": "보통",
+  "description": "이번에는 로터 초기 위치가 변경됐습니다. 단서를 통해 로터 배열, 반사판, 그리고 각 로터의 시작 알파벳을 모두 찾아내십시오.",
+  "cipher_type": "enigma",
+  "plain_text": "SEND REINFORCEMENTS NOW",
+  "cipher_params": {
+	"rotors": ["I", "II", "III"],
+	"rotor_positions": [2, 5, 12],
+	"reflector": "B",
+	"plugboard": {}
+  },
+  "clues": [
+	{
+	  "id": "c04b_doc01",
+	  "type": "document",
+	  "title": "에니그마 운용 프로토콜 (사본)",
+	  "content": "[기밀 — 번역본]\n발신: OKW 통신부  수신: 전 에니그마 운용 부대\n분류번호: EN-07  날짜: 1942년 11월 29일\n─────────────────────────────────\n이번 통신 구성:\n\n로터: 교범 I권에 기재된 표준 순서 그대로. 변경 없음.\n반사판: Anton이 아닌 그 다음 유형.\n플러그보드: 이번 통신에서는 미적용.\n\n각 로터의 초기 위치는 세 개의 별도 경로로 전달됨:\n - 좌측: 이번 작전 코드명의 첫 글자\n - 중앙: 발신 통신소의 식별자 첫 글자\n - 우측: 통신 담당 조작병의 개인 배정 번호 (알파벳으로 환산)\n\n████ 이하 검열 ████",
+	  "hint_value": "로터 종류, 반사판 유형, 플러그보드 적용 여부가 이 문서에 있다. 위치 세 가지는 나머지 단서에서 각각 찾아야 한다."
+	},
+	{
+	  "id": "c04b_torn01",
+	  "type": "torn_paper",
+	  "title": "조작병 개인 일지 (일부)",
+	  "content": "에니그마 조작병의 일지 한 장.\n\n'드디어 작전명을 들었다. CHARLIE라나.\n처음엔 알파벳 두 번째 글자로 시작하는 거라 들었는데\n알고 보니 세 번째였다.\n\n내 배정 번호는 13호. 벌써 세 번째 임무다.'\n\n나머지 일지는 판독 불가.",
+	  "hint_value": "코드명의 첫 글자와 개인 배정 번호를 운용 지침의 규칙과 연결해보라. 숫자를 알파벳 위치로 바꿀 것."
+	},
+	{
+	  "id": "c04b_photo01",
+	  "type": "photo",
+	  "title": "발신 기록지 상단 (포획)",
+	  "content": "독일군 통신 기록지 상단부.\n스탬프와 손으로 쓴 메모가 섞여 있다:\n\n'발신소: FRITZ-VERMITTLUNG\n일시: 1942.11.29  07:33\n수신: HAUPTQUARTIER'\n\n발신소 이름 왼쪽에 작게 'Stationskennung: F__'라고\n적혀 있으나 나머지 두 글자는 잉크에 번져 있다.",
+	  "hint_value": "발신소 이름과 통신소 식별자의 첫 글자가 중앙 로터 위치의 단서다."
+	},
+	{
+	  "id": "c04b_interr01",
+	  "type": "interrogation",
+	  "title": "포로 심문 기록 #38",
+	  "content": "[심문 기록 제38호]  분류: 기밀\n심문관: 소령 R. Chambers  피심문자: 포로 #38\n일시: 1942년 11월 29일  장소: 제3심문소\n\n심문관: 로터 순서를 이번에 바꿨습니까?\n포로: (딱 잘라) 아뇨. 항상 순서대로입니다.\n심문관: 이번 달에 다른 설정을 썼습니까?\n포로: 28일에 달력 넘겼는데 그게 무슨 상관입니까.\n심문관: 코드명이 뭡니까?\n포로: (긴 침묵) ...저는 받아 쓰는 사람입니다. 모릅니다.\n\n[비고: '순서대로'라는 진술 확인. 28일 달력 언급은 무관한 것으로 판단됨.]",
+	  "hint_value": "포로의 진술 중 실제로 유효한 정보와 무관한 내용이 섞여 있다. 다른 단서와 교차 확인해보라."
+	}
+  ],
+  "connections": [
+	["c04b_doc01", "c04b_torn01"],
+	["c04b_torn01", "c04b_photo01"],
+	["c04b_doc01", "c04b_interr01"]
+  ],
+  "extra_clues": [
+	{
+	  "id": "c04b_fake01",
+	  "type": "torn_paper",
+	  "title": "개인 편지 (검열 통과분)",
+	  "content": "어머니께.\n여기는 춥고 식량도 부족합니다.\n오늘은 알파벳 연습을 했어요.\nF로 시작하는 단어를 100개 외웠습니다.\n빨리 집에 돌아가고 싶어요.\n— 프리츠",
+	  "hint_value": ""
+	}
+  ],
+  "report_questions": [
+	{
+	  "id": "q1",
+	  "question": "독일군에 내려진 명령은 무엇입니까?",
+	  "answer_key": "SEND",
+	  "answer_display": "파견 (SEND)",
+	  "choices": ["SEND", "STOP", "HOLD", "CALL"],
+	  "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
+	  "specific_wrong_feedback": {
+		"STOP": "정지(stop) 명령이 아닙니다. 코드명 CHARLIE의 첫 글자가 좌측 로터 위치와 연결됨을 재확인하십시오.",
+		"HOLD": "사수(hold) 명령이 아닙니다. 발신소 식별자 F와 조작병 배정 번호 13이 각 로터 위치와 어떻게 연결되는지 재검토하십시오.",
+		"CALL": "호출(call) 명령이 아닙니다. 로터 3개 위치를 모두 올바르게 설정하였는지 확인하십시오."
+	  }
+	},
+	{
+	  "id": "q2",
+	  "question": "요청된 것은 무엇입니까?",
+	  "answer_key": "REINFORCEMENTS",
+	  "answer_display": "증원 (REINFORCEMENTS)",
+	  "choices": ["SUPPLIES", "REINFORCEMENTS", "AMMUNITION", "ORDERS"],
+	  "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
+	  "specific_wrong_feedback": {
+		"SUPPLIES":   "보급품(supplies)이 아닙니다. 로터 위치 C(3), F(6), M(13)을 정확히 설정한 결과를 재확인하십시오.",
+		"AMMUNITION": "탄약(ammunition)이 아닙니다. 해독된 평문 두 번째 단어를 있는 그대로 읽으십시오.",
+		"ORDERS":     "명령서(orders)가 아닙니다. 에니그마 설정을 재점검하고 해독 결과를 재확인하십시오."
+	  }
+	}
+  ],
+  "completion_log_text": "독일군 증원 요청이 사전 확보됐다. 아군 기갑 부대가 예상 증원 루트를 차단했고, 적 예비 전력의 전방 투입이 72시간 지연됐다. 이 지연이 이후 전선 안정화에 결정적인 역할을 했다.",
+  "completion_log": {
+	"date": "1942년 11월 29일",
+	"time": "07:33",
+	"sender": "CHARLIE",
+	"receiver": "HAUPTQUARTIER",
+	"frequency": "487.9 kHz",
+	"decoded": "SEND REINFORCEMENTS NOW"
+  },
+  "stars_criteria": {
+	"3_stars": "힌트 없이, 오답 없이 완료",
+	"2_stars": "힌트 1회 이하, 오답 1회 이하",
+	"1_star":  "어떤 방법으로든 완료"
+  },
+  "hints": [
+	"로터 세 자리 위치가 각각 다른 단서에 있다. 작전 코드명 첫 글자, 발신소 식별자, 조작병 배정 번호를 알파벳 순서로 환산하라.",
+	"코드명 CHARLIE의 첫 글자 C = 알파벳 3번째, 발신소 식별자 F = 6번째, 배정번호 13 = M(13번째 알파벳). 반사판은 B.",
+    "로터 I/II/III, 반사판 B, 위치 C(2)/F(5)/M(12). 에니그마 해독기에 입력하라."
+  ]
+}

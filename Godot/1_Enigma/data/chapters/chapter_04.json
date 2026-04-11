@@ -1,0 +1,91 @@
+{
+  "id": 4,
+  "title": "ENIGMA",
+  "subtitle": "CHAPTER 4",
+  "description": "이번 통신은 에니그마 머신으로 암호화되어 있습니다. 로터 설정과 반사판을 복원하여 독일군의 최종 명령을 해독하십시오.",
+  "radio_frequency": 312.4,
+  "cipher_type": "enigma",
+  "cipher_text": "OIXBM EMTHN JOPMS",
+  "plain_text": "TORCH NORTH SHORE",
+  "cipher_params": {
+	"rotors": ["I", "II", "III"],
+	"rotor_positions": [0, 0, 0],
+	"reflector": "B",
+	"plugboard": {}
+  },
+  "clues": [
+	{
+	  "id": "c04_doc01",
+	  "type": "document",
+	  "title": "통신 감청 분석 보고서",
+	  "content": "[최고 기밀]\n발신: 블레츨리 파크 수석 분석관  수신: 작전 본부\n분류번호: EN-01  날짜: 1942년 11월 28일\n─────────────────────────────────\n312.4 kHz에서 포착된 통신. 에니그마 머신으로 암호화 확인됨.\n\n[운용 기록 요약 — Wehrmacht 야전 통신 규정에 의거]\n3로터 에니그마 머신 사용 확인.\n반사판 종류: A형과 B형 두 가지 존재.\n제101 통신대 포획 매뉴얼에 따르면,\n해당 부대는 '후기 표준 반사판'을 채택한 것으로 기록됨.\n\n████ 이하 로터 설정 검열됨 ████",
+	  "hint_value": "반사판에는 A와 B 두 종류가 있다. '후기 표준'이 어느 쪽인지 생각해보라."
+	},
+	{
+	  "id": "c04_torn01",
+	  "type": "torn_paper",
+	  "title": "에니그마 조작병 메모",
+	  "content": "포획 장비 사이에서 발견된 구겨진 메모지.\n에니그마 조작병이 쓴 것으로 추정.\n\n'오늘도 교범대로. 세 자리 전부 리셋하고 시작.\n 로터 교체는 없었음. 그냥 바꾸면 혼나니까.\n 플러그보드는 고참이 비워뒀다 했음. 그게 규정이래.'\n\n잉크가 번진 부분은 판독 불가.",
+	  "hint_value": "에니그마를 '리셋'한다는 것이 각 자리를 어떤 상태로 돌려놓는 것인지 생각해보라."
+	},
+	{
+	  "id": "c04_photo01",
+	  "type": "photo",
+	  "title": "반소된 설정 메모 사진",
+	  "content": "포획한 독일군 통신 장교 지갑에서 발견된 접힌 메모 사진.\n반쯤 불탄 채로 발견됐다.\n날짜 줄과 로터 번호 줄만 간신히 읽을 수 있다.\n\n  28 NOV  —  I / II / III\n\n그 아래 항목들은 불꽃에 소실.",
+	  "hint_value": "로터 번호와 슬롯 순서(왼쪽→오른쪽)를 확인했다. 나머지 설정은 다른 단서에서 찾아야 한다."
+	},
+	{
+	  "id": "c04_interrogation01",
+	  "type": "interrogation",
+	  "title": "포로 심문 기록 #37",
+	  "content": "[심문 기록 제37호]  분류: 기밀\n심문관: 대위 E. Hartley  피심문자: 포로 #37 (코드명 LAMP)\n일시: 1942년 11월 28일  장소: 제3심문소\n\n심문관: 에니그마 세팅, 알고 있나?\n포로: 저는 조작만 했습니다. 내용은 몰라요.\n심문관: 반사판 설정이라도.\n포로: (잠시 침묵) ...그건 매뉴얼에 나온 두 번째 거 씁니다.\n      우리 부대는 항상 그랬어요. 그게 전부예요.\n심문관: 이번 통신의 내용은?\n포로: (고개를 젓는다) 저는 신호만 보냈습니다.\n      술자리에서 누가 횃불이라고 했던 것 같기도 한데.\n      작전 내용은 진짜 모릅니다.\n\n[비고: 추가 심문 예정. 반사판 관련 진술 신뢰도 높음.]",
+	  "hint_value": "포로가 말한 '두 번째 거'가 어떤 알파벳인지 생각해보라. 작전명은 해독 결과에서 직접 확인해야 한다."
+	}
+  ],
+  "connections": [
+	["c04_doc01", "c04_interrogation01"],
+	["c04_torn01", "c04_photo01"],
+	["c04_interrogation01", "c04_torn01"]
+  ],
+  "report_questions": [
+	{
+	  "id": "q1",
+	  "question": "독일군 통신에 언급된 작전명은?",
+	  "answer_key": "TORCH",
+	  "answer_display": "TORCH 작전",
+	  "choices": ["TORCH", "ANVIL", "OVERLORD", "MARKET"],
+	  "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오."
+	},
+	{
+	  "id": "q2",
+	  "question": "상륙 목표 방향은?",
+	  "answer_key": "NORTH",
+	  "answer_display": "북쪽 (NORTH)",
+	  "choices": ["NORTH", "SOUTH", "EAST", "WEST"],
+	  "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오."
+	},
+	{
+	  "id": "q3",
+	  "question": "상륙 지형은?",
+	  "answer_key": "SHORE",
+	  "answer_display": "해안 (SHORE)",
+	  "choices": ["SHORE", "CLIFF", "RIVER", "BRIDGE"],
+	  "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오."
+	}
+  ],
+  "completion_log_text": "해독 결과는 아이젠하워 장군 사령부에 즉각 전달됐다. TORCH 작전 상륙 지점이 교란됐고, 독일군 예비 병력은 잘못된 방향으로 재배치됐다. 북아프리카 상륙 당일 사상자 수는 예상의 31% 수준에 그쳤다. 전세가 바뀌기 시작했다.",
+  "completion_log": {
+	"date": "1942년 11월 28일",
+	"time": "04:51",
+	"sender": "OKW-SOUTH",
+	"receiver": "GRUPPE-7",
+	"frequency": "312.4 kHz",
+	"decoded": "TORCH NORTH SHORE"
+  },
+  "stars_criteria": {
+	"3_stars": "힌트 없이, 오답 없이 완료",
+	"2_stars": "힌트 1회 이하, 오답 1회 이하",
+	"1_star":  "어떤 방법으로든 완료"
+  }
+}
