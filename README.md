@@ -7,12 +7,12 @@
 
 ## 스크린샷
 
-![메인 화면](image.png)
-![라디오 감청](image-1.png)
-![단서 보드](image-2.png)
-![암호 해독](image-3.png)
-![엔딩](image-4.png)
-![암호 박물관](image-5.png)
+<img src="image.png" width="600" alt="메인 화면">
+<img src="image-1.png" width="600" alt="라디오 감청">
+<img src="image-2.png" width="600" alt="단서 보드">
+<img src="image-3.png" width="600" alt="암호 해독">
+<img src="image-4.png" width="600" alt="엔딩">
+<img src="image-5.png" width="600" alt="암호 박물관">
 
 ---
 
@@ -41,22 +41,36 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 - **설정 메뉴** — BGM·SFX 볼륨 독립 조절 + 텍스트 속도 설정
 - **씬 전환 애니메이션** — 페이드 인/아웃 CanvasLayer 오버레이
 - **스토리 로그** — 해독 완료 통신 타임라인
-- **BOMBE 이스터에그** — 인게임에서 BOMBE를 타이핑하면...
+- **숨겨진 이스터에그** — 특정 행동을 하면 예상치 못한 일이 일어납니다
 
 ---
 
 ## 암호 진행표
 
-| 챕터 | 암호 방식 | 레벨 1 (입문) | 레벨 2 (보통) | 레벨 3 (심화) |
-|------|-----------|-------------|-------------|-------------|
-| 0 | Caesar | shift=3 | shift=5 | shift=9 |
-| 1 "붉은 장미" | Vigenère | key=WAR | key=ROSE | key=ENGLAND |
-| 2 "유령 네트워크" | Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
-| 3 "ENIGMA" | Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 |
-| 4 "플레이페어" | Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
-| 5 "배신자의 암호" | Caesar (보너스) | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
+| 챕터 | 암호 방식 | 레벨 1 | 레벨 2 | 레벨 3 |
+|------|-----------|--------|--------|--------|
+| 0 | Caesar | 입문 | 보통 | 심화 |
+| 1 "붉은 장미" | Vigenère | 입문 | 보통 | 심화 |
+| 2 "유령 네트워크" | Substitution | 입문 | 보통 | 심화 |
+| 3 "ENIGMA" | Enigma | 입문 | 보통 | 심화 |
+| 4 "플레이페어" | Playfair | 입문 | 보통 | 심화 |
+| 5 "배신자의 암호" | Caesar (보너스) | — | — | — |
 
-> 스포일러 주의: 레벨 3 키워드들은 스토리 반전과 직결됩니다.
+<details>
+<summary>🔓 정답 키 공개 (스포일러 — 클릭하여 펼치기)</summary>
+
+| 챕터 | 레벨 1 | 레벨 2 | 레벨 3 |
+|------|--------|--------|--------|
+| 0 Caesar | shift=3 | shift=5 | shift=9 |
+| 1 Vigenère | key=WAR | key=ROSE | key=ENGLAND |
+| 2 Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
+| 3 Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 A↔Z |
+| 4 Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
+| 5 보너스 | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
+
+> 레벨 3 키워드들은 스토리 반전과 직결됩니다.
+
+</details>
 
 ---
 
@@ -142,22 +156,6 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 ## 힌트 시스템
 
 각 레벨에는 약한 힌트 → 중간 힌트 → 직접적 힌트 순서의 3단계 진행형 힌트가 내장되어 있습니다. 힌트를 사용할수록 별점이 감소합니다.
-
----
-
-## 개발 현황
-
-- [x] 전체 15개 레벨 콘텐츠 완성
-- [x] 5종 암호 해독기 구현
-- [x] 레드 헤링 단서 + 전용 오답 피드백
-- [x] 오디오 시스템 (BGM·SFX·라디오 스태틱)
-- [x] 점진적 힌트 시스템
-- [x] 별점 저장·해금 시스템
-- [x] 총 별점 기반 3종 엔딩 분기 (Ending.tscn/gd)
-- [x] 설정 메뉴 (Settings.tscn/gd + SettingsManager.gd)
-- [x] 씬 전환 페이드 애니메이션 (SceneTransition.gd)
-- [x] 보너스 챕터 5 — 배신자의 암호 (Harrison 시점)
-- [ ] 레벨 타이머
 
 ---
 
