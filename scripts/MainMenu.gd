@@ -35,7 +35,6 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
-	var font_special_elite: FontFile = load("res://fonts/SpecialElite-Regular.ttf")
 	var bg := ColorRect.new()
 	bg.color = C_BG
 	bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
@@ -67,7 +66,6 @@ func _build_ui() -> void:
 	var stamp := Label.new()
 	stamp.text = "◆   TOP SECRET  ·  BLETCHLEY PARK  ·  EYES ONLY   ◆"
 	stamp.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	stamp.add_theme_font_override("font", font_special_elite)
 	stamp.add_theme_font_size_override("font_size", 11)
 	stamp.add_theme_color_override("font_color", C_STAMP)
 	vbox.add_child(stamp)
@@ -79,7 +77,6 @@ func _build_ui() -> void:
 	var title := Label.new()
 	title.text = "PROJECT ENIGMA"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_override("font", font_special_elite)
 	title.add_theme_font_size_override("font_size", 64)
 	title.add_theme_color_override("font_color", C_GOLD)
 	vbox.add_child(title)
