@@ -1,7 +1,8 @@
 [gd_resource type="Theme" load_steps=2 format=3]
 
-[ext_resource type="FontFile" path="res://fonts/NanumGothic-Bold.ttf" id="1_nanum"]
+[ext_resource type="FontFile" path="res://fonts/NanumGothic-ExtraBold.ttf" id="1_nanum"]
 
 [resource]
 default_font = ExtResource("1_nanum")
 default_font_size = 14
+Label/constants/line_spacing = 6
