@@ -1,0 +1,95 @@
+{
+	"chapter_id": 5,
+	"level_id": 3,
+	"title": "배신자의 암호",
+	"subtitle": "BONUS",
+	"difficulty": "심화",
+	"cipher_type": "enigma",
+	"plain_text": "DOUBLE AGENT EXPOSED",
+	"cipher_params": {
+		"rotors": ["II", "IV", "V"],
+		"rotor_positions": [7, 0, 17],
+		"reflector": "B",
+		"plugboard": {"A": "Z", "Z": "A", "B": "X", "X": "B"}
+	},
+	"hints": [
+		"해리슨의 이니셜에서 로터 초기 위치를 찾아라. H-A-R이 무엇의 약자인지 생각하라.",
+		"로터 순서는 해리슨의 운용 교범에 기록됐다: II, IV, V. 반사판은 B형. 플러그보드는 두 쌍.",
+		"위치: H-A-R (Harrison의 성 세 글자). 반사판 B. 플러그보드: A↔Z, B↔X."
+	],
+	"clues": [
+		{
+			"id": "ch05_03_c1",
+			"type": "document",
+			"title": "해리슨의 에니그마 운용 일지",
+			"content": "[기밀] 분류번호: HUT6-AUDIT-1943-012\n발신: 내부 감찰반  수신: 수석 분석관\n────────────────────────\n해리슨 분석관의 에니그마 운용 기록 이상 탐지.\n\n표준 운용 교범과의 차이:\n- 로터 배열: 표준 I·III·V 대신 II·IV·V 순서 사용\n- 반사판: B형 (표준과 일치)\n\n나머지 설정 (초기 위치 및 플러그보드)은\n현재 단계에서 확인 불가. 추가 조사 필요.",
+			"hint_value": "로터 순서와 반사판은 여기서 확인됐다. 나머지는 다른 증거에서."
+		},
+		{
+			"id": "ch05_03_c2",
+			"type": "photo",
+			"title": "사진 — 에니그마 머신 설정 화면",
+			"content": "[흑백 사진, 일부 손상]\n에니그마 머신 상단 로터 창.\n왼쪽 로터: '...' (판독 불가)\n중간 로터: 'A' 확인\n오른쪽 로터: 'R' 확인\n플러그보드 케이블: A-Z 연결 확인, B-X 연결 확인",
+			"hint_value": "사진이 두 자리를 보여준다. 나머지 하나는 이름에서."
+		},
+		{
+			"id": "ch05_03_c3",
+			"type": "interrogation",
+			"title": "최종 심문 기록 (1943.03)",
+			"content": "[심문 기록 제93호] 분류: 최고기밀\n심문관: 소령 A. Fletcher  피심문자: A. 해리슨\n일시: 1943년 3월 8일\n\n심문관: 에니그마 초기 위치를 무엇으로 설정했소?\n해리슨: (긴 침묵) ...사적인 것이오.\n심문관: 당신 성씨 앞부분 아니오?\n해리슨: (시선을 피하며 반응 없음)\n심문관: HARRISON. H-A-R.\n해리슨: (이하 진술 거부)\n\n[비고: 이름 연결 전술로 위치 추정 가능. 사진 증거와 교차 확인 요망.]",
+			"hint_value": "이름과 사진 증거를 교차하면 나머지 위치를 특정할 수 있다."
+		}
+	],
+	"extra_clues": [
+		{
+			"id": "ch05_03_x1",
+			"type": "torn_paper",
+			"title": "다른 분석관의 메모",
+			"content": "로터 I, III, V 조합이 가장 일반적.\n위치는 보통 AAA로 초기화.\n반사판 A가 더 흔히 쓰임.",
+			"hint_value": "",
+			"red_herring_note": "일반적 에니그마 설정 메모 — 해리슨의 비표준 설정을 숨기기 위한 혼란."
+		},
+		{
+			"id": "ch05_03_x2",
+			"type": "document",
+			"title": "독일군 표준 로터 배열표",
+			"content": "[기밀] 1942년 9월 배포\n────────────────────────\n09.01 ~ 09.15: I, III, V\n09.16 ~ 09.30: II, III, IV\n10.01 ~ 10.15: I, II, III\n\n비고: 이 표는 표준 전선용임. 특수 공작원 설정은 별도 지침 참조.",
+			"hint_value": "",
+			"red_herring_note": "독일군 표준 배열표 — 해리슨은 비표준 II, IV, V를 썼다."
+		}
+	],
+	"report_questions": [
+		{
+			"id": "rq_05_03_1",
+			"question": "해독된 메시지에서 해리슨의 신분은?",
+			"choices": ["SLEUTH", "CIPHER", "DOUBLE", "COVERT"],
+			"answer_key": "DOUBLE",
+			"wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"SLEUTH": "탐정(sleuth)이 아닙니다. 에니그마 설정을 정확히 입력하고 첫 단어를 재확인하십시오.",
+				"CIPHER": "암호(cipher)가 아닙니다. 해독 결과를 있는 그대로 읽으십시오. 첫 단어가 무엇입니까?",
+				"COVERT": "비밀(covert)이 아닙니다. 로터 II/IV/V와 위치 H-A-R을 모두 정확히 설정했는지 점검하십시오."
+			}
+		},
+		{
+			"id": "rq_05_03_2",
+			"question": "해리슨이 마지막 교신에서 알린 사태는?",
+			"choices": ["SPOTTED", "ESCAPED", "EXPOSED", "FLAGGED"],
+			"answer_key": "EXPOSED",
+			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"SPOTTED": "발견(spotted)이 아닙니다. 에니그마 설정을 모두 정확히 입력했는지 확인하십시오.",
+				"ESCAPED": "탈출(escaped)이 아닙니다. 반사판 B와 로터 II/IV/V를 정확히 입력하고 재해독하십시오.",
+				"FLAGGED": "표시(flagged)가 아닙니다. 로터 위치 H-A-R과 플러그보드 설정을 재확인하십시오."
+			}
+		}
+	],
+	"completion_log": {
+		"date": "1943.03.08",
+		"time": "04:55",
+		"sender": "HARRISON → ABWEHR",
+		"receiver": "독일 정보국 함부르크 지국",
+		"decoded": "DOUBLE AGENT EXPOSED"
+	},
+	"completion_log_text": "아이러니하게도 해리슨의 마지막 교신은\n'이중 스파이 노출됨'이었다.\n자신이 발각됐다는 것을 알고 독일 측에 경고를 보낸 것이다.\n그러나 그 메시지조차 블레츨리에게 가로채졌다.\n\n— 해리슨은 1943년 3월 런던에서 체포됐다 —"
+}

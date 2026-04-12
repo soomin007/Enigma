@@ -6,7 +6,7 @@
   "difficulty": "입문",
   "description": "새로운 암호 방식이 등장했습니다. 알파벳을 고정 칸만큼 이동하는 것이 아니라, 키워드에 따라 각 글자마다 이동 칸 수가 달라집니다.",
   "cipher_type": "vigenere",
-  "plain_text": "MEET AT DAWN",
+  "plain_text": "STRIKE AT MIDNIGHT",
   "cipher_params": {
     "key": "WAR"
   },
@@ -57,39 +57,39 @@
   "report_questions": [
     {
       "id": "q1",
-      "question": "접선 장소는 어디입니까?",
-      "answer_key": "MEET",
-      "answer_display": "접선 (MEET)",
-      "choices": ["MEET", "FLEE", "WAIT", "HIDE"],
+      "question": "적군에 내려진 명령은 무엇입니까?",
+      "answer_key": "STRIKE",
+      "answer_display": "공격 개시 (STRIKE)",
+      "choices": ["STRIKE", "ATTACK", "LAUNCH", "SIGNAL"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FLEE": "탈출(flee) 명령이 아닙니다. 키워드 WAR로 해독한 평문 첫 단어를 재확인하십시오.",
-        "WAIT": "대기(wait) 명령이 아닙니다. 신분증과 낙서의 코드명을 키워드로 사용하였는지 확인하십시오.",
-        "HIDE": "은신(hide) 명령이 아닙니다. 키워드를 올바르게 입력한 후 해독 결과를 재확인하십시오."
+        "ATTACK": "공격(attack)이지만 정확한 단어가 아닙니다. 키워드 WAR로 해독한 평문 첫 단어를 재확인하십시오.",
+        "LAUNCH": "발진(launch) 명령이 아닙니다. 신분증과 낙서의 코드명을 키워드로 사용하였는지 확인하십시오.",
+        "SIGNAL": "신호(signal) 명령이 아닙니다. 키워드 WAR를 정확히 입력한 결과를 다시 읽으십시오."
       }
     },
     {
       "id": "q2",
-      "question": "접선 시각은 언제입니까?",
-      "answer_key": "DAWN",
-      "answer_display": "새벽 (DAWN)",
-      "choices": ["NOON", "DUSK", "DAWN", "MIDNIGHT"],
+      "question": "공격 명령의 실행 시각은 언제입니까?",
+      "answer_key": "MIDNIGHT",
+      "answer_display": "자정 (MIDNIGHT)",
+      "choices": ["TWILIGHT", "MIDNIGHT", "DAYBREAK", "SUNDOWN"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "NOON":     "정오(noon)가 아닙니다. 키워드 WAR로 해독한 결과 마지막 단어를 확인하십시오.",
-        "DUSK":     "황혼(dusk)이 아닙니다. 해독 결과를 다시 읽으십시오.",
-        "MIDNIGHT": "자정(midnight)이 아닙니다. 키워드 WAR를 정확히 입력한 결과를 재확인하십시오."
+        "TWILIGHT": "황혼(twilight)이 아닙니다. 키워드 WAR로 해독한 결과 마지막 단어를 확인하십시오.",
+        "DAYBREAK": "새벽(daybreak)이 아닙니다. 해독 결과를 다시 읽으십시오.",
+        "SUNDOWN":  "해질녘(sundown)이 아닙니다. 키워드 WAR를 정확히 입력한 결과를 재확인하십시오."
       }
     }
   ],
-  "completion_log_text": "접선 예정지를 방첩대가 사전 봉쇄했다. 새벽 4시 정각, 접선을 시도하던 독일 연락원 1명이 현장에서 검거됐다. 심문 결과 추가 접선 일정 2건이 확보됐으며, 상위 연락망으로의 추적이 시작됐다.",
+  "completion_log_text": "자정 공격 명령이 사전에 포착됐다. 방첩대가 예상 공격 경로에 매복을 설치했고, 자정이 지나도 공세는 시작되지 않았다. 적 연락원 1명이 검거됐으며 추가 접선 정보가 확보됐다.",
   "completion_log": {
     "date": "1942년 11월 9일",
-    "time": "04:01",
+    "time": "23:47",
     "sender": "WAR",
     "receiver": "SHADOW-NET",
     "frequency": "726.1 kHz",
-    "decoded": "MEET AT DAWN"
+    "decoded": "STRIKE AT MIDNIGHT"
   },
   "stars_criteria": {
     "3_stars": "힌트 없이, 오답 없이 완료",
@@ -99,6 +99,6 @@
   "hints": [
     "비즈네르 암호는 키워드를 먼저 찾아야 풀린다. 이 연락 장교를 식별하는 특정 단어가 여러 단서에 등장한다.",
     "낙서, 신분증, 편제표 — 세 단서가 모두 슈미트 장교의 코드명을 직접 언급한다. 반복되는 세 글자 단어를 찾아라.",
-    "키워드는 WAR다. 해독기에 WAR를 입력하면 평문이 나온다."
+    "키워드는 WAR다. 해독기에 WAR를 입력하면 STRIKE AT MIDNIGHT가 나온다."
   ]
 }

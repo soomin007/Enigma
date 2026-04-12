@@ -79,12 +79,12 @@
       "question": "요원의 상태는 무엇으로 확인되었습니까?",
       "answer_key": "ALIVE",
       "answer_display": "생존 확인 (ALIVE)",
-      "choices": ["ALIVE", "MISSING", "CAPTURED", "DEAD"],
+      "choices": ["ALIVE", "DYING", "FOUND", "TAKEN"],
       "wrong_feedback": "해독된 평문에서 '생존'에 해당하는 단어를 찾으십시오.",
       "specific_wrong_feedback": {
-        "MISSING":  "행방불명(missing)이 아닙니다. 포로가 속삭이듯 말한 내용을 다시 떠올리십시오.",
-        "CAPTURED": "체포(captured)가 아닙니다. 심문 기록의 포로 발언과 해독 평문을 대조하십시오.",
-        "DEAD":     "사망(dead)이 아닙니다. 포로의 진술과 치환 결과가 일치하는지 재확인하십시오."
+        "DYING": "사망 직전(dying)이 아닙니다. 포로가 속삭이듯 말한 내용을 다시 떠올리십시오.",
+        "FOUND": "발견(found)과는 다릅니다. 심문 기록의 포로 발언과 해독 평문을 대조하십시오.",
+        "TAKEN": "체포(taken)가 아닙니다. 포로의 진술과 치환 결과가 일치하는지 재확인하십시오."
       }
     },
     {
@@ -92,12 +92,12 @@
       "question": "이 통신이 언급하는 요원의 신분은?",
       "answer_key": "MOLE",
       "answer_display": "내부 첩자 (MOLE)",
-      "choices": ["MOLE", "SPY", "AGENT", "GHOST"],
+      "choices": ["MOLE", "WOLF", "TOOL", "PAWN"],
       "wrong_feedback": "해독된 평문의 두 번째 단어를 다시 확인하십시오.",
       "specific_wrong_feedback": {
-        "SPY":   "스파이(spy)가 아닙니다. 영어 최빈 단어 THE를 RCT에 대입하면 다른 단어가 도출됩니다.",
-        "AGENT": "요원(agent)보다 더 구체적인 단어가 있습니다. 암호문에서 반복되는 세 글자 패턴을 재추적하십시오.",
-        "GHOST": "GHOST는 심문 대상의 코드명입니다. 해독된 평문에서 요원의 역할을 가리키는 단어를 찾으십시오."
+        "WOLF": "늑대(wolf)는 이전 챕터의 키워드입니다. 해독된 평문에서 요원의 역할을 직접 가리키는 단어를 찾으십시오.",
+        "TOOL": "도구(tool)가 아닙니다. 암호문에서 반복되는 세 글자 패턴을 재추적하십시오.",
+        "PAWN": "졸(pawn)이 아닙니다. 해독된 평문에서 요원의 역할을 가리키는 단어를 찾으십시오."
       }
     }
   ],

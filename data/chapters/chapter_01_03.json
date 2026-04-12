@@ -60,11 +60,11 @@
       "question": "적에게 내려진 명령은 무엇입니까?",
       "answer_key": "WITHDRAW",
       "answer_display": "철수 (WITHDRAW)",
-      "choices": ["ADVANCE", "WITHDRAW", "HOLD", "SCATTER"],
+      "choices": ["ADVANCE", "WITHDRAW", "RETREAT", "SCATTER"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
         "ADVANCE": "전진(advance) 명령이 아닙니다. 도버 해협 건너편 나라 이름을 키워드로 적용하였는지 확인하십시오.",
-        "HOLD":    "사수(hold) 명령이 아닙니다. ENGLAND를 키워드로 해독한 결과를 재확인하십시오.",
+        "RETREAT": "후퇴(retreat)이지만 정확한 단어가 아닙니다. ENGLAND를 키워드로 해독한 결과를 재확인하십시오.",
         "SCATTER": "분산(scatter) 명령이 아닙니다. ENG...로 시작하는 나라 이름을 키워드로 사용하였는지 점검하십시오."
       }
     },
@@ -73,12 +73,12 @@
       "question": "철수 목적지는 어디입니까?",
       "answer_key": "BASE",
       "answer_display": "기지 (BASE)",
-      "choices": ["PIER", "FRONT", "BASE", "BRIDGE"],
+      "choices": ["PIER", "CAMP", "BASE", "FORT"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "PIER":   "부두(pier)가 아닙니다. 이전 챕터의 접선 장소와 혼동하지 마십시오. ENGLAND를 키워드로 적용한 결과를 재확인하십시오.",
-        "FRONT":  "전선(front)이 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
-        "BRIDGE": "교량(bridge)이 아닙니다. 키워드를 정확히 입력하고 결과를 재확인하십시오."
+        "PIER": "부두(pier)가 아닙니다. 이전 챕터의 접선 장소와 혼동하지 마십시오. ENGLAND를 키워드로 적용한 결과를 재확인하십시오.",
+        "CAMP": "야영지(camp)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
+        "FORT": "요새(fort)가 아닙니다. 키워드를 정확히 입력하고 결과를 재확인하십시오."
       }
     }
   ],

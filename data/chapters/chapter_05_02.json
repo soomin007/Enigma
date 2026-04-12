@@ -1,0 +1,92 @@
+{
+	"chapter_id": 5,
+	"level_id": 2,
+	"title": "배신자의 암호",
+	"subtitle": "BONUS",
+	"difficulty": "보통",
+	"cipher_type": "vigenere",
+	"plain_text": "ENIGMA KEYS COMPROMISED",
+	"cipher_params": {
+		"key": "JUDAS"
+	},
+	"hints": [
+		"해리슨이 자신의 독일 접선책에게 보낸 편지를 찾아라. 서명에 주목.",
+		"성경 속 배신자의 이름. 해리슨은 스스로를 그에 빗댔다. 다섯 글자.",
+		"비즈네르 키워드 = JUDAS"
+	],
+	"clues": [
+		{
+			"id": "ch05_02_c1",
+			"type": "document",
+			"title": "압수 서한 (미발송)",
+			"content": "[기밀] 분류번호: BP-INTERCEPT-219\n발신: 미상\n────────────────────────\n나는 당신들을 위해 일한다.\n나의 코드명은 오래된 약속에서 왔다.\n열두 명 중 한 명. 은화 서른 냥.\n우리의 키워드는 그 이름과 같다.\n\n— J",
+			"hint_value": "열두 명 중 한 명, 은화 서른 냥."
+		},
+		{
+			"id": "ch05_02_c2",
+			"type": "interrogation",
+			"title": "블레츨리 내부 조사 기록",
+			"content": "[블레츨리 내부 조사 기록]\n조사관: 당신 코드명이 성경에서 온 것이오?\n해리슨: ... 부정하지 않겠습니다.\n조사관: 배신의 코드명. 어울리는군.\n해리슨: (침묵)\n조사관: 다섯 글자. 그 이름. 당신이 그것을 키워드로 썼소.\n해리슨: (고개를 돌린다)",
+			"hint_value": "성경 속 배신자, 다섯 글자. 서한의 서명자와 성경 구절을 조합해보라."
+		},
+		{
+			"id": "ch05_02_c3",
+			"type": "torn_paper",
+			"title": "성경 구절 낙서 (해리슨 필체)",
+			"content": "마태복음 26:15\n'그들이 은 서른을 달아 주니'\n\n그는 배신의 대가로 무엇을 받았는가?\n그리고 나는 무엇을 받는가.",
+			"hint_value": ""
+		}
+	],
+	"extra_clues": [
+		{
+			"id": "ch05_02_x1",
+			"type": "photo",
+			"title": "사진 — 교회 외부",
+			"content": "[흑백 사진]\n영국 시골 교회 전경.\n뒷면 연필 메모: 'St. Peter's, 1938'\n특이사항 없음.",
+			"hint_value": "",
+			"red_herring_note": "성 베드로 교회 — 성경 관련이지만 PETER는 키워드가 아니다."
+		},
+		{
+			"id": "ch05_02_x2",
+			"type": "torn_paper",
+			"title": "암호 실험 메모",
+			"content": "SIMON? 5글자.\nPETER? 5글자.\nJAMES? 5글자.\n... 아니야, 그것은 아니야.",
+			"hint_value": "",
+			"red_herring_note": "해리슨이 후보를 검토한 메모 — SIMON/PETER/JAMES는 오답."
+		}
+	],
+	"report_questions": [
+		{
+			"id": "rq_05_02_1",
+			"question": "해리슨이 유출한 정보의 핵심은?",
+			"choices": ["ENIGMA", "LORENZ", "CIPHER", "PURPLE"],
+			"answer_key": "ENIGMA",
+			"wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"LORENZ": "로렌츠(Lorenz)가 아닙니다. JUDAS 키워드로 해독한 평문 첫 단어를 재확인하십시오.",
+				"CIPHER": "단순 암호(cipher)가 아닙니다. 해리슨이 유출한 것이 무엇인지 해독 결과를 확인하십시오.",
+				"PURPLE": "퍼플(purple)이 아닙니다. JUDAS 키워드를 정확히 입력하고 첫 단어를 재확인하십시오."
+			}
+		},
+		{
+			"id": "rq_05_02_2",
+			"question": "유출된 정보의 상태는?",
+			"choices": ["SURRENDERED", "CONFISCATED", "COMPROMISED", "NEUTRALIZED"],
+			"answer_key": "COMPROMISED",
+			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"SURRENDERED": "항복(surrendered)이 아닙니다. 평문 마지막 단어를 있는 그대로 읽으십시오.",
+				"CONFISCATED": "압수(confiscated)가 아닙니다. JUDAS 키워드를 정확히 입력하고 재해독하십시오.",
+				"NEUTRALIZED": "무력화(neutralized)가 아닙니다. JUDAS 격자로 해독한 마지막 단어를 재확인하십시오."
+			}
+		}
+	],
+	"completion_log": {
+		"date": "1943.02.14",
+		"time": "01:07",
+		"sender": "HARRISON → ABWEHR",
+		"receiver": "독일 정보국 베를린 본부",
+		"decoded": "ENIGMA KEYS COMPROMISED"
+	},
+	"completion_log_text": "해리슨은 에니그마 키 변경 정보를 독일 본부에 유출했다.\n키워드 JUDAS — 성경 속 배신자의 이름을 자신의 코드에 쓴 것이다.\n이 교신이 발각되기까지 8개월이 걸렸다."
+}

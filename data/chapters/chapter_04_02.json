@@ -6,7 +6,7 @@
   "difficulty": "보통",
   "description": "키워드가 길어졌습니다. 단서들을 교차 검증해야 7글자 키워드를 특정할 수 있습니다.",
   "cipher_type": "playfair",
-  "plain_text": "RENDEZVOUS AT PIER SEVEN",
+  "plain_text": "RENDEZVOUS AT DOCK ELEVEN",
   "cipher_params": {
 	"key": "WINSTON"
   },
@@ -60,49 +60,49 @@
 	  "question": "적 요원의 접선 행동은 무엇입니까?",
 	  "answer_key": "RENDEZVOUS",
 	  "answer_display": "밀회 (RENDEZVOUS)",
-	  "choices": ["MEET", "RENDEZVOUS", "SIGNAL", "CONTACT"],
+	  "choices": ["CONFERENCE", "RENDEZVOUS", "ENGAGEMENT", "CORRESPOND"],
 	  "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
 	  "specific_wrong_feedback": {
-		"MEET":    "만남(meet)이 아닙니다. WINSTON 격자로 해독한 첫 단어는 더 격식 있는 프랑스어 유래 표현입니다.",
-		"SIGNAL":  "신호(signal) 명령이 아닙니다. WINSTON 키워드 격자를 재구성하고 결과를 재확인하십시오.",
-		"CONTACT": "접촉(contact) 명령이 아닙니다. W로 시작하고 N으로 끝나는 7글자 키워드를 격자에 적용하십시오."
+		"CONFERENCE": "회의(conference)가 아닙니다. WINSTON 격자로 해독한 첫 단어는 프랑스어 유래 표현입니다.",
+		"ENGAGEMENT": "교전(engagement)이 아닙니다. WINSTON 키워드 격자를 재구성하고 결과를 재확인하십시오.",
+		"CORRESPOND": "연락(correspond)이 아닙니다. W로 시작하고 N으로 끝나는 7글자 키워드를 격자에 적용하십시오."
 	  }
 	},
 	{
 	  "id": "q2",
 	  "question": "접선 장소 번호는?",
-	  "answer_key": "SEVEN",
-	  "answer_display": "일곱 번째 (SEVEN)",
-	  "choices": ["FIVE", "SIX", "SEVEN", "EIGHT"],
+	  "answer_key": "ELEVEN",
+	  "answer_display": "열한 번째 (ELEVEN)",
+	  "choices": ["TWELVE", "TWENTY", "ELEVEN", "THIRTY"],
 	  "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
 	  "specific_wrong_feedback": {
-		"FIVE":  "다섯 번째가 아닙니다. WINSTON 격자로 해독한 마지막 단어를 재확인하십시오.",
-		"SIX":   "여섯 번째가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
-		"EIGHT": "여덟 번째가 아닙니다. WINSTON 키워드를 정확히 입력하고 격자 해독 결과를 재확인하십시오."
+		"TWELVE": "열두 번째가 아닙니다. WINSTON 격자로 해독한 마지막 단어를 재확인하십시오.",
+		"TWENTY": "스무 번째가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
+		"THIRTY": "서른 번째가 아닙니다. WINSTON 키워드를 정확히 입력하고 격자 해독 결과를 재확인하십시오."
 	  }
 	},
 	{
 	  "id": "q3",
 	  "question": "접선 장소 유형은?",
-	  "answer_key": "PIER",
-	  "answer_display": "부두 (PIER)",
-	  "choices": ["DOCK", "PIER", "HARBOR", "QUAY"],
+	  "answer_key": "DOCK",
+	  "answer_display": "선착장 (DOCK)",
+	  "choices": ["PIER", "DOCK", "PORT", "QUAY"],
 	  "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오.",
 	  "specific_wrong_feedback": {
-		"DOCK":   "선착장(dock)이 아닙니다. WINSTON 격자 해독 결과 세 번째 단어를 확인하십시오.",
-		"HARBOR": "항구(harbor)가 아닙니다. W로 시작하고 N으로 끝나는 키워드를 정확히 적용했는지 점검하십시오.",
-		"QUAY":   "부두(quay)의 동의어지만 오답입니다. 해독된 평문의 정확한 단어를 확인하십시오."
+		"PIER": "부두(pier)가 아닙니다. WINSTON 격자 해독 결과 세 번째 단어를 확인하십시오.",
+		"PORT": "항구(port)가 아닙니다. W로 시작하고 N으로 끝나는 키워드를 정확히 적용했는지 점검하십시오.",
+		"QUAY": "부두(quay)의 동의어지만 오답입니다. 해독된 평문의 정확한 단어를 확인하십시오."
 	  }
 	}
   ],
-  "completion_log_text": "7번 부두 접선 예정이 사전 봉쇄됐다. 현장에서 독일 연락망의 영국 내 중간책 3명이 일제히 검거됐다. 이 중 한 명의 진술로 블레츨리 파크 내부 정보 유출 루트가 확인됐다. 두더지의 윤곽이 드러나기 시작했다.",
+  "completion_log_text": "11번 선착장 접선 예정이 사전 봉쇄됐다. 현장에서 독일 연락망의 영국 내 중간책 3명이 일제히 검거됐다. 이 중 한 명의 진술로 블레츨리 파크 내부 정보 유출 루트가 확인됐다. 두더지의 윤곽이 드러나기 시작했다.",
   "completion_log": {
 	"date": "1942년 12월 3일",
 	"time": "21:44",
 	"sender": "WINSTON-NET",
-	"receiver": "PIER-7",
+	"receiver": "DOCK-11",
 	"frequency": "617.2 kHz",
-	"decoded": "RENDEZVOUS AT PIER SEVEN"
+	"decoded": "RENDEZVOUS AT DOCK ELEVEN"
   },
   "stars_criteria": {
 	"3_stars": "힌트 없이, 오답 없이 완료",
@@ -112,6 +112,6 @@
   "hints": [
 	"키워드는 7글자. 1942년 독일이 가장 두려워한 영국 인물을 생각해보라.",
 	"독일이 두려워하는 영국 내각 인사, W로 시작하고 N으로 끝나는 7글자 이름 — 단서들이 모두 같은 사람을 가리킨다.",
-    "키워드는 WINSTON이다. 이 이름으로 5×5 격자를 구성해 플레이페어로 해독하라."
+    "키워드는 WINSTON이다. 이 이름으로 5×5 격자를 구성해 플레이페어로 해독하면 RENDEZVOUS AT DOCK ELEVEN이 나온다."
   ]
 }

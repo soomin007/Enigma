@@ -63,12 +63,12 @@
       "question": "독일군 통신에 언급된 작전명은?",
       "answer_key": "TORCH",
       "answer_display": "TORCH 작전",
-      "choices": ["TORCH", "ANVIL", "OVERLORD", "MARKET"],
+      "choices": ["TORCH", "ANVIL", "BLITZ", "DEPOT"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "ANVIL":    "ANVIL은 이번 통신에 등장하지 않습니다. 포로가 술자리에서 들었다는 단어를 재확인하십시오.",
-        "OVERLORD": "OVERLORD는 이번 통신의 작전명이 아닙니다. 로터 I/II/III, 위치 AAA, 반사판 B를 정확히 입력하였는지 먼저 확인하십시오.",
-        "MARKET":   "MARKET은 이번 통신에 없습니다. 반사판 유형과 로터 위치를 다시 점검하십시오."
+        "ANVIL": "ANVIL은 이번 통신에 등장하지 않습니다. 포로가 술자리에서 들었다는 단어를 재확인하십시오.",
+        "BLITZ": "BLITZ는 이번 통신의 작전명이 아닙니다. 로터 I/II/III, 위치 AAA, 반사판 B를 정확히 입력하였는지 먼저 확인하십시오.",
+        "DEPOT": "DEPOT은 이번 통신에 없습니다. 반사판 유형과 로터 위치를 다시 점검하십시오."
       }
     },
     {
@@ -76,12 +76,12 @@
       "question": "상륙 목표 방향은?",
       "answer_key": "NORTH",
       "answer_display": "북쪽 (NORTH)",
-      "choices": ["NORTH", "SOUTH", "EAST", "WEST"],
+      "choices": ["NORTH", "SOUTH", "FRONT", "FLANK"],
       "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
         "SOUTH": "남쪽(south)이 아닙니다. 에니그마 설정이 올바른지 먼저 확인하십시오. 조작병 메모의 '리셋' 상태를 재확인하십시오.",
-        "EAST":  "동쪽(east)이 아닙니다. 로터 종류와 반사판을 다시 점검하고 해독 결과를 재읽으십시오.",
-        "WEST":  "서쪽(west)이 아닙니다. 포로의 '두 번째 반사판' 진술을 재확인하십시오."
+        "FRONT": "전방(front)이 아닙니다. 로터 종류와 반사판을 다시 점검하고 해독 결과를 재읽으십시오.",
+        "FLANK": "측면(flank)이 아닙니다. 포로의 '두 번째 반사판' 진술을 재확인하십시오."
       }
     },
     {
@@ -89,12 +89,12 @@
       "question": "상륙 지형은?",
       "answer_key": "SHORE",
       "answer_display": "해안 (SHORE)",
-      "choices": ["SHORE", "CLIFF", "RIVER", "BRIDGE"],
+      "choices": ["SHORE", "CLIFF", "RIVER", "RIDGE"],
       "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "CLIFF":  "절벽(cliff)이 아닙니다. 에니그마 설정을 재확인하고 해독 결과 세 번째 단어를 다시 읽으십시오.",
-        "RIVER":  "강(river)이 아닙니다. 설정이 올바르다면 해독 결과가 달라야 합니다.",
-        "BRIDGE": "교량(bridge)이 아닙니다. 로터 배열 순서(I/II/III)와 위치(AAA)를 점검하십시오."
+        "CLIFF": "절벽(cliff)이 아닙니다. 에니그마 설정을 재확인하고 해독 결과 세 번째 단어를 다시 읽으십시오.",
+        "RIVER": "강(river)이 아닙니다. 설정이 올바르다면 해독 결과가 달라야 합니다.",
+        "RIDGE": "산등성이(ridge)이 아닙니다. 로터 배열 순서(I/II/III)와 위치(AAA)를 점검하십시오."
       }
     }
   ],
