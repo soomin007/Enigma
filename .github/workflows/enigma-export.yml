@@ -1,0 +1,42 @@
+name: ENIGMA Export & Release
+
+on:
+  push:
+    tags:
+      - "enigma-v*"   # git tag enigma-v1.0.1 후 push 하면 실행
+
+jobs:
+  export:
+    name: Build & Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Godot Export
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_linux.x86_64.zip"
+          godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_export_templates.tpz"
+          relative_project_path: "./Godot/1_Enigma"
+          archive_output: true
+          cache: true
+
+      - name: GitHub Release 생성
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            /home/runner/.local/share/godot/builds/**/*.zip
+          body: |
+            ## ENIGMA — 암호 해독 퍼즐 게임
+
+            ### Windows 실행 방법
+            `Enigma-Windows Desktop.zip` 압축 해제 후 `Enigma.exe` 실행
+
+            ### 웹 버전
+            itch.io 페이지에서 브라우저로 바로 플레이 가능합니다.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
