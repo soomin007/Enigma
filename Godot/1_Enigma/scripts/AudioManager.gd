@@ -225,3 +225,14 @@ func set_radio_static_strength(strength: float) -> void:
 ## 동조 완료 또는 씬 이탈 시 호출
 func stop_radio_static() -> void:
 	_radio_static_player.stop()
+
+
+# ── 볼륨 제어 (SettingsManager에서 호출) ─────────────────────────────
+
+func apply_settings() -> void:
+	var bgm_idx := AudioServer.get_bus_index(BUS_BGM)
+	var sfx_idx := AudioServer.get_bus_index(BUS_SFX)
+	if bgm_idx != -1:
+		AudioServer.set_bus_volume_db(bgm_idx, SettingsManager.bgm_volume_db)
+	if sfx_idx != -1:
+		AudioServer.set_bus_volume_db(sfx_idx, SettingsManager.sfx_volume_db)

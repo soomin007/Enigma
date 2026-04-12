@@ -137,7 +137,7 @@ func _build_top_bar() -> Control:
 	back.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.09, 0.15), C_BORDER,   1, 8))
 	back.add_theme_stylebox_override("hover",   _make_style(Color(0.12, 0.14, 0.22), C_BORDER_G, 1, 8))
 	back.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.07, 0.12), C_GOLD,     1, 8))
-	back.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+	back.pressed.connect(func(): SceneTransition.fade_to("res://scenes/MainMenu.tscn"))
 	hb.add_child(back)
 
 	var title := Label.new()

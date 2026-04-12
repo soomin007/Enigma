@@ -247,7 +247,7 @@ func _build_top_bar() -> Control:
 	back_btn.custom_minimum_size.x = 90
 	back_btn.pressed.connect(func():
 		AudioManager.stop_radio_static()
-		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		SceneTransition.fade_to("res://scenes/MainMenu.tscn")
 	)
 	hbox.add_child(back_btn)
 
@@ -547,7 +547,8 @@ func _on_tuned() -> void:
 
 
 func _on_proceed() -> void:
-	get_tree().change_scene_to_file("res://scenes/EvidenceBoard.tscn")
+	AudioManager.stop_radio_static()
+	SceneTransition.fade_to("res://scenes/EvidenceBoard.tscn")
 
 
 # ────────────────────────────────────────────────────────────────────

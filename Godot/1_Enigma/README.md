@@ -7,7 +7,12 @@
 
 ## 스크린샷
 
-> *(게임 실행 후 캡처 예정)*
+![메인 화면](image.png)
+![라디오 감청](image-1.png)
+![단서 보드](image-2.png)
+![암호 해독](image-3.png)
+![엔딩](image-4.png)
+![암호 박물관](image-5.png)
 
 ---
 
@@ -27,11 +32,14 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
   - 단일 치환 암호 (Monoalphabetic Substitution)
   - 에니그마 머신 (Enigma Machine — 로터·반사판·플러그보드 완전 구현)
   - 플레이페어 암호 (Playfair Cipher)
-- **5챕터 × 3레벨 = 15개 스테이지** (입문 / 보통 / 심화)
+- **5챕터 × 3레벨 = 15개 스테이지** + **보너스 챕터 5** (입문 / 보통 / 심화)
 - **레드 헤링(가짜 단서)** 포함 — 플레이어가 스스로 진짜 단서를 걸러내야 함
 - **라디오 감청 씬** — 주파수 다이얼로 신호를 찾는 미니게임 + 스태틱 음향 lerp
 - **증거 보드(Evidence Board)** — 단서 카드 드래그 & 연결선 핀 시스템
 - **별점 시스템** — 힌트 사용 횟수와 오답 횟수에 따라 1~3성 평가
+- **3종 엔딩** — 총 별점에 따라 "전설적 분석관 / 유능한 요원 / 경험 부족" 분기
+- **설정 메뉴** — BGM·SFX 볼륨 독립 조절 + 텍스트 속도 설정
+- **씬 전환 애니메이션** — 페이드 인/아웃 CanvasLayer 오버레이
 - **스토리 로그** — 해독 완료 통신 타임라인
 - **BOMBE 이스터에그** — 인게임에서 BOMBE를 타이핑하면...
 
@@ -42,10 +50,11 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 | 챕터 | 암호 방식 | 레벨 1 (입문) | 레벨 2 (보통) | 레벨 3 (심화) |
 |------|-----------|-------------|-------------|-------------|
 | 0 | Caesar | shift=3 | shift=5 | shift=9 |
-| 1 | Vigenère | key=WAR | key=ROSE | key=ENGLAND |
-| 2 | Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
-| 3 | Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 |
-| 4 | Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
+| 1 "붉은 장미" | Vigenère | key=WAR | key=ROSE | key=ENGLAND |
+| 2 "유령 네트워크" | Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
+| 3 "ENIGMA" | Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 |
+| 4 "플레이페어" | Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
+| 5 "배신자의 암호" | Caesar (보너스) | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
 
 > 스포일러 주의: 레벨 3 키워드들은 스토리 반전과 직결됩니다.
 
@@ -83,6 +92,8 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 1_Enigma/
 ├── data/
 │   └── chapters/          # 레벨 JSON 파일 (chapter_XX_YY.json)
+│       ├── chapter_00~04 + 레벨 파일
+│       └── chapter_05*.json   # 보너스 챕터 — 배신자의 암호
 ├── scenes/
 │   ├── MainMenu.tscn
 │   ├── Radio.tscn
@@ -90,21 +101,28 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 │   ├── ChapterView.tscn
 │   ├── StoryLog.tscn
 │   ├── CipherMuseum.tscn
-│   └── ciphers/           # 암호별 해독기 씬
+│   ├── Ending.tscn            # 총 별점 기반 3종 엔딩
+│   ├── Settings.tscn          # BGM/SFX/텍스트 속도 설정
+│   └── ciphers/               # 암호별 해독기 씬
 ├── scripts/
-│   ├── GameManager.gd     # autoload — 게임 상태·저장·힌트·보고서 관리
-│   ├── AudioManager.gd    # autoload — BGM 크로스페이드·SFX 풀·라디오 스태틱
-│   ├── CipherLib.gd       # autoload — 암호화/복호화 라이브러리 (5종)
+│   ├── GameManager.gd         # autoload — 게임 상태·저장·힌트·보고서 관리
+│   ├── AudioManager.gd        # autoload — BGM 크로스페이드·SFX 풀·라디오 스태틱
+│   ├── CipherLib.gd           # autoload — 암호화/복호화 라이브러리 (5종)
+│   ├── SceneTransition.gd     # autoload — 씬 전환 페이드 애니메이션
+│   ├── SettingsManager.gd     # autoload — 볼륨·속도 설정 저장/로드
 │   ├── MainMenu.gd
 │   ├── RadioScene.gd
 │   ├── EvidenceBoard.gd
 │   ├── ChapterView.gd
+│   ├── CipherMuseum.gd
 │   ├── PlayfairDecoder.gd
-│   └── StoryLog.gd
-├── sounds/                # BGM·SFX 오디오 파일
+│   ├── StoryLog.gd
+│   ├── Ending.gd
+│   └── Settings.gd
+├── sounds/                    # BGM·SFX 오디오 파일
 ├── project.godot
-├── PRD.md                 # 기획 문서
-└── CLAUDE.md              # 개발 규칙
+├── PRD.md                     # 기획 문서
+└── CLAUDE.md                  # 개발 규칙
 ```
 
 ---
@@ -135,8 +153,11 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 - [x] 오디오 시스템 (BGM·SFX·라디오 스태틱)
 - [x] 점진적 힌트 시스템
 - [x] 별점 저장·해금 시스템
-- [ ] 총 별점 기반 엔딩 분기 (Phase 13)
-- [ ] 설정 메뉴 / 레벨 타이머 (Phase 13)
+- [x] 총 별점 기반 3종 엔딩 분기 (Ending.tscn/gd)
+- [x] 설정 메뉴 (Settings.tscn/gd + SettingsManager.gd)
+- [x] 씬 전환 페이드 애니메이션 (SceneTransition.gd)
+- [x] 보너스 챕터 5 — 배신자의 암호 (Harrison 시점)
+- [ ] 레벨 타이머
 
 ---
 

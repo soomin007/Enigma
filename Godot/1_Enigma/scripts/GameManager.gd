@@ -15,6 +15,7 @@ signal decode_succeeded(chapter_id: int, plain_text: String)
 signal report_result(correct: bool, feedback: String)
 signal chapter_completed(chapter_id: int, stars: int)
 signal hint_revealed(hint_text: String)
+signal hint_exhausted()
 signal radio_tuned(chapter_id: int)
 
 
@@ -35,10 +36,16 @@ var decoded_messages   : Dictionary = {}
 ## 레벨별 획득 별점              { "C_L": 1~3 }
 var level_stars        : Dictionary = {}
 
+const HINT_MAX := 3   # 레벨당 최대 힌트 사용 횟수
+
 var hint_count              : int = 0
 var wrong_report_count      : int = 0
 var red_herring_wrong_count : int = 0   # specific_wrong_feedback 히트 횟수 (2회 = 일반 오답 1회)
 var _hint_index             : int = 0
+
+## 레벨 타이머 (Unix 시각)
+var _level_start_time  : float = 0.0
+var level_elapsed_secs : float = 0.0
 
 ## 완료된 레벨 작전 기록
 var story_log : Array = []
@@ -143,6 +150,10 @@ func load_level(chapter_id: int, level_id: int) -> void:
 	var key := _lkey()
 	if not collected_clues.has(key):
 		collected_clues[key] = []
+
+	# 타이머 시작
+	_level_start_time  = Time.get_unix_time_from_system()
+	level_elapsed_secs = 0.0
 
 	var path := "res://data/chapters/chapter_%02d_%02d.json" % [chapter_id, level_id]
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -261,6 +272,7 @@ func submit_report(answers: Dictionary) -> void:
 			break
 
 	if all_correct:
+		level_elapsed_secs = Time.get_unix_time_from_system() - _level_start_time
 		var stars := _calculate_stars()
 		var key   := _lkey()
 		level_stars[key] = stars
@@ -288,21 +300,32 @@ func _save_story_log(stars: int) -> void:
 
 
 func _make_log_entry(log_data: Dictionary, stars: int) -> Dictionary:
+	var secs: int = int(level_elapsed_secs)
+	var time_str: String
+	if secs < 60:
+		time_str = "%d초" % secs
+	else:
+		time_str = "%d분 %02d초" % [secs / 60, secs % 60]
+	# 3분 이내 클리어 시 속도 뱃지
+	var speed_badge: bool = level_elapsed_secs > 0.0 and level_elapsed_secs < 180.0
+
 	return {
-		"level_key"  : _lkey(),
-		"chapter_id" : current_chapter_id,
-		"level_id"   : current_level_id,
-		"title"      : current_chapter.get("title", ""),
-		"subtitle"   : current_chapter.get("subtitle", ""),
-		"difficulty" : current_chapter.get("difficulty", ""),
-		"date"       : log_data.get("date", ""),
-		"time"       : log_data.get("time", ""),
-		"frequency"  : "%.1f kHz" % current_chapter.get("radio_frequency", 0.0),
-		"sender"     : log_data.get("sender", ""),
-		"receiver"   : log_data.get("receiver", ""),
-		"decoded"    : log_data.get("decoded", decoded_messages.get(_lkey(), "")),
-		"stars"      : stars,
-		"log_text"   : current_chapter.get("completion_log_text", ""),
+		"level_key"   : _lkey(),
+		"chapter_id"  : current_chapter_id,
+		"level_id"    : current_level_id,
+		"title"       : current_chapter.get("title", ""),
+		"subtitle"    : current_chapter.get("subtitle", ""),
+		"difficulty"  : current_chapter.get("difficulty", ""),
+		"date"        : log_data.get("date", ""),
+		"time"        : log_data.get("time", ""),
+		"frequency"   : "%.1f kHz" % current_chapter.get("radio_frequency", 0.0),
+		"sender"      : log_data.get("sender", ""),
+		"receiver"    : log_data.get("receiver", ""),
+		"decoded"     : log_data.get("decoded", decoded_messages.get(_lkey(), "")),
+		"stars"       : stars,
+		"log_text"    : current_chapter.get("completion_log_text", ""),
+		"clear_time"  : time_str,
+		"speed_badge" : speed_badge,
 	}
 
 
@@ -322,11 +345,17 @@ func _calculate_stars() -> int:
 # ───────────────────────────────────────────────
 
 func use_hint_with_text(hint_text: String) -> void:
+	if hint_count >= HINT_MAX:
+		emit_signal("hint_exhausted")
+		return
 	hint_count += 1
 	emit_signal("hint_revealed", hint_text)
 
 
 func use_hint() -> void:
+	if hint_count >= HINT_MAX:
+		emit_signal("hint_exhausted")
+		return
 	# 루트 레벨 hints 배열 우선 사용 (점진적 강도 힌트)
 	var root_hints: Array = current_chapter.get("hints", [])
 	if root_hints.size() > 0:
