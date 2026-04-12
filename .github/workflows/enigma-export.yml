@@ -5,6 +5,9 @@ on:
     tags:
       - "enigma-v*"   # git tag enigma-v1.0.1 후 push 하면 실행
 
+permissions:
+  contents: write
+
 jobs:
   export:
     name: Build & Release
