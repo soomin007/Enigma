@@ -7,12 +7,17 @@
 
 ## 스크린샷
 
-<img src="image.png" width="600" alt="메인 화면">
-<img src="image-1.png" width="600" alt="라디오 감청">
-<img src="image-2.png" width="600" alt="단서 보드">
-<img src="image-3.png" width="600" alt="암호 해독">
-<img src="image-4.png" width="600" alt="엔딩">
-<img src="image-5.png" width="600" alt="암호 박물관">
+<details>
+<summary>스크린샷 보기 (클릭하여 펼치기)</summary>
+
+![메인 화면](image.png)
+![라디오 감청 화면](image-1.png)
+![단서 보드](image-2.png)
+![암호 해독 화면](image-3.png)
+![엔딩](image-4.png)
+![암호 박물관 화면](image-5.png)
+
+</details>
 
 ---
 
@@ -54,7 +59,7 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 | 2 "유령 네트워크" | Substitution | 입문 | 보통 | 심화 |
 | 3 "ENIGMA" | Enigma | 입문 | 보통 | 심화 |
 | 4 "플레이페어" | Playfair | 입문 | 보통 | 심화 |
-| 5 "배신자의 암호" | Caesar (보너스) | — | — | — |
+| 5 (보너스) | Caesar | — | — | — |
 
 <details>
 <summary>🔓 정답 키 공개 (스포일러 — 클릭하여 펼치기)</summary>
@@ -66,7 +71,7 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 | 2 Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
 | 3 Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 A↔Z |
 | 4 Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
-| 5 보너스 | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
+| 5 (보너스) | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
 
 > 레벨 3 키워드들은 스토리 반전과 직결됩니다.
 
