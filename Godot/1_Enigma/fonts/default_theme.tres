@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3]
 
-[ext_resource type="FontFile" path="res://fonts/HancomGothicBold.ttf" id="1_hancom"]
+[ext_resource type="FontFile" path="res://fonts/NanumGothic-Bold.ttf" id="1_nanum"]
 
 [resource]
-default_font = ExtResource("1_hancom")
+default_font = ExtResource("1_nanum")
 default_font_size = 14
