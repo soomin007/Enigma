@@ -576,7 +576,8 @@ func _build_substitution_content(p: Control) -> void:
 	var tip_lbl := Label.new()
 	tip_lbl.text = "→ 암호문에서 가장 많이 나오는 글자부터 E, T, A 순서로 대응시키며 패턴을 맞춰 나간다."
 	tip_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	tip_lbl.add_theme_font_size_override("font_size", 13)
+	tip_lbl.add_theme_font_size_override("font_size", 15)
+	tip_lbl.add_theme_constant_override("line_spacing", 8)
 	tip_lbl.add_theme_color_override("font_color", Color(0.60, 0.80, 0.60))
 	demo.add_child(tip_lbl)
 
@@ -600,7 +601,8 @@ func _build_enigma_content(p: Control) -> void:
 	var intro := Label.new()
 	intro.text = "에니그마는 1939년부터 나치 독일군이 사용한 전기-기계식 암호 장치입니다.  같은 설정으로 암호문을 입력하면 그대로 평문이 출력되는 '대칭 암호'입니다."
 	intro.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	intro.add_theme_font_size_override("font_size", 14)
+	intro.add_theme_font_size_override("font_size", 16)
+	intro.add_theme_constant_override("line_spacing", 8)
 	intro.add_theme_color_override("font_color", C_DIM_TEXT)
 	p.add_child(intro)
 
@@ -1224,14 +1226,15 @@ func _add_component_block(parent: Control, title: String, body_text: String) -> 
 
 	var t := Label.new()
 	t.text = title
-	t.add_theme_font_size_override("font_size", 14)
+	t.add_theme_font_size_override("font_size", 16)
 	t.add_theme_color_override("font_color", C_GOLD)
 	vb.add_child(t)
 
 	var b := Label.new()
 	b.text = body_text
 	b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	b.add_theme_font_size_override("font_size", 13)
+	b.add_theme_font_size_override("font_size", 15)
+	b.add_theme_constant_override("line_spacing", 8)
 	b.add_theme_color_override("font_color", C_DIM_TEXT)
 	vb.add_child(b)
 
@@ -1239,7 +1242,7 @@ func _add_component_block(parent: Control, title: String, body_text: String) -> 
 func _add_demo_label(parent: Control, text: String) -> void:
 	var lbl := Label.new()
 	lbl.text = text
-	lbl.add_theme_font_size_override("font_size", 13)
+	lbl.add_theme_font_size_override("font_size", 15)
 	lbl.add_theme_color_override("font_color", C_MUTED)
 	parent.add_child(lbl)
 
@@ -1267,7 +1270,8 @@ func _add_desc_text(parent: Control, text: String) -> void:
 	var lbl := Label.new()
 	lbl.text = text
 	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	lbl.add_theme_font_size_override("font_size", 13)
+	lbl.add_theme_font_size_override("font_size", 15)
+	lbl.add_theme_constant_override("line_spacing", 8)
 	lbl.add_theme_color_override("font_color", C_DIM_TEXT)
 	m.add_child(lbl)
 

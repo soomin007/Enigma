@@ -130,7 +130,7 @@ func _build_ui() -> void:
 	var museum_btn := Button.new()
 	museum_btn.text = "◈  암호 알아보기  (CIPHER MUSEUM)"
 	museum_btn.custom_minimum_size = Vector2(0, 44)
-	museum_btn.add_theme_font_size_override("font_size", 14)
+	museum_btn.add_theme_font_size_override("font_size", 17)
 	museum_btn.add_theme_color_override("font_color", Color(0.62, 0.82, 0.90))
 	var mb_sn := _make_style(Color(0.05, 0.08, 0.12), C_BORDER, 1, 0)
 	mb_sn.content_margin_left = 22; mb_sn.content_margin_right = 22
@@ -150,7 +150,7 @@ func _build_ui() -> void:
 	var log_btn := Button.new()
 	log_btn.text = "▶  작전 일지  (OPERATION LOG)"
 	log_btn.custom_minimum_size = Vector2(0, 44)
-	log_btn.add_theme_font_size_override("font_size", 14)
+	log_btn.add_theme_font_size_override("font_size", 17)
 	log_btn.add_theme_color_override("font_color", Color(0.75, 0.72, 0.52))
 	var lb_sn := _make_style(Color(0.06, 0.07, 0.11), C_BORDER, 1, 0)
 	lb_sn.content_margin_left = 22; lb_sn.content_margin_right = 22
@@ -177,7 +177,7 @@ func _build_ui() -> void:
 	var end_btn := Button.new()
 	end_btn.text = "★  엔딩  (FINAL ASSESSMENT)"
 	end_btn.custom_minimum_size = Vector2(0, 44)
-	end_btn.add_theme_font_size_override("font_size", 14)
+	end_btn.add_theme_font_size_override("font_size", 17)
 	end_btn.add_theme_color_override("font_color", C_GOLD)
 	var eb_sn := _make_style(Color(0.07, 0.08, 0.05), Color(0.45, 0.38, 0.10), 1, 0)
 	eb_sn.content_margin_left = 22; eb_sn.content_margin_right = 22
@@ -211,7 +211,7 @@ func _build_ui() -> void:
 	var settings_btn := Button.new()
 	settings_btn.text = "⚙  설정  (SETTINGS)"
 	settings_btn.custom_minimum_size = Vector2(0, 44)
-	settings_btn.add_theme_font_size_override("font_size", 14)
+	settings_btn.add_theme_font_size_override("font_size", 17)
 	settings_btn.add_theme_color_override("font_color", Color(0.62, 0.65, 0.78))
 	var sb_sn := _make_style(Color(0.06, 0.07, 0.11), C_BORDER, 1, 0)
 	sb_sn.content_margin_left = 22; sb_sn.content_margin_right = 22
@@ -231,7 +231,7 @@ func _build_ui() -> void:
 	var quit_btn := Button.new()
 	quit_btn.text = "✕  게임 종료  (QUIT)"
 	quit_btn.custom_minimum_size = Vector2(0, 44)
-	quit_btn.add_theme_font_size_override("font_size", 14)
+	quit_btn.add_theme_font_size_override("font_size", 17)
 	quit_btn.add_theme_color_override("font_color", Color(0.70, 0.35, 0.35))
 	var qb_sn := _make_style(Color(0.07, 0.05, 0.05), Color(0.28, 0.14, 0.14), 1, 0)
 	qb_sn.content_margin_left = 22; qb_sn.content_margin_right = 22
