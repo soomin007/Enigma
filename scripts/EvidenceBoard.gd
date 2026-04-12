@@ -43,6 +43,9 @@ var _connect_mode  : bool = false
 var _connect_first : int  = -1
 var _connect_btn   : Button
 
+## 연결선별 알파값 — 새 연결 추가 시 0→1 애니메이션
+var _connection_alphas : Array = []   # Array[float]
+
 var _popup_overlay   : Control
 var _popup_title_lbl : Label   # 직접 참조 — get_node() 경로 사용 안 함
 var _popup_body_lbl  : Label
@@ -103,23 +106,28 @@ func _draw() -> void:
 	draw_rect(Rect2(8, BOARD_TOP + 6, vp.x - 16, vp.y - BOARD_TOP - 14),
 			  Color(0.25, 0.18, 0.10, 0.30), false, 1.5)
 
-	# 연결선
-	for pair in _connections:
+	# 연결선 — _connection_alphas로 애니메이션 알파 적용
+	for i in _connections.size():
+		var pair: Array = _connections[i]
 		var a_idx: int = pair[0]
 		var b_idx: int = pair[1]
 		if a_idx >= _cards.size() or b_idx >= _cards.size():
 			continue
+		var alpha: float = 1.0
+		if i < _connection_alphas.size():
+			alpha = float(_connection_alphas[i])
 		var card_a: Control = _cards[a_idx]
 		var card_b: Control = _cards[b_idx]
 		var pa := card_a.position + CARD_SIZE * 0.5
 		var pb := card_b.position + CARD_SIZE * 0.5
 		# 실 그림자
 		draw_line(pa + Vector2(1.5, 1.5), pb + Vector2(1.5, 1.5),
-				  Color(0.0, 0.0, 0.0, 0.35), 3.5)
-		draw_line(pa, pb, CONNECT_COLOR, 2.2)
+				  Color(0.0, 0.0, 0.0, 0.35 * alpha), 3.5)
+		var line_col := Color(CONNECT_COLOR.r, CONNECT_COLOR.g, CONNECT_COLOR.b, CONNECT_COLOR.a * alpha)
+		draw_line(pa, pb, line_col, 2.2)
 		# 실 고정점 (양쪽 끝)
-		draw_circle(pa, 3.5, CONNECT_COLOR)
-		draw_circle(pb, 3.5, CONNECT_COLOR)
+		draw_circle(pa, 3.5, line_col)
+		draw_circle(pb, 3.5, line_col)
 
 
 # ── UI 구성 ──────────────────────────────────────────────────────────
@@ -158,7 +166,7 @@ func _build_ui() -> void:
 	back_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.09, 0.15), C_BORDER, 1, 8))
 	back_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.12, 0.14, 0.22), C_BORDER_G, 1, 8))
 	back_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.07, 0.12), C_GOLD, 1, 8))
-	back_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+	back_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/MainMenu.tscn"))
 	hbox.add_child(back_btn)
 
 	# 타이틀
@@ -188,7 +196,7 @@ func _build_ui() -> void:
 	proceed_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.15, 0.18, 0.10), C_GOLD, 1, 12))
 	proceed_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.08, 0.10, 0.06), C_GOLD, 2, 12))
 	proceed_btn.add_theme_color_override("font_color", C_GOLD)
-	proceed_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ChapterView.tscn"))
+	proceed_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/ChapterView.tscn"))
 	hbox.add_child(proceed_btn)
 
 	# 안내 라벨 (보드 상단)
@@ -503,10 +511,20 @@ func _handle_connect(card_idx: int) -> void:
 		var p: Array = _connections[i]
 		if p == pair_fwd or p == pair_rev:
 			_connections.remove_at(i)
+			if i < _connection_alphas.size():
+				_connection_alphas.remove_at(i)
 			removed = true
 			break
 	if not removed:
 		_connections.append(pair_fwd)
+		_connection_alphas.append(0.0)
+		# 연결선 순차 등장 애니메이션
+		var new_idx: int = _connections.size() - 1
+		var tw: Tween = create_tween()
+		tw.tween_method(
+			func(v: float): _connection_alphas[new_idx] = v; queue_redraw(),
+			0.0, 1.0, 0.35
+		).set_trans(Tween.TRANS_SINE)
 
 	_set_card_highlight(_connect_first, false)
 	_connect_first = -1

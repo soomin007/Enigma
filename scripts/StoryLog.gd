@@ -97,7 +97,7 @@ func _build_top_bar() -> Control:
 		_make_style(Color(0.12, 0.14, 0.22), C_BORDER_G, 1, 8))
 	back_btn.add_theme_stylebox_override("pressed",
 		_make_style(Color(0.06, 0.07, 0.12), C_GOLD, 1, 8))
-	back_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+	back_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/MainMenu.tscn"))
 	hbox.add_child(back_btn)
 
 	var title_lbl := Label.new()
@@ -107,11 +107,30 @@ func _build_top_bar() -> Control:
 	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hbox.add_child(title_lbl)
 
+	var total_stars: int = GameManager.total_stars()
 	var total_lbl := Label.new()
-	total_lbl.text = "총 별점: %d" % GameManager.total_stars()
+	total_lbl.text = "총 별점: %d / 45" % total_stars
 	total_lbl.add_theme_font_size_override("font_size", 14)
 	total_lbl.add_theme_color_override("font_color", C_GOLD)
 	hbox.add_child(total_lbl)
+
+	# 주요 15개 레벨(챕터 0~4) 모두 완료 시 엔딩 버튼 표시
+	var all_complete := true
+	for ch in range(5):
+		for lv in range(1, 4):
+			if not GameManager.is_level_complete(ch, lv):
+				all_complete = false
+				break
+
+	if all_complete:
+		var end_btn := Button.new()
+		end_btn.text = "▶  엔딩 보기"
+		end_btn.add_theme_font_size_override("font_size", 13)
+		end_btn.add_theme_color_override("font_color", C_GOLD)
+		end_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.10, 0.07), C_BORDER_G, 1, 10))
+		end_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.12, 0.15, 0.09), C_GOLD, 1, 10))
+		end_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/Ending.tscn"))
+		hbox.add_child(end_btn)
 
 	return bar
 
@@ -174,11 +193,18 @@ func _build_entry(entry: Dictionary) -> Control:
 	meta_h.add_theme_constant_override("separation", 28)
 	main_v.add_child(meta_h)
 
+	var clear_time: String = entry.get("clear_time", "")
+	var speed_badge: bool = entry.get("speed_badge", false)
+	var time_display: String = clear_time
+	if speed_badge and not clear_time.is_empty():
+		time_display = clear_time + "  ⚡"   # 속도 뱃지
+
 	var meta_items := [
-		["일시",   "%s  %s" % [entry.get("date", ""), entry.get("time", "")]],
-		["주파수", entry.get("frequency", "")],
-		["발신",   entry.get("sender", "")],
-		["수신",   entry.get("receiver", "")],
+		["일시",      "%s  %s" % [entry.get("date", ""), entry.get("time", "")]],
+		["주파수",    entry.get("frequency", "")],
+		["클리어",    time_display],
+		["발신",      entry.get("sender", "")],
+		["수신",      entry.get("receiver", "")],
 	]
 	for item in meta_items:
 		var item_arr: Array = item
@@ -222,12 +248,8 @@ func _make_style(bg: Color, border: Color, bw: int, pad: int) -> StyleBoxFlat:
 	var s := StyleBoxFlat.new()
 	s.bg_color = bg
 	s.border_color = border
-	s.border_width_left   = bw
-	s.border_width_right  = bw
-	s.border_width_top    = bw
-	s.border_width_bottom = bw
-	s.content_margin_left   = pad
-	s.content_margin_right  = pad
-	s.content_margin_top    = pad
-	s.content_margin_bottom = pad
+	s.border_width_left   = bw; s.border_width_right  = bw
+	s.border_width_top    = bw; s.border_width_bottom = bw
+	s.content_margin_left   = pad; s.content_margin_right  = pad
+	s.content_margin_top    = pad; s.content_margin_bottom = pad
 	return s

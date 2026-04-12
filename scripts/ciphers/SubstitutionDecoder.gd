@@ -426,9 +426,17 @@ func _update_decoder() -> void:
 	if _cipher_text.is_empty():
 		return
 
-	# 해독 결과 계산
-	var plain := CipherLib.substitution_decode(_cipher_text, _mapping)
-	_lbl_result.text = plain
+	# 해독 결과 계산 (미매핑 글자는 _ 로 표시해 위치 파악 가능하게)
+	var display_result := ""
+	for i in _cipher_text.length():
+		var ch: String = _cipher_text[i]
+		var code: int = ch.unicode_at(0)
+		if code >= 65 and code <= 90:
+			var mapped: String = _mapping.get(ch, "")
+			display_result += "_" if mapped == "" else mapped
+		else:
+			display_result += ch
+	_lbl_result.text = display_result
 
 	# 확신도 계산
 	var total_types   := _cipher_used.size()

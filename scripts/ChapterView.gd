@@ -103,10 +103,14 @@ const CIPHER_INTROS := {
 var _lbl_chapter_title : Label
 var _lbl_frequency     : Label
 var _lbl_date          : Label
-var _lbl_hint_count    : Label
+var _lbl_timer         : Label    # 레벨 타이머 표시
+var _hint_btn          : Button   # 힌트 버튼 직접 참조 (제한 시 비활성화)
+var _lbl_cipher_header : Label    # 암호문 복사용 레이블
 
 var _clue_list_vbox    : VBoxContainer   # 단서 카드 목록
 var _cipher_container  : Control         # 해독기가 동적으로 올라오는 영역
+
+var _level_start_time  : float = 0.0   # 씬 진입 시각 (복사용 — GameManager에도 있음)
 
 # ── 타자기 상태 ──────────────────────────────────────────────────────
 var _tw_label         : Label    = null
@@ -120,6 +124,7 @@ var _report_panel      : PanelContainer  # 보고서 (처음엔 숨김)
 var _decoder           : Control         # 현재 로드된 해독기 인스턴스
 var _report_inputs     : Dictionary = {} # { q_id: OptionButton }
 var _q_container       : VBoxContainer   # 보고서 질문 컨테이너 직접 참조
+var _decoded_rh_panel  : Control = null  # 레드 헤링 해설 패널 (완료 연출 시)
 
 # ── BOMBE 이스터에그 ─────────────────────────────────────────────────
 const _BOMBE_CODE  := "BOMBE"
@@ -174,9 +179,24 @@ class _StampDraw extends Control:
 func _ready() -> void:
 	self.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	AudioManager.play_bgm("gameplay")
+	_level_start_time = Time.get_unix_time_from_system()
 	_build_ui()
 	_connect_signals()
 	GameManager.load_chapter(GameManager.current_chapter_id)
+
+
+func _process(_delta: float) -> void:
+	if _lbl_timer == null or not is_instance_valid(_lbl_timer):
+		return
+	# 완료된 레벨이면 타이머 멈춤
+	if GameManager.is_level_complete(GameManager.current_chapter_id, GameManager.current_level_id):
+		return
+	var elapsed: float = Time.get_unix_time_from_system() - _level_start_time
+	var secs: int = int(elapsed)
+	if secs < 60:
+		_lbl_timer.text = "%d초" % secs
+	else:
+		_lbl_timer.text = "%d:%02d" % [secs / 60, secs % 60]
 
 
 # ────────────────────────────────────────────────────────────────────
@@ -247,7 +267,7 @@ func _build_top_bar() -> Control:
 	back_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.09, 0.15), C_BORDER, 1, 8))
 	back_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.12, 0.14, 0.22), C_BORDER_G, 1, 8))
 	back_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.07, 0.12), C_GOLD, 1, 8))
-	back_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+	back_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/MainMenu.tscn"))
 	hbox.add_child(back_btn)
 
 	# 챕터 제목
@@ -272,22 +292,25 @@ func _build_top_bar() -> Control:
 	_lbl_date.add_theme_color_override("font_color", C_MUTED)
 	hbox.add_child(_lbl_date)
 
+	# 타이머
+	_lbl_timer = Label.new()
+	_lbl_timer.text = "0초"
+	_lbl_timer.add_theme_font_size_override("font_size", 13)
+	_lbl_timer.add_theme_color_override("font_color", Color(0.45, 0.72, 0.88))
+	hbox.add_child(_lbl_timer)
+
 	# 힌트 버튼
 	var hint_btn := Button.new()
-	hint_btn.text = "힌트 사용"
+	hint_btn.text = "힌트 사용 (0/%d)" % GameManager.HINT_MAX
 	hint_btn.add_theme_font_size_override("font_size", 13)
 	hint_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.09, 0.15), C_BORDER, 1, 8))
 	hint_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.14, 0.10, 0.06), Color(0.75, 0.55, 0.25), 1, 8))
 	hint_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.10, 0.08, 0.04), Color(0.93, 0.72, 0.30), 1, 8))
+	hint_btn.add_theme_stylebox_override("disabled", _make_style(Color(0.06, 0.06, 0.10), Color(0.20, 0.20, 0.28), 1, 8))
+	hint_btn.add_theme_color_override("font_disabled_color", Color(0.32, 0.32, 0.40))
 	hint_btn.pressed.connect(GameManager.use_hint)
 	hbox.add_child(hint_btn)
-
-	# 힌트 카운트
-	_lbl_hint_count = Label.new()
-	_lbl_hint_count.text = "사용: 0회"
-	_lbl_hint_count.add_theme_font_size_override("font_size", 12)
-	_lbl_hint_count.add_theme_color_override("font_color", Color(0.72, 0.52, 0.28))
-	hbox.add_child(_lbl_hint_count)
+	_hint_btn = hint_btn
 
 	return bar
 
@@ -355,6 +378,35 @@ func _build_right_panel() -> Control:
 	vbox.size_flags_vertical   = Control.SIZE_EXPAND_FILL
 	vbox.add_theme_constant_override("separation", 0)
 	outer.add_child(vbox)
+
+	# ── 암호문 헤더 + 복사 버튼 ──
+	var cipher_hdr_row := HBoxContainer.new()
+	cipher_hdr_row.add_theme_constant_override("separation", 8)
+	vbox.add_child(cipher_hdr_row)
+
+	_lbl_cipher_header = Label.new()
+	_lbl_cipher_header.text = "암호문:"
+	_lbl_cipher_header.add_theme_font_size_override("font_size", 12)
+	_lbl_cipher_header.add_theme_color_override("font_color", C_MUTED)
+	_lbl_cipher_header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cipher_hdr_row.add_child(_lbl_cipher_header)
+
+	var copy_btn := Button.new()
+	copy_btn.text = "[ 복사 ]"
+	copy_btn.add_theme_font_size_override("font_size", 11)
+	copy_btn.add_theme_color_override("font_color", Color(0.55, 0.72, 0.88))
+	copy_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.07, 0.09, 0.14), C_BORDER, 1, 6))
+	copy_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.10, 0.13, 0.20), Color(0.40, 0.60, 0.80), 1, 6))
+	copy_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.08, 0.12), Color(0.30, 0.50, 0.70), 1, 6))
+	copy_btn.pressed.connect(func():
+		var ct: String = GameManager.current_chapter.get("cipher_text", "")
+		if not ct.is_empty():
+			DisplayServer.clipboard_set(ct)
+			copy_btn.text = "[ 복사됨 ✓ ]"
+			# 1.5초 후 원래 텍스트 복원
+			get_tree().create_timer(1.5).timeout.connect(func(): copy_btn.text = "[ 복사 ]")
+	)
+	cipher_hdr_row.add_child(copy_btn)
 
 	_cipher_container = Control.new()
 	_cipher_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -632,6 +684,8 @@ func _typewrite_tick() -> void:
 		",":           delay = 0.07
 		"\n":          delay = 0.28
 		" ":           delay = 0.022
+	# 텍스트 속도 설정 반영 (SettingsManager)
+	delay *= SettingsManager.get_text_speed_factor()
 	_tw_timer.start(delay)
 
 
@@ -753,6 +807,53 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 	outer_v.add_child(result_panel)
 	_story_result_panel = result_panel
 
+	# ── 레드 헤링 해설 패널 (결과 패널 위) ──────────────────────────────
+	var extra_clues: Array = GameManager.current_chapter.get("extra_clues", [])
+	if not extra_clues.is_empty():
+		var rh_panel := PanelContainer.new()
+		rh_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		rh_panel.custom_minimum_size = Vector2(620, 0)
+		rh_panel.modulate.a = 0.0
+		var rh_style := StyleBoxFlat.new()
+		rh_style.bg_color    = Color(0.06, 0.05, 0.03)
+		rh_style.border_color = Color(0.72, 0.52, 0.20, 0.80)
+		rh_style.border_width_top  = 2
+		rh_style.border_width_left = 1; rh_style.border_width_right = 1; rh_style.border_width_bottom = 1
+		rh_style.content_margin_left = 24; rh_style.content_margin_right = 24
+		rh_style.content_margin_top = 14; rh_style.content_margin_bottom = 14
+		rh_panel.add_theme_stylebox_override("panel", rh_style)
+		outer_v.add_child(rh_panel)
+
+		var rh_vbox := VBoxContainer.new()
+		rh_vbox.add_theme_constant_override("separation", 6)
+		rh_panel.add_child(rh_vbox)
+
+		var rh_hdr := Label.new()
+		rh_hdr.text = "[ 레드 헤링 해설  ·  RED HERRING REVEAL ]"
+		rh_hdr.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		rh_hdr.add_theme_font_size_override("font_size", 12)
+		rh_hdr.add_theme_color_override("font_color", Color(0.80, 0.58, 0.18))
+		rh_vbox.add_child(rh_hdr)
+
+		var rh_sep := HSeparator.new()
+		var rh_ss := StyleBoxFlat.new()
+		rh_ss.bg_color = Color(0.60, 0.40, 0.12, 0.50)
+		rh_sep.add_theme_stylebox_override("separator", rh_ss)
+		rh_vbox.add_child(rh_sep)
+
+		for ec in extra_clues:
+			var ec_dict: Dictionary = ec
+			var rh_lbl := Label.new()
+			rh_lbl.text = "▸  [가짜 단서]  %s  —  %s" % [ec_dict.get("title", "?"), ec_dict.get("red_herring_note", "퍼즐 해결과 무관한 단서입니다.")]
+			rh_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
+			rh_lbl.add_theme_font_size_override("font_size", 13)
+			rh_lbl.add_theme_color_override("font_color", Color(0.75, 0.65, 0.42))
+			rh_vbox.add_child(rh_lbl)
+
+		# 레드 헤링 패널: 결과 패널 페이드인 완료 후 자동으로 페이드인
+		# _decoded_rh_panel 에 저장해 두고, 아래 애니메이션 콜백에서 사용
+		_decoded_rh_panel = rh_panel
+
 	var gap := Control.new()
 	gap.custom_minimum_size.y = 40
 	outer_v.add_child(gap)
@@ -813,7 +914,7 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 	menu_btn.add_theme_stylebox_override("normal",  _make_style(Color(0.08, 0.09, 0.15), C_BORDER, 1, 12))
 	menu_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.12, 0.14, 0.22), C_BORDER_G, 1, 12))
 	menu_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.07, 0.12), C_GOLD, 1, 12))
-	menu_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+	menu_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/MainMenu.tscn"))
 	btn_row.add_child(menu_btn)
 
 	var log_btn := Button.new()
@@ -824,7 +925,7 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 	log_btn.add_theme_stylebox_override("hover",   _make_style(Color(0.10, 0.10, 0.18), C_BORDER_G, 1, 12))
 	log_btn.add_theme_stylebox_override("pressed", _make_style(Color(0.06, 0.06, 0.09), C_GOLD, 1, 12))
 	log_btn.add_theme_color_override("font_color", Color(0.70, 0.68, 0.50))
-	log_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/StoryLog.tscn"))
+	log_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/StoryLog.tscn"))
 	btn_row.add_child(log_btn)
 
 	# 다음 레벨 또는 다음 챕터 버튼 — 레벨 파일 존재 여부로 판단
@@ -843,7 +944,7 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 		next_btn.add_theme_color_override("font_color", C_GOLD)
 		next_btn.pressed.connect(func():
 			GameManager.current_level_id = cur_level + 1
-			get_tree().change_scene_to_file("res://scenes/Radio.tscn")
+			SceneTransition.fade_to("res://scenes/Radio.tscn")
 		)
 		btn_row.add_child(next_btn)
 	elif FileAccess.file_exists(next_ch_path):
@@ -858,7 +959,7 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 		next_btn.pressed.connect(func():
 			GameManager.current_chapter_id = chapter_id + 1
 			GameManager.current_level_id   = 1
-			get_tree().change_scene_to_file("res://scenes/Radio.tscn")
+			SceneTransition.fade_to("res://scenes/Radio.tscn")
 		)
 		btn_row.add_child(next_btn)
 
@@ -891,8 +992,14 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 			_story_result_panel.visible = true
 			_story_result_panel.modulate.a = 0.0
 			var tw2: Tween = create_tween()
+			tw2.set_parallel(false)
 			tw2.tween_property(_story_result_panel, "modulate:a", 1.0, 0.40) \
 				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			# 3. 레드 헤링 해설 패널 페이드인 (있는 경우)
+			if _decoded_rh_panel != null and is_instance_valid(_decoded_rh_panel):
+				tw2.tween_interval(0.20)
+				tw2.tween_property(_decoded_rh_panel, "modulate:a", 1.0, 0.40) \
+					.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		)
 	)
 
@@ -906,6 +1013,7 @@ func _connect_signals() -> void:
 	GameManager.clue_collected.connect(_on_clue_collected)
 	GameManager.report_result.connect(_on_report_result)
 	GameManager.hint_revealed.connect(_on_hint_revealed)
+	GameManager.hint_exhausted.connect(_on_hint_exhausted)
 	GameManager.chapter_completed.connect(_on_chapter_completed)
 
 
@@ -919,6 +1027,16 @@ func _on_chapter_loaded(data: Dictionary) -> void:
 	_lbl_frequency.text     = "%.1f kHz" % data.get("radio_frequency", 0.0)
 	var log_data: Dictionary = data.get("completion_log", {})
 	_lbl_date.text = log_data.get("date", "")
+	# 암호문 헤더 업데이트 (복사 버튼 옆)
+	var ct: String = data.get("cipher_text", "")
+	if _lbl_cipher_header != null and is_instance_valid(_lbl_cipher_header):
+		_lbl_cipher_header.text = "암호문:  %s" % ct
+	# 레드 헤링 해설 패널 초기화
+	_decoded_rh_panel = null
+	# 힌트 버튼 초기화
+	if _hint_btn != null and is_instance_valid(_hint_btn):
+		_hint_btn.text = "힌트 사용 (0/%d)" % GameManager.HINT_MAX
+		_hint_btn.disabled = false
 
 	var all_clues: Array = data.get("clues", []) + data.get("extra_clues", [])
 	all_clues.shuffle()
@@ -1075,13 +1193,31 @@ func _on_report_result(correct: bool, feedback: String) -> void:
 
 
 func _on_hint_revealed(hint_text: String) -> void:
-	_lbl_hint_count.text = "사용: %d회" % GameManager.hint_count
-	_show_popup("힌트", hint_text)
+	var used: int = GameManager.hint_count
+	var max_h: int = GameManager.HINT_MAX
+	if _hint_btn != null and is_instance_valid(_hint_btn):
+		_hint_btn.text = "힌트 사용 (%d/%d)" % [used, max_h]
+		if used >= max_h:
+			_hint_btn.disabled = true
+	_show_popup("힌트 [%d/%d]" % [used, max_h], hint_text)
+
+
+func _on_hint_exhausted() -> void:
+	if _hint_btn != null and is_instance_valid(_hint_btn):
+		_hint_btn.disabled = true
+	_show_popup("힌트 소진", "이번 임무에서 사용 가능한 힌트를 모두 소진했습니다.\n단서 보드를 다시 검토하십시오.")
 
 
 func _on_chapter_completed(chapter_id: int, stars: int) -> void:
 	# DECODED 도장 오버레이로 완료 처리 — 팝업 대신 전체 화면 연출
 	_show_decoded_stamp(chapter_id, stars)
+	# 타이머 중지 (완료됐으므로 더 이상 갱신 불필요)
+	if _lbl_timer != null and is_instance_valid(_lbl_timer):
+		var secs: int = int(GameManager.level_elapsed_secs)
+		if secs < 60:
+			_lbl_timer.text = "%d초 ✓" % secs
+		else:
+			_lbl_timer.text = "%d:%02d ✓" % [secs / 60, secs % 60]
 
 
 # ────────────────────────────────────────────────────────────────────
@@ -1123,6 +1259,14 @@ func _input(event: InputEvent) -> void:
 	var key_event: InputEventKey = event
 	if not key_event.pressed or key_event.echo:
 		return
+
+	# 7. 보고서 Enter 키 단축키 — 보고서 패널이 표시 중이고 모든 항목 선택 시
+	if key_event.keycode == KEY_ENTER or key_event.keycode == KEY_KP_ENTER:
+		if _report_panel != null and _report_panel.visible:
+			_on_submit_report()
+			return
+
+	# BOMBE 이스터에그 (알파벳 키만 처리)
 	var ch := char(key_event.unicode).to_upper()
 	if ch.length() != 1 or ch < "A" or ch > "Z":
 		return

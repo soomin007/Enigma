@@ -43,10 +43,11 @@
 | 챕터 | 레벨 | 암호 유형 | 핵심 게임플레이 | 상태 |
 |------|------|-----------|----------------|------|
 | 0 (튜토리얼) | 1~3 | 시저 암호 | 이동값 슬라이더 조작 | ✅ 완료 |
-| 1 "작전명 WOLF" | 1~3 | 시저 암호 | 방향 선택 + 이동값 추론 | ✅ 완료 |
-| 2 "붉은 장미" | 1~3 | 비즈네르 암호 | 키워드 추적 (편지·일기에서 수집) | ✅ 완료 |
-| 3 "유령 네트워크" | 1~3 | 단일 치환 암호 | 빈도 분석, 수작업 매핑 | ✅ 완료 |
-| 4 "ENIGMA" | 1~3 | 에니그마 머신 + 플레이페어 | 로터·반사판·플러그보드 조작 | ✅ 완료 |
+| 1 "붉은 장미" | 1~3 | 비즈네르 암호 | 키워드 추적 (편지·사진에서 수집) | ✅ 완료 |
+| 2 "유령 네트워크" | 1~3 | 단일 치환 암호 | 빈도 분석, 수작업 매핑 | ✅ 완료 |
+| 3 "ENIGMA" | 1~3 | 에니그마 머신 | 로터·반사판·플러그보드 조작 | ✅ 완료 |
+| 4 "플레이페어" | 1~3 | 플레이페어 암호 | 5×5 격자 키 행렬 조작 | ✅ 완료 |
+| 5 "배신자의 암호" | 1~3 | 시저 암호 (보너스) | Harrison 시점 — 암호화 관점 플레이 | ✅ 완료 |
 
 > **레드 헤링(가짜 단서)**: 모든 챕터의 JSON에 `extra_clues` 필드로 분리 저장. EvidenceBoard가 런타임에 `clues`와 병합해 표시.
 
@@ -134,12 +135,14 @@
 res://
 ├── project.godot
 ├── scenes/
-│   ├── MainMenu.tscn          ✅ (암호 박물관 버튼 포함)
+│   ├── MainMenu.tscn          ✅ (암호 박물관·스토리로그·설정 버튼 포함)
 │   ├── Radio.tscn             ✅
 │   ├── EvidenceBoard.tscn     ✅ (타입별 카드 스타일, 랜덤 회전, 레드 헤링 병합)
 │   ├── ChapterView.tscn       ✅ (해독기 + 보고서 + DECODED 도장)
-│   ├── CipherMuseum.tscn      ✅ (새로 추가 — 5종 암호 인터랙티브 데모)
-│   ├── StoryLog.tscn          🔲 미구현
+│   ├── CipherMuseum.tscn      ✅ (5종 암호 인터랙티브 데모)
+│   ├── StoryLog.tscn          ✅
+│   ├── Ending.tscn            ✅ (총 별점 기반 3종 엔딩)
+│   ├── Settings.tscn          ✅ (BGM/SFX 볼륨, 텍스트 속도 설정)
 │   └── ciphers/
 │       ├── CaesarDecoder.tscn      ✅
 │       ├── VigenereDecoder.tscn    ✅
@@ -147,37 +150,43 @@ res://
 │       ├── EnigmaDecoder.tscn      ✅
 │       └── PlayfairDecoder.tscn    ✅
 ├── scripts/
-│   ├── GameManager.gd         ✅ 싱글톤
+│   ├── GameManager.gd         ✅ autoload — 게임 상태·저장·힌트·보고서
+│   ├── AudioManager.gd        ✅ autoload — BGM 크로스페이드·SFX·라디오 스태틱
+│   ├── CipherLib.gd           ✅ autoload — 암호화/복호화 라이브러리
+│   ├── SceneTransition.gd     ✅ autoload — 씬 전환 페이드 애니메이션
+│   ├── SettingsManager.gd     ✅ autoload — 볼륨·속도 설정 저장/로드
 │   ├── MainMenu.gd            ✅
 │   ├── RadioScene.gd          ✅
 │   ├── EvidenceBoard.gd       ✅
 │   ├── ChapterView.gd         ✅
-│   ├── CipherMuseum.gd        ✅ (새로 추가)
-│   ├── CipherLib.gd           ✅
+│   ├── CipherMuseum.gd        ✅
+│   ├── PlayfairDecoder.gd     ✅
+│   ├── StoryLog.gd            ✅
+│   ├── Ending.gd              ✅
+│   ├── Settings.gd            ✅
 │   └── ciphers/
 │       ├── CaesarDecoder.gd        ✅
 │       ├── VigenereDecoder.gd      ✅
 │       ├── SubstitutionDecoder.gd  ✅
-│       ├── EnigmaDecoder.gd        ✅
-│       └── PlayfairDecoder.gd      ✅
+│       └── EnigmaDecoder.gd        ✅
 ├── assets/
 │   ├── fonts/
 │   ├── sounds/
 │   └── textures/
 └── data/
 	└── chapters/
-		├── chapter_00.json    ✅ 챕터 선택 메타
-		├── chapter_00_01.json ✅ Caesar shift=3
-		├── chapter_00_02.json ✅ Caesar shift=5
-		├── chapter_00_03.json ✅ Caesar shift=9
-		├── chapter_01.json    ✅
-		├── chapter_01_01~03.json ✅ Caesar shift=7/방향 변형
-		├── chapter_02.json    ✅
-		├── chapter_02_01~03.json ✅ Vigenère key=ROSE/ENGLAND
-		├── chapter_03.json    ✅
-		├── chapter_03_01~03.json ✅ Substitution / Enigma I/II/III
-		├── chapter_04.json    ✅
-		└── chapter_04_01~03.json ✅ Playfair key=KEY/WINSTON/BLETCHLEY
+		├── chapter_00.json        ✅ 챕터 선택 메타
+		├── chapter_00_01~03.json  ✅ Caesar shift=3/5/9
+		├── chapter_01.json        ✅
+		├── chapter_01_01~03.json  ✅ Vigenère key=WAR/ROSE/ENGLAND
+		├── chapter_02.json        ✅
+		├── chapter_02_01~03.json  ✅ Substitution (keyword=WOLF/빈도분석/PHANTOM)
+		├── chapter_03.json        ✅
+		├── chapter_03_01~03.json  ✅ Enigma I/II/III (AAA B / 위치변경 / 플러그보드)
+		├── chapter_04.json        ✅
+		├── chapter_04_01~03.json  ✅ Playfair key=KEY/WINSTON/BLETCHLEY
+		├── chapter_05.json        ✅ 보너스 챕터 메타 — 배신자의 암호
+		└── chapter_05_01~03.json  ✅ Caesar (Harrison 시점)
 ```
 
 ---
@@ -240,7 +249,8 @@ func enigma_decode(cipher, rotors, reflector, plugboard) -> String
 | Phase 10 | 런타임 암호문 동적 생성 + 랜덤 주파수 | JSON 구조 변경, GameManager 리팩토링 | ✅ 완료 |
 | Phase 11 | 오디오 폴리싱 | AudioManager, 라디오 스태틱 lerp, BGM/SFX 전 씬 삽입 | ✅ 완료 |
 | Phase 12 | 마무리 | 레드 헤링 오답 피드백, 밸런스 조정, 최종 버그 픽스, 빌드 | ✅ 완료 |
-| Phase 13 | 폴리싱 II | 힌트 제한·타이머·엔딩 분기 등 품질 향상 아이디어 (하단 참고) | 🔲 예정 |
+| Phase 13 | 폴리싱 II | 힌트 제한·타이머·엔딩 분기 등 품질 향상 아이디어 (하단 참고) | ✅ 완료 |
+| Phase 14 | 최종 완성 | 엔딩·설정·씬전환·보너스 챕터 구현 + 보고서 선택지 균등화 | ✅ 완료 |
 
 ---
 
@@ -311,9 +321,7 @@ func enigma_decode(cipher, rotors, reflector, plugboard) -> String
    - 해독기 상단 암호문 텍스트 옆에 복사 아이콘
    - 종이에 손으로 풀고 싶은 플레이어를 위한 편의 기능
 
-5. **씬 전환 애니메이션**
-   - 현재 씬 전환이 즉각적; 타자기 정지 화면 → 검은 화면 페이드 → 다음 씬 연출
-   - CanvasLayer + AnimationPlayer로 구현
+5. ~~**씬 전환 애니메이션**~~ → **✅ Phase 14에서 구현** (SceneTransition.gd)
 
 6. **EvidenceBoard 연결선 순차 등장**
    - 단서 카드가 추가될 때마다 연결선이 하나씩 그려지는 연출
@@ -323,15 +331,34 @@ func enigma_decode(cipher, rotors, reflector, plugboard) -> String
    - 보고서 모든 항목 선택 완료 후 Enter로 제출 가능
    - 마우스 없이 키보드로 완료 가능한 접근성 향상
 
-8. **총 별점 기반 3종 엔딩**
-   - 현재 엔딩 분기 미구현; 총 별점(1~45) 구간별 텍스트/연출 분기
-   - 예: 40+ = "전설적 분석관", 25~39 = "유능한 요원", ~24 = "경험 부족"
+8. ~~**총 별점 기반 3종 엔딩**~~ → **✅ Phase 14에서 구현** (Ending.gd/tscn)
 
-9. **보너스 챕터 — Harrison 시점**
-   - 해리슨이 적에게 정보를 유출하는 장면을 플레이어가 암호화 관점으로 플레이
-   - Chapter 5 또는 비선형 해금 콘텐츠로 구성
+9. ~~**보너스 챕터 — Harrison 시점**~~ → **✅ Phase 14에서 구현** (chapter_05_01~03.json)
 
-10. **설정 메뉴**
-	- 음량 조절 슬라이더 (BGM, SFX 분리)
-	- 텍스트 속도 설정 (타자기 연출 속도)
-	- 언어 설정 준비 (한/영 전환 인터페이스 스캐폴딩)
+10. ~~**설정 메뉴**~~ → **✅ Phase 14에서 구현** (Settings.gd/tscn + SettingsManager.gd)
+
+---
+
+## 13. Phase 14 완료 — 최종 완성 (2026-04-12)
+
+### 완료된 작업
+
+1. **총 별점 기반 3종 엔딩** (`Ending.gd` / `Ending.tscn`)
+   - 총 별점(최대 45) 구간별 분기: 40+ = "전설적 분석관", 25~39 = "유능한 요원", ~24 = "경험 부족"
+   - 별점·랭크·스토리 텍스트·메인 메뉴 복귀 버튼
+
+2. **설정 메뉴** (`Settings.gd` / `Settings.tscn` / `SettingsManager.gd`)
+   - BGM 볼륨, SFX 볼륨, 텍스트 속도 HSlider
+   - SettingsManager autoload — `user://enigma_settings.json` 저장/로드
+
+3. **씬 전환 페이드 애니메이션** (`SceneTransition.gd`)
+   - CanvasLayer layer=128, 0.22초 페이드 인/아웃
+   - 전역 `SceneTransition.fade_to(scene_path)` API
+
+4. **보너스 챕터 5 — 배신자의 암호** (`chapter_05.json` + `chapter_05_01~03.json`)
+   - "내부 고발 파일 — 기밀 해제 1960년"
+   - Harrison이 독일 정보국에 유출한 교신 기록 해독 (Caesar 암호)
+
+5. **보고서 선택지 글자수 균등화**
+   - 모든 챕터 보고서 OptionButton 선택지 길이를 4단어 내외로 통일
+   - 선택지 길이 차이로 정답을 유추하는 메타게임 방지
