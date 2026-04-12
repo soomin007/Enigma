@@ -66,12 +66,12 @@
       "question": "적에게 내려진 즉각 명령은?",
       "answer_key": "NOW",
       "answer_display": "즉시 (NOW)",
-      "choices": ["SOON", "NOW", "WAIT", "HOLD"],
+      "choices": ["SOON", "NOW", "WAIT", "YET"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
         "SOON": "곧(soon)이 아닙니다. KMV의 치환 관계를 WOLF 표로 역변환하면 '지금'을 뜻하는 단어가 나옵니다.",
         "WAIT": "대기(wait) 명령이 아닙니다. WOLF 키워드로 만든 치환표를 재확인하십시오.",
-        "HOLD": "사수(hold) 명령이 아닙니다. K=N, M=O, V=W 대응을 치환표로 검증해보십시오."
+        "YET": "아직(yet)이 아닙니다. K=N, M=O, V=W 대응을 치환표로 검증해보십시오."
       }
     },
     {

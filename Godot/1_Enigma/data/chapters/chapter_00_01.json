@@ -23,7 +23,7 @@
       "id": "c00_doc02",
       "type": "torn_paper",
       "title": "찢겨진 쪽지",
-      "content": "...완전 짜증나.\n\nW 선생이 또 수치를 바꿨다. 이번 주는 수요일 기준이래.\n매주 바뀌니까 헷갈려 죽겠어. 월요일부터 셀지 일요일부터\n셀지도 모르겠고. (월요일부터라고 어디서 들은 것 같기도 하고.)\n\n방향은 항상 오른쪽이라는 건 변함없군.\n\n—  낙서",
+      "content": "...완전 짜증나.\n\nW 선생이 또 수치를 바꿨다. 이번 주는 수요일 기준이래.\n교범에는 월요일을 첫째 날로 삼아 순서대로 세라고\n명확하게 나와 있거든.\n\n방향은 항상 오른쪽이라는 건 변함없군.\n\n—  낙서",
       "hint_value": "쪽지와 압수 사진에 같은 서명이 있다. 연결해서 생각해보라."
     },
     {
@@ -43,7 +43,7 @@
       "id": "c00_fake01",
       "type": "torn_paper",
       "title": "막사 낙서",
-      "content": "7일씩 돌아가는 당직 순번이 너무 힘들다.\n왜 하필 7이냐고. 이유도 없어.\n이번 주는 내 차례야. 죽겠다.\n— K",
+      "content": "겨울이 너무 길다. 보급도 안 오고 신발 바닥도 다 닳았어.\n이 막사는 창문도 없어서 밤새 얼어 죽는 줄 알았다.\n언제 끝나는 거야 이 전쟁이.\n— K",
       "hint_value": ""
     }
   ],
@@ -53,12 +53,12 @@
       "question": "적군의 공격 시각은 언제입니까?",
       "answer_key": "DAWN",
       "answer_display": "새벽 (DAWN)",
-      "choices": ["DUSK", "DAWN", "NOON", "MIDNIGHT"],
+      "choices": ["DUSK", "DAWN", "NOON", "DARK"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 다시 확인하십시오.",
       "specific_wrong_feedback": {
-        "DUSK":     "황혼(dusk)이 아닙니다. 이동값을 정확히 적용한 결과를 다시 읽으십시오.",
-        "NOON":     "정오(noon)를 암시하는 단서는 없습니다. 달력의 요일 위치와 이동값을 재확인하십시오.",
-        "MIDNIGHT": "자정(midnight)이 아닙니다. shift 3을 적용한 암호문 마지막 단어를 재확인하십시오."
+        "DUSK": "황혼(dusk)이 아닙니다. 이동값을 정확히 적용한 결과를 다시 읽으십시오.",
+        "NOON": "정오(noon)를 암시하는 단서는 없습니다. 달력의 요일 위치와 이동값을 재확인하십시오.",
+        "DARK": "어둠(dark)이 아닙니다. shift 3을 적용한 암호문 마지막 단어를 재확인하십시오."
       }
     },
     {
@@ -66,12 +66,12 @@
       "question": "통신에 담긴 적의 작전은 무엇입니까?",
       "answer_key": "ATTACK",
       "answer_display": "공격 (ATTACK)",
-      "choices": ["ATTACK", "RETREAT", "DEFEND", "PATROL"],
+      "choices": ["ATTACK", "CHARGE", "DEFEND", "PATROL"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 다시 확인하십시오.",
       "specific_wrong_feedback": {
-        "RETREAT": "후퇴(retreat) 명령이 아닙니다. 이동값 적용 결과 첫 단어를 재확인하십시오.",
-        "DEFEND":  "방어(defend) 명령이 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
-        "PATROL":  "초계(patrol) 명령이 아닙니다. shift 3을 적용한 결과를 재검토하십시오."
+        "CHARGE": "돌격(charge) 명령이 아닙니다. 이동값 적용 결과 첫 단어를 재확인하십시오.",
+        "DEFEND": "방어(defend) 명령이 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
+        "PATROL": "초계(patrol) 명령이 아닙니다. shift 3을 적용한 결과를 재검토하십시오."
       }
     }
   ],

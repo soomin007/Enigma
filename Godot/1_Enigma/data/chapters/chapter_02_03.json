@@ -66,12 +66,12 @@
       "question": "두더지는 어디에 접근했습니까?",
       "answer_key": "COAST",
       "answer_display": "해안 (COAST)",
-      "choices": ["BORDER", "HARBOUR", "COAST", "RIVER"],
+      "choices": ["INLET", "COAST", "RIDGE", "RIVER"],
       "wrong_feedback": "해독된 평문에서 두더지의 현재 위치를 나타내는 단어를 찾으십시오.",
       "specific_wrong_feedback": {
-        "BORDER": "국경(border)이 아닙니다. SBT가 THE임을 출발점으로 AJPRS를 역변환하십시오.",
-        "HARBOUR": "항구(harbour)와 유사하지만 정확하지 않습니다. PHANTOM 치환표로 AJPRS를 다시 역변환하십시오.",
-        "RIVER":   "강(river)이 아닙니다. PHANTOM 키워드로 재구성한 치환표를 확인하십시오."
+        "INLET": "입구(inlet)가 아닙니다. SBT가 THE임을 출발점으로 AJPRS를 역변환하십시오.",
+        "RIDGE": "산등성이(ridge)가 아닙니다. PHANTOM 치환표로 AJPRS를 다시 역변환하십시오.",
+        "RIVER": "강(river)이 아닙니다. PHANTOM 키워드로 재구성한 치환표를 확인하십시오."
       }
     },
     {
@@ -79,11 +79,11 @@
       "question": "취해야 할 조치는 무엇입니까?",
       "answer_key": "CLOSE",
       "answer_display": "봉쇄 (CLOSE)",
-      "choices": ["FLEE", "CLOSE", "SEAL", "GUARD"],
+      "choices": ["CHASE", "CLOSE", "BLOCK", "GUARD"],
       "wrong_feedback": "해독된 평문에서 명령 동사를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FLEE":  "도주(flee)는 이전 레벨의 지시입니다. 이번 메시지는 추격 측의 명령입니다. AFJRT를 역변환하십시오.",
-        "SEAL":  "봉쇄(seal)와 뜻이 비슷하지만 정확한 단어가 아닙니다. AFJRT의 각 글자를 PHANTOM 표로 역변환하십시오.",
+        "CHASE": "추격(chase) 명령이 아닙니다. 이번 메시지는 추격 측의 봉쇄 명령입니다. AFJRT를 역변환하십시오.",
+        "BLOCK": "차단(block)과 뜻이 비슷하지만 정확한 단어가 아닙니다. AFJRT의 각 글자를 PHANTOM 표로 역변환하십시오.",
         "GUARD": "경비(guard) 명령이 아닙니다. PHANTOM 치환표 적용 결과를 재확인하십시오."
       }
     },
@@ -92,12 +92,12 @@
       "question": "봉쇄 대상은 무엇입니까?",
       "answer_key": "EXITS",
       "answer_display": "출구 (EXITS)",
-      "choices": ["PORTS", "ROADS", "EXITS", "BRIDGES"],
+      "choices": ["PORTS", "ROADS", "EXITS", "GATES"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "PORTS":   "항구 출구(ports)가 아닙니다. TXCSR를 PHANTOM 표로 역변환하면 정확한 단어가 나옵니다.",
-        "ROADS":   "도로(roads)가 아닙니다. PHANTOM 치환 역변환 결과를 재확인하십시오.",
-        "BRIDGES": "교량(bridges)이 아닙니다. 평문 마지막 단어 TXCSR를 다시 확인하십시오."
+        "PORTS": "항구 출구(ports)가 아닙니다. TXCSR를 PHANTOM 표로 역변환하면 정확한 단어가 나옵니다.",
+        "ROADS": "도로(roads)가 아닙니다. PHANTOM 치환 역변환 결과를 재확인하십시오.",
+        "GATES": "출입구(gates)와 의미가 유사하지만 오답입니다. 평문 마지막 단어 TXCSR를 다시 확인하십시오."
       }
     }
   ],

@@ -7,6 +7,7 @@ const CHAPTERS := [
 	{"id": 2, "title": "유령 네트워크",   "sub": "CHAPTER 2", "cipher": "단일 치환",      "levels": 3},
 	{"id": 3, "title": "ENIGMA",          "sub": "CHAPTER 3", "cipher": "에니그마 머신",  "levels": 3},
 	{"id": 4, "title": "최후의 암호",     "sub": "CHAPTER 4", "cipher": "플레이페어",     "levels": 3},
+	{"id": 5, "title": "배신자의 암호",   "sub": "BONUS",     "cipher": "복합 암호",      "levels": 3},
 ]
 
 const LEVEL_LABELS := ["입문", "보통", "심화"]
@@ -24,6 +25,8 @@ const C_BORDER_G := Color(0.50, 0.44, 0.15)
 var _log_btn       : Button  = null
 var _level_overlay : Control = null  # 레벨 선택 팝업
 var _reset_overlay : Control = null  # 데이터 초기화 확인 팝업
+var _end_btn       : Button  = null  # 엔딩 버튼 (모든 챕터 완료 시 활성화)
+var _debug_buf     : String  = ""    # BOMBE 디버그 코드 입력 버퍼
 
 
 func _ready() -> void:
@@ -138,7 +141,7 @@ func _build_ui() -> void:
 	mb_sh.content_margin_top = 11;  mb_sh.content_margin_bottom = 11
 	museum_btn.add_theme_stylebox_override("hover", mb_sh)
 	museum_btn.add_theme_color_override("font_hover_color", Color(0.80, 0.94, 1.0))
-	museum_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/CipherMuseum.tscn"))
+	museum_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/CipherMuseum.tscn"))
 	vbox.add_child(museum_btn)
 
 	_add_gap(vbox, 8)
@@ -164,9 +167,83 @@ func _build_ui() -> void:
 	log_btn.add_theme_stylebox_override("disabled", lb_sd)
 	log_btn.add_theme_color_override("font_disabled_color", Color(0.28, 0.28, 0.36))
 	log_btn.disabled = GameManager.story_log.is_empty()
-	log_btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/StoryLog.tscn"))
+	log_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/StoryLog.tscn"))
 	vbox.add_child(log_btn)
 	_log_btn = log_btn
+
+	_add_gap(vbox, 8)
+
+	# ─ 엔딩 버튼 (주요 15레벨 완료 시 활성화) ─
+	var end_btn := Button.new()
+	end_btn.text = "★  엔딩  (FINAL ASSESSMENT)"
+	end_btn.custom_minimum_size = Vector2(0, 44)
+	end_btn.add_theme_font_size_override("font_size", 14)
+	end_btn.add_theme_color_override("font_color", C_GOLD)
+	var eb_sn := _make_style(Color(0.07, 0.08, 0.05), Color(0.45, 0.38, 0.10), 1, 0)
+	eb_sn.content_margin_left = 22; eb_sn.content_margin_right = 22
+	eb_sn.content_margin_top = 11; eb_sn.content_margin_bottom = 11
+	end_btn.add_theme_stylebox_override("normal", eb_sn)
+	var eb_sh := _make_style(Color(0.11, 0.13, 0.07), C_GOLD, 1, 0)
+	eb_sh.content_margin_left = 22; eb_sh.content_margin_right = 22
+	eb_sh.content_margin_top = 11; eb_sh.content_margin_bottom = 11
+	end_btn.add_theme_stylebox_override("hover", eb_sh)
+	end_btn.add_theme_color_override("font_hover_color", C_GOLD)
+	var eb_sd := _make_style(Color(0.05, 0.05, 0.08), Color(0.12, 0.12, 0.18), 1, 0)
+	eb_sd.content_margin_left = 22; eb_sd.content_margin_right = 22
+	eb_sd.content_margin_top = 11; eb_sd.content_margin_bottom = 11
+	end_btn.add_theme_stylebox_override("disabled", eb_sd)
+	end_btn.add_theme_color_override("font_disabled_color", Color(0.28, 0.28, 0.36))
+	# 주요 15레벨(챕터 0~4) 모두 완료 여부 확인
+	var all_main_complete := true
+	for ch_i in range(5):
+		for lv_i in range(1, 4):
+			if not GameManager.is_level_complete(ch_i, lv_i):
+				all_main_complete = false
+				break
+	end_btn.disabled = not all_main_complete
+	end_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/Ending.tscn"))
+	vbox.add_child(end_btn)
+	_end_btn = end_btn
+
+	_add_gap(vbox, 8)
+
+	# ─ 설정 버튼 ─
+	var settings_btn := Button.new()
+	settings_btn.text = "⚙  설정  (SETTINGS)"
+	settings_btn.custom_minimum_size = Vector2(0, 44)
+	settings_btn.add_theme_font_size_override("font_size", 14)
+	settings_btn.add_theme_color_override("font_color", Color(0.62, 0.65, 0.78))
+	var sb_sn := _make_style(Color(0.06, 0.07, 0.11), C_BORDER, 1, 0)
+	sb_sn.content_margin_left = 22; sb_sn.content_margin_right = 22
+	sb_sn.content_margin_top = 11; sb_sn.content_margin_bottom = 11
+	settings_btn.add_theme_stylebox_override("normal", sb_sn)
+	var sb_sh := _make_style(Color(0.09, 0.10, 0.17), Color(0.40, 0.44, 0.62), 1, 0)
+	sb_sh.content_margin_left = 22; sb_sh.content_margin_right = 22
+	sb_sh.content_margin_top = 11; sb_sh.content_margin_bottom = 11
+	settings_btn.add_theme_stylebox_override("hover", sb_sh)
+	settings_btn.add_theme_color_override("font_hover_color", Color(0.80, 0.84, 1.0))
+	settings_btn.pressed.connect(func(): SceneTransition.fade_to("res://scenes/Settings.tscn"))
+	vbox.add_child(settings_btn)
+
+	_add_gap(vbox, 8)
+
+	# ─ 종료 버튼 ─
+	var quit_btn := Button.new()
+	quit_btn.text = "✕  게임 종료  (QUIT)"
+	quit_btn.custom_minimum_size = Vector2(0, 44)
+	quit_btn.add_theme_font_size_override("font_size", 14)
+	quit_btn.add_theme_color_override("font_color", Color(0.70, 0.35, 0.35))
+	var qb_sn := _make_style(Color(0.07, 0.05, 0.05), Color(0.28, 0.14, 0.14), 1, 0)
+	qb_sn.content_margin_left = 22; qb_sn.content_margin_right = 22
+	qb_sn.content_margin_top = 11;  qb_sn.content_margin_bottom = 11
+	quit_btn.add_theme_stylebox_override("normal", qb_sn)
+	var qb_sh := _make_style(Color(0.12, 0.07, 0.07), Color(0.55, 0.22, 0.22), 1, 0)
+	qb_sh.content_margin_left = 22; qb_sh.content_margin_right = 22
+	qb_sh.content_margin_top = 11;  qb_sh.content_margin_bottom = 11
+	quit_btn.add_theme_stylebox_override("hover", qb_sh)
+	quit_btn.add_theme_color_override("font_hover_color", Color(1.0, 0.50, 0.50))
+	quit_btn.pressed.connect(func(): get_tree().quit())
+	vbox.add_child(quit_btn)
 
 	_add_gap(vbox, 20)
 	vbox.add_child(_make_sep(C_BORDER))
@@ -178,7 +255,7 @@ func _build_ui() -> void:
 	vbox.add_child(footer_h)
 
 	var ver := Label.new()
-	ver.text = "Phase 9  ·  Godot 4.6"
+	ver.text = "Phase 13  ·  Godot 4.6"
 	ver.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	ver.add_theme_font_size_override("font_size", 11)
 	ver.add_theme_color_override("font_color", Color(0.23, 0.23, 0.30))
@@ -360,7 +437,7 @@ func _build_level_btn(ch_id: int, lv: int) -> Button:
 			_level_overlay.visible = false
 			GameManager.current_chapter_id = ch_id
 			GameManager.current_level_id   = lv
-			get_tree().change_scene_to_file("res://scenes/Radio.tscn")
+			SceneTransition.fade_to("res://scenes/Radio.tscn")
 		)
 	else:
 		var sd := _make_style(Color(0.05, 0.05, 0.08), Color(0.12, 0.12, 0.18), 1, 12)
@@ -448,7 +525,7 @@ func _build_reset_confirm() -> Control:
 		GameManager.reset_save()
 		overlay.visible = false
 		# 씬 새로고침으로 버튼 상태 갱신
-		get_tree().reload_current_scene()
+		SceneTransition.reload_scene()
 	)
 	btn_row.add_child(confirm_btn)
 
@@ -484,3 +561,28 @@ func _add_gap(parent: Control, height: int) -> void:
 	var gap := Control.new()
 	gap.custom_minimum_size.y = height
 	parent.add_child(gap)
+
+
+# ── 디버그: 메인 화면에서 BOMBE 타이핑 시 전 레벨 클리어 ──────────────
+
+func _input(event: InputEvent) -> void:
+	if not (event is InputEventKey) or not event.pressed:
+		return
+	var ch: String = OS.get_keycode_string(event.keycode).to_upper()
+	if ch.length() != 1:
+		_debug_buf = ""
+		return
+	_debug_buf += ch
+	if _debug_buf.length() > 5:
+		_debug_buf = _debug_buf.right(5)
+	if _debug_buf == "BOMBE":
+		_debug_buf = ""
+		_activate_debug_all()
+
+
+func _activate_debug_all() -> void:
+	for ch_i: int in range(6):
+		for lv_i: int in range(1, 4):
+			GameManager.level_stars["%d_%d" % [ch_i, lv_i]] = 1
+	GameManager.save_game()
+	SceneTransition.reload_scene()

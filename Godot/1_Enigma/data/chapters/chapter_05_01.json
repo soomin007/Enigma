@@ -1,0 +1,93 @@
+{
+	"chapter_id": 5,
+	"level_id": 1,
+	"title": "배신자의 암호",
+	"subtitle": "BONUS",
+	"difficulty": "입문",
+	"cipher_type": "caesar",
+	"plain_text": "MEET AT THE DOCKS",
+	"cipher_params": {
+		"shift": 7,
+		"shift_right": true
+	},
+	"hints": [
+		"해리슨의 신원 기록과 일기 파편을 함께 살펴라. 반복되는 날짜 정보가 있다.",
+		"7월(July)은 몇 번째 달인가? 해리슨은 자신의 암호에 생일을 썼다.",
+		"시저 암호 이동값 = 7. 방향은 오른쪽(→)이다."
+	],
+	"clues": [
+		{
+			"id": "ch05_01_c1",
+			"type": "torn_paper",
+			"title": "해리슨의 일기 파편",
+			"content": "1942년 7월의 기억.\n생일이 또 전선 위에서 지나갔다.\n여름 한복판에 태어났다는 것이 이 암호에서도 흔적을 남긴다.\n이것이 나의 서명이다.",
+			"hint_value": "일기에 적힌 날짜와 신원 기록을 함께 살펴라."
+		},
+		{
+			"id": "ch05_01_c2",
+			"type": "document",
+			"title": "블레츨리 신원 기록",
+			"content": "[기밀] 분류번호: BP-1942-1153\n발신: 인사처\n────────────────────────\n분석관 A. HARRISON\n생년월일: 1910년 7월 14일\n소속: Hut 6 (독일 육군 암호)\n상태: 현역\n\n2차 신원 조회 완료. 이상 없음.",
+			"hint_value": ""
+		},
+		{
+			"id": "ch05_01_c3",
+			"type": "interrogation",
+			"title": "심문 기록 발췌 (1943)",
+			"content": "[심문 기록 발췌]\n심문관: 이 교신들은 모두 같은 패턴을 쓰고 있소. 개인적인 무언가.\n해리슨: ... 말씀 드릴 수 없습니다.\n심문관: 당신 기록을 봤소. 여름에 태어났더군.\n해리슨: (침묵, 시선을 피한다)\n심문관: 개인 정보를 암호 설계에 쓰는 것은 최악의 선택이오.\n해리슨: (이하 진술 거부)",
+			"hint_value": "'여름에 태어났다'는 진술과 신원 기록을 교차 검토해보라."
+		}
+	],
+	"extra_clues": [
+		{
+			"id": "ch05_01_x1",
+			"type": "torn_paper",
+			"title": "점심 메뉴 메모",
+			"content": "화요일: 콩 스튜 (또)\n수요일: 배급 비스킷 2개\n아, 이 전쟁이 언제 끝나나.",
+			"hint_value": "",
+			"red_herring_note": "해리슨의 식사 불평 메모 — 암호와 무관."
+		},
+		{
+			"id": "ch05_01_x2",
+			"type": "photo",
+			"title": "사진 — 런던 5번가 표지판",
+			"content": "[흑백 사진]\n도로 표지판: 'FIFTH AVENUE'\n가로등 아래 인물 한 명이 서 있으나 얼굴은 식별 불가.\n날짜 스탬프: 42.08",
+			"hint_value": "",
+			"red_herring_note": "FIFTH Avenue 표지판 — 숫자 5 연상을 유도하는 가짜 단서."
+		}
+	],
+	"report_questions": [
+		{
+			"id": "rq_05_01_1",
+			"question": "해리슨이 독일 측에 내린 지시는 무엇입니까?",
+			"choices": ["CALL", "JOIN", "MEET", "SEND"],
+			"answer_key": "MEET",
+			"wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"CALL": "호출(call) 지시가 아닙니다. shift=7로 해독한 첫 단어를 확인하십시오.",
+				"JOIN": "합류(join) 명령이 아닙니다. 해리슨의 이동값을 정확히 설정하고 재해독하십시오.",
+				"SEND": "파견(send) 명령이 아닙니다. 해리슨의 탄생월을 이동값으로 적용했는지 점검하십시오."
+			}
+		},
+		{
+			"id": "rq_05_01_2",
+			"question": "접선 장소는 어디입니까?",
+			"choices": ["DEPOT", "WHARF", "DOCKS", "QUAYS"],
+			"answer_key": "DOCKS",
+			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
+			"specific_wrong_feedback": {
+				"DEPOT": "창고(depot)가 아닙니다. shift=7을 정확히 적용하고 마지막 단어를 재확인하십시오.",
+				"WHARF": "부두(wharf)가 아닙니다. 해리슨의 탄생월을 이동값으로 설정하였는지 점검하십시오.",
+				"QUAYS": "선착장(quays)이 아닙니다. shift=7로 해독한 마지막 단어를 다시 확인하십시오."
+			}
+		}
+	],
+	"completion_log": {
+		"date": "1943.02.11",
+		"time": "03:22",
+		"sender": "HARRISON → ABWEHR",
+		"receiver": "독일 정보국 런던 지국",
+		"decoded": "MEET AT THE DOCKS"
+	},
+	"completion_log_text": "해리슨은 부두 접선 장소를 독일 정보국에 알렸다.\n이동값 7 — 그의 탄생월.\n단순하지만 당시 블레츨리는 내부 배신을 상상도 못했다."
+}

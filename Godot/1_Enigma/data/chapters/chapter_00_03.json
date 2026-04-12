@@ -60,12 +60,12 @@
       "question": "적에게 내려진 명령은 무엇입니까?",
       "answer_key": "FALL",
       "answer_display": "후퇴 (FALL BACK)",
-      "choices": ["ADVANCE", "HOLD", "FALL", "ATTACK"],
+      "choices": ["PUSH", "HOLD", "FALL", "STOP"],
       "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "ADVANCE": "전진(advance) 명령이 아닙니다. 로마 숫자 IX와 독일어 NEUN의 관계를 재확인하십시오.",
-        "HOLD":    "사수(hold) 명령이 아닙니다. shift 9를 정확히 적용하였는지 점검하십시오.",
-        "ATTACK":  "공격(attack) 명령이 아닙니다. 9구역 통신 절차 문서와 포로 진술을 교차 확인하십시오."
+        "PUSH": "밀어붙이기(push) 명령이 아닙니다. 로마 숫자 IX와 독일어 NEUN의 관계를 재확인하십시오.",
+        "HOLD": "사수(hold) 명령이 아닙니다. shift 9를 정확히 적용하였는지 점검하십시오.",
+        "STOP": "정지(stop) 명령이 아닙니다. 9구역 통신 절차 문서와 포로 진술을 교차 확인하십시오."
       }
     },
     {
@@ -73,12 +73,12 @@
       "question": "명령 대상은 누구입니까?",
       "answer_key": "UNITS",
       "answer_display": "전 부대 (UNITS)",
-      "choices": ["COMMAND", "UNITS", "PATROL", "SCOUT"],
+      "choices": ["CORPS", "UNITS", "TROOP", "SCOUT"],
       "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "COMMAND": "지휘부(command)가 아닙니다. shift 9를 적용한 결과 두 번째 단어를 재확인하십시오.",
-        "PATROL":  "초계대(patrol)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
-        "SCOUT":   "정찰대(scout)가 아닙니다. NEUN=9=IX 연결고리를 검토하고 해독 결과를 재확인하십시오."
+        "CORPS": "군단(corps)이 아닙니다. shift 9를 적용한 결과 두 번째 단어를 재확인하십시오.",
+        "TROOP": "부대(troop)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오.",
+        "SCOUT": "정찰대(scout)가 아닙니다. NEUN=9=IX 연결고리를 검토하고 해독 결과를 재확인하십시오."
       }
     }
   ],

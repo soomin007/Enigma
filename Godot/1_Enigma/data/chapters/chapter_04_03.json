@@ -52,12 +52,12 @@
       "question": "두더지의 정체는 누구입니까?",
       "answer_key": "HARRISON",
       "answer_display": "해리슨 (HARRISON)",
-      "choices": ["HARRISON", "CHAMBERS", "FLETCHER", "HARTLEY"],
+      "choices": ["HARRISON", "CHAMBERS", "FLETCHER", "WHITMORE"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
         "CHAMBERS": "채임버스(Chambers)가 아닙니다. BL...EY 메모와 '이 파크' 진술을 다시 연결하십시오. 블레츨리 파크 격자를 재구성했는지 점검하십시오.",
         "FLETCHER": "플레처(Fletcher)가 아닙니다. 분석동 쓰레기통 메모의 BL...EY와 내부 발신 전문의 단서를 교차 확인하십시오.",
-        "HARTLEY":  "하틀리(Hartley)가 아닙니다. 영국 저택 목록은 가짜 단서입니다. BLETCHLEY 키워드 격자를 다시 적용하십시오."
+        "WHITMORE": "화이트모어(Whitmore)가 아닙니다. 영국 저택 목록은 가짜 단서입니다. BLETCHLEY 키워드 격자를 다시 적용하십시오."
       }
     },
     {
@@ -65,12 +65,12 @@
       "question": "이 통신이 최종 확인한 사실은?",
       "answer_key": "MOLE",
       "answer_display": "내부 첩자 (MOLE)",
-      "choices": ["SPY", "TRAITOR", "MOLE", "AGENT"],
+      "choices": ["PAWN", "WOLF", "MOLE", "LINK"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "SPY":     "스파이(spy)가 아닙니다. BLETCHLEY 격자를 정확히 구성하고 해독 결과 마지막 단어를 재확인하십시오.",
-        "TRAITOR": "배신자(traitor)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오. 마지막 단어가 무엇입니까?",
-        "AGENT":   "요원(agent)이 아닙니다. BLETCHLEY 키워드 격자로 해독한 마지막 단어를 재확인하십시오."
+        "PAWN":   "졸개(pawn)가 아닙니다. BLETCHLEY 격자를 정확히 구성하고 해독 결과 마지막 단어를 재확인하십시오.",
+        "WOLF":   "늑대(wolf)가 아닙니다. 해독된 평문을 있는 그대로 읽으십시오. 마지막 단어가 무엇입니까?",
+        "LINK":   "연결책(link)이 아닙니다. BLETCHLEY 키워드 격자로 해독한 마지막 단어를 재확인하십시오."
       }
     }
   ],

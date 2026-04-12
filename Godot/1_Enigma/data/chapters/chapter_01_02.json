@@ -60,12 +60,12 @@
       "question": "적 요원의 접선 장소는 어디입니까?",
       "answer_key": "PIER",
       "answer_display": "부두 (PIER)",
-      "choices": ["BRIDGE", "PIER", "STATION", "MARKET"],
+      "choices": ["QUAY", "PIER", "DOCK", "PARK"],
       "wrong_feedback": "해독된 평문의 세 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "BRIDGE":  "교량(bridge)이 아닙니다. 키워드 ROSE를 정확히 적용한 결과를 재확인하십시오.",
-        "STATION": "역(station)이 아닙니다. 사진 뒷면의 R.O.S.E 표기를 키워드로 사용하였는지 점검하십시오.",
-        "MARKET":  "시장(market)이 아닙니다. 키워드를 올바르게 입력하고 해독 결과를 재확인하십시오."
+        "QUAY": "부두(quay)가 아닙니다. 키워드 ROSE를 정확히 적용한 결과를 재확인하십시오.",
+        "DOCK": "선착장(dock)이 아닙니다. 사진 뒷면의 R.O.S.E 표기를 키워드로 사용하였는지 점검하십시오.",
+        "PARK": "공원(park)이 아닙니다. 키워드를 올바르게 입력하고 해독 결과를 재확인하십시오."
       }
     },
     {
@@ -73,11 +73,11 @@
       "question": "접선 장소의 번호는?",
       "answer_key": "SEVEN",
       "answer_display": "일곱 번째 (SEVEN)",
-      "choices": ["FIVE", "SIX", "SEVEN", "EIGHT"],
+      "choices": ["FIFTH", "THIRD", "SEVEN", "EIGHT"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FIVE":  "다섯 번째가 아닙니다. 키워드 ROSE를 적용한 결과 마지막 단어를 재확인하십시오.",
-        "SIX":   "여섯 번째가 아닙니다. 해독 결과를 있는 그대로 읽으십시오.",
+        "FIFTH": "다섯 번째가 아닙니다. 키워드 ROSE를 적용한 결과 마지막 단어를 재확인하십시오.",
+        "THIRD": "세 번째가 아닙니다. 해독 결과를 있는 그대로 읽으십시오.",
         "EIGHT": "여덟 번째가 아닙니다. 키워드 적용 결과를 재확인하십시오."
       }
     },
@@ -86,12 +86,12 @@
       "question": "두 요원이 취하기로 한 행동은 무엇입니까?",
       "answer_key": "MEET",
       "answer_display": "접선 (MEET)",
-      "choices": ["MEET", "FLEE", "HIDE", "SIGNAL"],
+      "choices": ["MEET", "FLEE", "HIDE", "STAY"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FLEE":   "탈출(flee) 명령이 아닙니다. ROSE를 키워드로 해독한 평문 첫 단어를 확인하십시오.",
-        "HIDE":   "은신(hide) 명령이 아닙니다. 해독된 평문을 다시 읽으십시오.",
-        "SIGNAL": "신호(signal) 명령이 아닙니다. 해독된 평문 첫 단어를 재확인하십시오."
+        "FLEE": "탈출(flee) 명령이 아닙니다. ROSE를 키워드로 해독한 평문 첫 단어를 확인하십시오.",
+        "HIDE": "은신(hide) 명령이 아닙니다. 해독된 평문을 다시 읽으십시오.",
+        "STAY": "잔류(stay) 명령이 아닙니다. 해독된 평문 첫 단어를 재확인하십시오."
       }
     }
   ],

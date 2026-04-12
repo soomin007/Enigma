@@ -6,32 +6,32 @@
   "difficulty": "보통",
   "description": "첫 임무 이후 이틀. 새로운 암호 통신이 포착됐습니다. 이번에는 이동 칸 수를 직접 찾아내야 합니다.",
   "cipher_type": "caesar",
-  "plain_text": "HOLD THE LINE UNTIL DAWN",
+  "plain_text": "HOLD THE LINE UNTIL DUSK",
   "cipher_params": {
     "shift": 5,
-    "shift_right": true
+    "shift_right": false
   },
   "clues": [
     {
       "id": "c00b_doc01",
       "type": "document",
       "title": "암호 운용 지시서 (제5조항)",
-      "content": "[기밀]\n발신: 제7통신연대 암호반  수신: 제2야전통신소\n분류번호: CR-12  날짜: 1942년 11월 4일\n─────────────────────────────────\n제5조항 발효 통지:\n\n금일부로 기존 3-조항 운용은 종료됨.\n새로운 조항 번호로 갱신한다.\n조항 번호와 적용 방식은 변함없이 유지된다.\n이전 통신과의 연속성은 보장하지 않는다.\n\n별도 지시 없는 한 방향 규약은 기존과 동일하다.\n\n████ 서명 검열 ████",
-      "hint_value": "조항 번호가 바뀐다는 것은 이전과 다른 수치를 쓴다는 뜻이다."
+      "content": "[기밀]\n발신: 제7통신연대 암호반  수신: 제2야전통신소\n분류번호: CR-12  날짜: 1942년 11월 4일\n─────────────────────────────────\n제5조항 발효 통지:\n\n금일부로 기존 3-조항 운용은 종료됨.\n새로운 조항 번호로 갱신한다.\n조항 번호와 이동 수치는 별도 채널로 전달됨.\n이전 통신과의 연속성은 보장하지 않는다.\n\n주의: 방향 규약 수정 — 금일부터 이동 방향이 역전된다.\n\n████ 서명 검열 ████",
+      "hint_value": "조항이 바뀌었다. 수치뿐만 아니라 방향도 달라진다는 점을 주목하라."
     },
     {
       "id": "c00b_torn01",
       "type": "torn_paper",
       "title": "병사 수첩 뒷장",
-      "content": "오늘로 닷새째.\n보급이 안 온다.\n담배도 떨어졌고 커피도 없다.\n옆 분대는 사흘 전에 교대했는데 우리는 아직이다.\n\n어젯밤에 슈미트 상병이 주파수 다이얼을\n다섯 칸 오른쪽으로 밀어야 한다고 했다.\n뭔 뜻인지는 모른다. 그냥 들었다.",
+      "content": "오늘로 닷새째.\n보급이 안 온다.\n담배도 떨어졌고 커피도 없다.\n옆 분대는 사흘 전에 교대했는데 우리는 아직이다.\n\n어젯밤에 슈미트 상병이 주파수 다이얼을\n다섯 칸 왼쪽으로 밀어야 한다고 했다.\n뭔 뜻인지는 모른다. 그냥 들었다.",
       "hint_value": "병사가 들은 지시를 자세히 읽어보라."
     },
     {
       "id": "c00b_photo01",
       "type": "photo",
       "title": "압수된 도미노 조각",
-      "content": "막사 탁자 위에서 발견된 도미노 조각 하나.\n왼쪽 칸에는 아무 점도 없고,\n오른쪽 칸에는 점 다섯 개가 정사각형 배열로 찍혀 있다.\n조각 뒷면에 'RECHTS' 라고 작게 적혀 있다.",
-      "hint_value": "RECHTS는 독일어다. 점의 수와 함께 생각해보라."
+      "content": "막사 탁자 위에서 발견된 도미노 조각 하나.\n오른쪽 칸에는 아무 점도 없고,\n왼쪽 칸에는 점 다섯 개가 정사각형 배열로 찍혀 있다.\n조각 뒷면에 'LINKS' 라고 작게 적혀 있다.",
+      "hint_value": "LINKS는 독일어다. 점의 수와 함께 생각해보라."
     },
     {
       "id": "c00b_torn02",
@@ -60,25 +60,25 @@
       "question": "적에게 내려진 명령은 무엇입니까?",
       "answer_key": "HOLD",
       "answer_display": "사수 (HOLD)",
-      "choices": ["HOLD", "ATTACK", "RETREAT", "ADVANCE"],
+      "choices": ["HOLD", "PUSH", "STOP", "FLEE"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "ATTACK":  "공격(attack) 명령이 아닙니다. 도미노의 점 5개와 RECHTS 표기를 재확인하십시오.",
-        "RETREAT": "후퇴(retreat) 명령이 아닙니다. shift 5, 오른쪽 방향을 정확히 적용하였는지 확인하십시오.",
-        "ADVANCE": "전진(advance) 명령이 아닙니다. shift 5 이동값을 적용한 결과 첫 단어를 재확인하십시오."
+        "PUSH": "밀어붙이기(push) 명령이 아닙니다. 도미노의 점 5개와 LINKS 표기를 재확인하십시오.",
+        "STOP": "정지(stop) 명령이 아닙니다. shift 5, 왼쪽 방향을 정확히 적용하였는지 확인하십시오.",
+        "FLEE": "탈출(flee) 명령이 아닙니다. shift 5 이동값을 적용한 결과 첫 단어를 재확인하십시오."
       }
     },
     {
       "id": "q2",
       "question": "명령이 유지되는 시한은 언제까지입니까?",
-      "answer_key": "DAWN",
-      "answer_display": "새벽까지 (DAWN)",
-      "choices": ["NOON", "DUSK", "DAWN", "MIDNIGHT"],
+      "answer_key": "DUSK",
+      "answer_display": "황혼까지 (DUSK)",
+      "choices": ["NOON", "DAWN", "DARK", "DUSK"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "NOON":     "정오(noon)가 아닙니다. shift 5를 적용한 암호문 마지막 단어를 재확인하십시오.",
-        "DUSK":     "황혼(dusk)이 아닙니다. 이동값을 정확히 적용했다면 결과가 달라야 합니다.",
-        "MIDNIGHT": "자정(midnight)이 아닙니다. RECHTS 5 적용 결과를 다시 확인하십시오."
+        "NOON": "정오(noon)가 아닙니다. shift 5, 왼쪽 방향 적용 결과 마지막 단어를 재확인하십시오.",
+        "DAWN": "새벽(dawn)이 아닙니다. 이동 방향이 역전됐음을 LINKS 표기에서 확인하십시오.",
+        "DARK": "어둠(dark)이 아닙니다. shift 5 왼쪽 이동 결과 마지막 단어를 재확인하십시오."
       }
     },
     {
@@ -86,23 +86,23 @@
       "question": "명령의 대상은 어디입니까?",
       "answer_key": "LINE",
       "answer_display": "전선 (LINE)",
-      "choices": ["LINE", "BASE", "BRIDGE", "HILL"],
+      "choices": ["LINE", "BASE", "ROAD", "HILL"],
       "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "BASE":   "기지(base)가 아닙니다. 해독된 평문의 두 번째 단어를 확인하십시오.",
-        "BRIDGE": "교량(bridge)이 아닙니다. 이동값을 정확히 적용한 결과를 재검토하십시오.",
-        "HILL":   "고지(hill)가 아닙니다. shift 5 결과 두 번째 단어를 재확인하십시오."
+        "BASE": "기지(base)가 아닙니다. 해독된 평문의 두 번째 단어를 확인하십시오.",
+        "ROAD": "도로(road)가 아닙니다. 이동값을 정확히 적용한 결과를 재검토하십시오.",
+        "HILL": "고지(hill)가 아닙니다. shift 5 결과 두 번째 단어를 재확인하십시오."
       }
     }
   ],
-  "completion_log_text": "방어선 사수 명령이 확인됐다. 아군 증원 부대가 독일군 철수 전 방어 거점 3곳을 선점했고, 예상된 새벽 공세는 결국 취소됐다. 적 통신이 차단됐다는 사실을 독일군은 아직 모른다.",
+  "completion_log_text": "방어선 사수 명령이 확인됐다. 아군 증원 부대가 독일군 철수 전 방어 거점 3곳을 선점했고, 예상된 황혼 공세는 결국 취소됐다. 적 통신이 차단됐다는 사실을 독일군은 아직 모른다.",
   "completion_log": {
     "date": "1942년 11월 5일",
     "time": "02:38",
     "sender": "WOLF-3",
     "receiver": "GRUPPE-EAST",
     "frequency": "512.3 kHz",
-    "decoded": "HOLD THE LINE UNTIL DAWN"
+    "decoded": "HOLD THE LINE UNTIL DUSK"
   },
   "stars_criteria": {
     "3_stars": "힌트 없이, 오답 없이 완료",
@@ -111,7 +111,7 @@
   },
   "hints": [
     "이동값이 단서 중 하나에 직접 숫자로 나온다. 병사의 수첩 내용을 꼼꼼히 읽어라.",
-    "병사가 들은 지시, 제5조항, 도미노 점 5개 — 셋이 모두 같은 숫자를 가리킨다. RECHTS는 독일어로 오른쪽이다.",
-    "이동값은 5, 방향은 오른쪽이다. 해독기 슬라이더를 5로 맞추면 평문이 나온다."
+    "병사가 들은 지시, 제5조항, 도미노 점 5개 — 셋이 모두 같은 숫자를 가리킨다. LINKS는 독일어로 왼쪽이다.",
+    "이동값은 5, 방향은 왼쪽이다. 해독기 슬라이더를 5로 맞추고 왼쪽 방향을 선택하면 평문이 나온다."
   ]
 }
