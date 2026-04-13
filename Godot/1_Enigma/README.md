@@ -71,9 +71,9 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 | 0 Caesar | shift=3 | shift=5 | shift=9 |
 | 1 Vigenère | key=WAR | key=ROSE | key=ENGLAND |
 | 2 Substitution | keyword=WOLF | 빈도 분석 | keyword=PHANTOM |
-| 3 Enigma | I/II/III AAA B | I/II/III + 위치 변경 | I/II/III + 플러그보드 A↔Z |
+| 3 Enigma | I/II/III, AAA, 반사판 B | I/II/III, CFM, 반사판 A | II/III/V, DOT, 반사판 B, 플러그보드 A↔Z B↔Y C↔X |
 | 4 Playfair | key=KEY | key=WINSTON | key=BLETCHLEY |
-| 5 (보너스) | Harrison 시점 Lv1 | Harrison 시점 Lv2 | Harrison 시점 Lv3 |
+| 5 (보너스) | Caesar shift=7 | Vigenère key=JUDAS | Enigma II/IV/V, HAR, 반사판 B, A↔Z B↔X |
 
 > 레벨 3 키워드들은 스토리 반전과 직결됩니다.
 
