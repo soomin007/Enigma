@@ -1,0 +1,89 @@
+name: Deploy to GitHub Pages
+
+# Godot 4.6 Web export → GitHub Pages 자동 배포
+# main 브랜치에 프로젝트 변경이 push되면 빌드 후 배포한다.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시에 한 배포만 진행 (진행 중인 오래된 배포는 취소)
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: "4.6.1"
+  EXPORT_PRESET: "Web"
+
+jobs:
+  build:
+    name: Build (Godot Web export)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Godot + export template 캐시
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot-bin
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-stable
+
+      - name: Godot ${{ env.GODOT_VERSION }} + export template 다운로드
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          BASE="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+
+          mkdir -p ~/godot-bin
+          curl -fsSL -o /tmp/godot.zip "${BASE}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q -o /tmp/godot.zip -d ~/godot-bin
+          mv ~/godot-bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64 ~/godot-bin/godot
+          chmod +x ~/godot-bin/godot
+
+          curl -fsSL -o /tmp/templates.tpz "${BASE}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q -o /tmp/templates.tpz -d /tmp
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mv /tmp/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+
+      - name: 리소스 import (.godot/imported 생성)
+        run: |
+          # headless import는 첫 회에 일부 리소스를 놓칠 수 있어 두 번 돌린다.
+          ~/godot-bin/godot --headless --import . 2>&1 | tail -n 30 || true
+          ~/godot-bin/godot --headless --import . 2>&1 | tail -n 30 || true
+
+      - name: Web 빌드 export
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          ~/godot-bin/godot --headless --export-release "${EXPORT_PRESET}" build/index.html
+          test -f build/index.html
+          touch build/.nojekyll  # Jekyll 처리 비활성화 (밑줄 파일 무시 방지)
+          ls -lh build
+
+      - name: Pages artifact 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

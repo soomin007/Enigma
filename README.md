@@ -14,12 +14,12 @@
 <details>
 <summary>스크린샷 보기 (클릭하여 펼치기)</summary>
 
-![메인 화면](image.png)
-![라디오 감청 화면](image-1.png)
-![단서 보드](image-2.png)
-![암호 해독 화면](image-3.png)
-![엔딩](image-4.png)
-![암호 박물관 화면](image-5.png)
+![메인 화면](screenshots/main_menu.png)
+![라디오 감청 화면](screenshots/radio.png)
+![단서 보드](screenshots/evidence_board.png)
+![암호 해독 화면](screenshots/decoder.png)
+![엔딩](screenshots/ending.png)
+![암호 박물관 화면](screenshots/cipher_museum.png)
 
 </details>
 
@@ -113,7 +113,8 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 ## 프로젝트 구조
 
 ```
-1_Enigma/
+Enigma/
+├── .github/workflows/      # GitHub Actions (Pages 자동 배포 · 릴리스)
 ├── data/
 │   └── chapters/          # 레벨 JSON 파일 (chapter_XX_YY.json)
 │       ├── chapter_00~04 + 레벨 파일
@@ -144,7 +145,9 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 │   ├── Ending.gd
 │   └── Settings.gd
 ├── sounds/                    # BGM·SFX 오디오 파일
+├── screenshots/               # README용 스크린샷 (.gdignore로 import 제외)
 ├── project.godot
+├── DEPLOY.md                  # 배포 가이드
 ├── PRD.md                     # 기획 문서
 └── CLAUDE.md                  # 개발 규칙
 ```
@@ -158,7 +161,7 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
    ```bash
    git clone https://github.com/soomin007/Enigma.git
    ```
-3. Godot에서 `Godot/1_Enigma/project.godot` 열기
+3. Godot에서 `project.godot` 열기
 4. F5 또는 상단 ▶ 버튼으로 실행
 
 > 브라우저로만 즐길 거라면 위의 **[GitHub Pages 플레이 링크](https://soomin007.github.io/Enigma/)**로 바로 접속하면 됩니다.
