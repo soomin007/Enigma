@@ -847,7 +847,7 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 		for ec in extra_clues:
 			var ec_dict: Dictionary = ec
 			var rh_lbl := Label.new()
-			rh_lbl.text = "▸  [가짜 단서]  %s  —  %s" % [ec_dict.get("title", "?"), ec_dict.get("red_herring_note", "퍼즐 해결과 무관한 단서입니다.")]
+			rh_lbl.text = "▶  [가짜 단서]  %s  —  %s" % [ec_dict.get("title", "?"), ec_dict.get("red_herring_note", "퍼즐 해결과 무관한 단서입니다.")]
 			rh_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
 			rh_lbl.add_theme_font_size_override("font_size", 13)
 			rh_lbl.add_theme_color_override("font_color", Color(0.75, 0.65, 0.42))
@@ -1268,6 +1268,15 @@ func _input(event: InputEvent) -> void:
 		return
 	var key_event: InputEventKey = event
 	if not key_event.pressed or key_event.echo:
+		return
+
+	# 완료 연출(도장/스토리) 표시 중: 스페이스·엔터 = 타자기 스킵 (클릭과 동일)
+	# 그 외 키는 무시 (완료 후엔 BOMBE·재제출 불필요)
+	if _stamp_overlay != null and is_instance_valid(_stamp_overlay):
+		if key_event.keycode == KEY_SPACE \
+				or key_event.keycode == KEY_ENTER \
+				or key_event.keycode == KEY_KP_ENTER:
+			_typewrite_skip()
 		return
 
 	# 7. 보고서 Enter 키 단축키 — 보고서 패널이 표시 중이고 모든 항목 선택 시

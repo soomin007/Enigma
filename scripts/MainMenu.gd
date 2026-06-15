@@ -218,7 +218,7 @@ func _build_ui() -> void:
 
 	# ─ 설정 버튼 ─
 	var settings_btn := Button.new()
-	settings_btn.text = "⚙  설정  (SETTINGS)"
+	settings_btn.text = "◆  설정  (SETTINGS)"
 	settings_btn.custom_minimum_size = Vector2(0, 44)
 	settings_btn.add_theme_font_size_override("font_size", 17)
 	settings_btn.add_theme_color_override("font_color", Color(0.62, 0.65, 0.78))
@@ -238,7 +238,7 @@ func _build_ui() -> void:
 
 	# ─ 종료 버튼 ─
 	var quit_btn := Button.new()
-	quit_btn.text = "✕  게임 종료  (QUIT)"
+	quit_btn.text = "×  게임 종료  (QUIT)"
 	quit_btn.custom_minimum_size = Vector2(0, 44)
 	quit_btn.add_theme_font_size_override("font_size", 17)
 	quit_btn.add_theme_color_override("font_color", Color(0.70, 0.35, 0.35))
