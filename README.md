@@ -3,7 +3,9 @@
 **1942년 블레츨리 파크.** 당신은 영국 방첩부 소속 암호 분석관입니다.
 파편화된 적군 통신을 수집하고, 단서를 조합하고, 암호를 해독하십시오.
 
-**▶ [브라우저에서 바로 플레이 (itch.io)](https://soominsnu.itch.io/enigma)**
+**▶ 브라우저에서 바로 플레이**
+- [GitHub Pages](https://soomin007.github.io/Enigma/) — `main` push 시 자동 빌드·배포
+- [itch.io](https://soominsnu.itch.io/enigma)
 
 ---
 
@@ -101,7 +103,8 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
 |------|------|
 | 엔진 | Godot 4.6 |
 | 언어 | GDScript |
-| 플랫폼 | Windows (PC) |
+| 플랫폼 | Web (브라우저) · Windows (PC) |
+| 배포 | GitHub Pages (자동) · itch.io |
 | 저장 형식 | JSON (레벨 데이터) + `user://enigma_save.json` (세이브) |
 | 오디오 | `.mp3` / `.wav` / `.ogg`, AudioManager autoload |
 
@@ -155,8 +158,10 @@ ENIGMA는 실제 2차 세계대전 암호 방식을 직접 체험하는 **암호
    ```bash
    git clone https://github.com/soomin007/Enigma.git
    ```
-3. Godot에서 `project.godot` 열기
+3. Godot에서 `Godot/1_Enigma/project.godot` 열기
 4. F5 또는 상단 ▶ 버튼으로 실행
+
+> 브라우저로만 즐길 거라면 위의 **[GitHub Pages 플레이 링크](https://soomin007.github.io/Enigma/)**로 바로 접속하면 됩니다.
 
 ---
 

@@ -8,10 +8,16 @@
 # 익스포트 / 빌드 결과물
 export/
 builds/
+build/          # Web export 산출물 (GitHub Pages 워크플로가 빌드)
 *.exe
 *.pck
 *.apk
 *.aab
+*.zip
+
+# 루트로 잘못 export된 웹 산출물 방지
+/index.*
+/1_Enigma.*
 
 # 세이브 데이터 (로컬 전용)
 user://
