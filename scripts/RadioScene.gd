@@ -214,16 +214,23 @@ func _build_ui() -> void:
 	ctrl_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	root_vbox.add_child(ctrl_panel)
 
-	# 퀘스트 인디케이터 (우하단, 레이아웃 외부)
+	# 퀘스트 인디케이터 (하단 푸터 — 레이아웃 흐름 안에서 우측 정렬, 반응형)
+	# 과거엔 우하단 앵커 + 고정 -380px nudge라 좁은 해상도에서 중앙 콘텐츠와 겹쳤음.
+	var quest_row := HBoxContainer.new()
+	quest_row.alignment = BoxContainer.ALIGNMENT_END
 	_quest_lbl = Label.new()
 	_quest_lbl.text = _quest_text(false)
-	_quest_lbl.set_anchors_and_offsets_preset(PRESET_BOTTOM_RIGHT)
-	_quest_lbl.position -= Vector2(380, 100)
 	_quest_lbl.custom_minimum_size.x = 360
+	_quest_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_quest_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_quest_lbl.add_theme_font_size_override("font_size", 13)
 	_quest_lbl.add_theme_color_override("font_color", Color(0.68, 0.65, 0.45))
-	add_child(_quest_lbl)
+	quest_row.add_child(_quest_lbl)
+	_add_hgap(quest_row, 24)
+	root_vbox.add_child(quest_row)
+	var quest_foot := Control.new()
+	quest_foot.custom_minimum_size.y = 12
+	root_vbox.add_child(quest_foot)
 
 	# 인트로 오버레이
 	_intro_overlay = _build_intro_overlay()
