@@ -69,7 +69,33 @@ func _lkey(chapter_id: int = -1, level_id: int = -1) -> String:
 # ───────────────────────────────────────────────
 
 func _ready() -> void:
+	_setup_font_fallbacks()
 	load_game()
+
+
+## 웹 export는 OS 시스템 폰트 폴백이 없어, 기본 폰트(NanumGothic)에 없는
+## 특수 글리프(★ ◆ ━ ▸ → ⚙ 등)가 두부(□)로 깨진다.
+## 글리프 커버리지가 넓은 NotoSansKR을 프로젝트 폰트들의 폴백으로 등록해 해결한다.
+func _setup_font_fallbacks() -> void:
+	var noto: FontFile = load("res://fonts/NotoSansKR.ttf")
+	if noto == null:
+		return
+	var font_paths := [
+		"res://fonts/NanumGothic-ExtraBold.ttf",
+		"res://fonts/NanumGothic-Bold.ttf",
+		"res://fonts/NanumGothic-Regular.ttf",
+		"res://fonts/NanumMyeongjo-Regular.ttf",
+		"res://fonts/HancomGothicBold.ttf",
+		"res://fonts/SpecialElite-Regular.ttf",
+	]
+	for p in font_paths:
+		var f: FontFile = load(p)
+		if f == null:
+			continue
+		var fbs: Array[Font] = f.fallbacks
+		if not fbs.has(noto):
+			fbs.append(noto)
+			f.fallbacks = fbs
 
 
 func save_game() -> void:

@@ -136,6 +136,7 @@ var _popup_title_lbl    : Label
 var _popup_body_lbl     : Label
 var _cipher_intro_panel : Control   # 암호 방식 소개 (챕터 로드 시)
 var _stamp_overlay      : Control   # DECODED 도장 (챕터 완료 시)
+var _completion_shown   : bool = false   # 완료 연출 1회 가드 (스페이스/엔터 재실행 방지)
 
 
 # ── 도장 드로어 (inner class) ────────────────────────────────────────
@@ -705,6 +706,8 @@ func _show_decoded_stamp(chapter_id: int, stars: int) -> void:
 	if _stamp_overlay != null:
 		_stamp_overlay.queue_free()
 	_typewrite_cleanup()
+	# 뒤쪽 보고서 버튼이 포커스를 쥔 채 스페이스(ui_accept)에 반응하지 않도록 해제
+	get_viewport().gui_release_focus()
 
 	var overlay := ColorRect.new()
 	overlay.color = Color(0.0, 0.0, 0.0, 0.82)
@@ -1162,6 +1165,9 @@ func _build_report_questions(questions: Array) -> void:
 
 
 func _on_submit_report() -> void:
+	# 완료 연출이 시작된 뒤에는 재제출 차단 (스페이스/엔터로 도장 애니메이션 재생되던 버그)
+	if _completion_shown:
+		return
 	# 미선택(인덱스 0) 항목이 있으면 제출 차단
 	for qid in _report_inputs:
 		var opt: OptionButton = _report_inputs[qid]
@@ -1209,6 +1215,10 @@ func _on_hint_exhausted() -> void:
 
 
 func _on_chapter_completed(chapter_id: int, stars: int) -> void:
+	# 완료 연출은 1회만 — 중복 신호/재제출로 인한 애니메이션 재생 방지
+	if _completion_shown:
+		return
+	_completion_shown = true
 	# DECODED 도장 오버레이로 완료 처리 — 팝업 대신 전체 화면 연출
 	_show_decoded_stamp(chapter_id, stars)
 	# 타이머 중지 (완료됐으므로 더 이상 갱신 불필요)

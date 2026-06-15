@@ -40,10 +40,19 @@ func _build_ui() -> void:
 	bg.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	add_child(bg)
 
+	# 메뉴 내용이 화면 세로보다 길면(낮은 기준 해상도) 잘리지 않도록 스크롤 래핑.
+	# 내용이 짧으면 outer의 최소 높이(뷰포트) 덕에 중앙 정렬, 길면 스크롤된다.
+	var scroll := ScrollContainer.new()
+	scroll.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.vertical_scroll_mode   = ScrollContainer.SCROLL_MODE_AUTO
+	add_child(scroll)
+
 	var outer := VBoxContainer.new()
-	outer.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	outer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	outer.alignment = BoxContainer.ALIGNMENT_CENTER
-	add_child(outer)
+	outer.custom_minimum_size.y = 720   # 기준 뷰포트 높이 — 짧으면 중앙, 넘치면 스크롤
+	scroll.add_child(outer)
 
 	var main_panel := PanelContainer.new()
 	main_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
