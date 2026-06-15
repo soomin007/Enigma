@@ -144,7 +144,11 @@ class _StampDraw extends Control:
 	var stars_count: int = 0
 
 	func _draw() -> void:
-		var font: Font = ThemeDB.fallback_font
+		# 프로젝트 기본 폰트 사용(NanumGothic + NotoSans 폴백) — 엔진 fallback_font는
+		# ★☆ 같은 글리프가 없어 별점이 깨졌음.
+		var font: Font = get_theme_default_font()
+		if font == null:
+			font = ThemeDB.fallback_font
 		if font == null:
 			return
 		var fsize    := 80
@@ -189,8 +193,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _lbl_timer == null or not is_instance_valid(_lbl_timer):
 		return
-	# 완료된 레벨이면 타이머 멈춤
-	if GameManager.is_level_complete(GameManager.current_chapter_id, GameManager.current_level_id):
+	# 이번 판 완료 연출이 뜨면 타이머 멈춤.
+	# (예전엔 is_level_complete로 막아서, 이미 깬 레벨을 재도전하면 처음부터 멈춰 있었음)
+	if _completion_shown:
 		return
 	var elapsed: float = Time.get_unix_time_from_system() - _level_start_time
 	var secs: int = int(elapsed)
