@@ -70,7 +70,7 @@
     },
     {
       "id": "q2",
-      "question": "명령이 유지되는 시한은 언제까지입니까?",
+      "question": "명령의 시한은 언제까지입니까?",
       "answer_key": "DUSK",
       "answer_display": "황혼까지 (DUSK)",
       "choices": ["NOON", "DAWN", "DARK", "DUSK"],

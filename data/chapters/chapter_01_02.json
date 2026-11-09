@@ -57,7 +57,7 @@
   "report_questions": [
     {
       "id": "q1",
-      "question": "적 요원의 접선 장소는 어디입니까?",
+      "question": "통신에 적힌 장소는 어디입니까?",
       "answer_key": "PIER",
       "answer_display": "부두 (PIER)",
       "choices": ["QUAY", "PIER", "DOCK", "PARK"],
@@ -70,7 +70,7 @@
     },
     {
       "id": "q2",
-      "question": "접선 장소의 번호는?",
+      "question": "그 장소의 번호는?",
       "answer_key": "SEVEN",
       "answer_display": "일곱 번째 (SEVEN)",
       "choices": ["FIFTH", "THIRD", "SEVEN", "EIGHT"],

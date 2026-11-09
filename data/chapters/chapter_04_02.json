@@ -57,7 +57,7 @@
   "report_questions": [
 	{
 	  "id": "q1",
-	  "question": "적 요원의 접선 행동은 무엇입니까?",
+	  "question": "적 요원이 하려는 일은 무엇입니까?",
 	  "answer_key": "RENDEZVOUS",
 	  "answer_display": "밀회 (RENDEZVOUS)",
 	  "choices": ["CONFERENCE", "RENDEZVOUS", "ENGAGEMENT", "CORRESPOND"],
@@ -70,7 +70,7 @@
 	},
 	{
 	  "id": "q2",
-	  "question": "접선 장소 번호는?",
+	  "question": "장소 번호는?",
 	  "answer_key": "ELEVEN",
 	  "answer_display": "열한 번째 (ELEVEN)",
 	  "choices": ["TWELVE", "TWENTY", "ELEVEN", "THIRTY"],
@@ -83,7 +83,7 @@
 	},
 	{
 	  "id": "q3",
-	  "question": "접선 장소 유형은?",
+	  "question": "장소 유형은?",
 	  "answer_key": "DOCK",
 	  "answer_display": "선착장 (DOCK)",
 	  "choices": ["PIER", "DOCK", "PORT", "QUAY"],

@@ -71,7 +71,7 @@
 		},
 		{
 			"id": "rq_05_01_2",
-			"question": "접선 장소는 어디입니까?",
+			"question": "지시에 적힌 장소는 어디입니까?",
 			"choices": ["DEPOT", "WHARF", "DOCKS", "QUAYS"],
 			"answer_key": "DOCKS",
 			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",

@@ -70,15 +70,15 @@
     },
     {
       "id": "q2",
-      "question": "공격 명령의 실행 시각은 언제입니까?",
+      "question": "명령의 실행 시각은 언제입니까?",
       "answer_key": "MIDNIGHT",
       "answer_display": "자정 (MIDNIGHT)",
-      "choices": ["TWILIGHT", "MIDNIGHT", "DAYBREAK", "SUNDOWN"],
+      "choices": ["TWILIGHT", "MIDNIGHT", "DAYBREAK", "NOONTIME"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
         "TWILIGHT": "황혼(twilight)이 아닙니다. 키워드 WAR로 해독한 결과 마지막 단어를 확인하십시오.",
         "DAYBREAK": "새벽(daybreak)이 아닙니다. 해독 결과를 다시 읽으십시오.",
-        "SUNDOWN":  "해질녘(sundown)이 아닙니다. 키워드 WAR를 정확히 입력한 결과를 재확인하십시오."
+        "NOONTIME": "정오(noontime)가 아닙니다. 키워드 WAR를 정확히 입력한 결과를 재확인하십시오."
       }
     }
   ],

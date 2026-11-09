@@ -1161,8 +1161,12 @@ func _build_report_questions(questions: Array) -> void:
 		opt.add_theme_font_size_override("font_size", 14)
 		opt.custom_minimum_size.x = 210
 		opt.add_item("── 선택 ──")   # 인덱스 0: 미선택 플레이스홀더
-		for choice in q.get("choices", []):
-			opt.add_item(choice)
+		# 선택지 순서는 보고서를 열 때마다 섞는다. 데이터에서는 정답이 앞쪽 세 칸에 몰려 있어서
+		# (42문항 중 마지막 칸이 정답인 문항은 2개) 자리만 보고도 답을 좁힐 수 있었다. known-issues.md #1
+		var shuffled: Array = (q.get("choices", []) as Array).duplicate()
+		shuffled.shuffle()
+		for choice in shuffled:
+			opt.add_item(str(choice))
 		opt.select(0)
 		row.add_child(opt)
 

@@ -49,7 +49,7 @@
   "report_questions": [
     {
       "id": "q1",
-      "question": "두더지의 정체는 누구입니까?",
+      "question": "통신이 지목한 인물은 누구입니까?",
       "answer_key": "HARRISON",
       "answer_display": "해리슨 (HARRISON)",
       "choices": ["HARRISON", "CHAMBERS", "FLETCHER", "WHITMORE"],

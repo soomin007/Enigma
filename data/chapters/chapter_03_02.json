@@ -73,15 +73,15 @@
 	},
 	{
 	  "id": "q2",
-	  "question": "요청된 것은 무엇입니까?",
+	  "question": "명령의 대상은 무엇입니까?",
 	  "answer_key": "REINFORCEMENTS",
 	  "answer_display": "증원 (REINFORCEMENTS)",
-	  "choices": ["REPLENISHMENTS", "REINFORCEMENTS", "REDEPLOYMENTS", "REPLACEMENTS"],
+	  "choices": ["REPLENISHMENTS", "REINFORCEMENTS", "RECONNAISSANCE", "REORGANIZATION"],
 	  "wrong_feedback": "해독된 평문의 두 번째 단어를 확인하십시오.",
 	  "specific_wrong_feedback": {
 		"REPLENISHMENTS": "보급(replenishments)이 아닙니다. 로터 위치 C(3), F(6), M(13)을 정확히 설정한 결과를 재확인하십시오.",
-		"REDEPLOYMENTS":  "재배치(redeployments)가 아닙니다. 해독된 평문 두 번째 단어를 있는 그대로 읽으십시오.",
-		"REPLACEMENTS":   "교체(replacements)가 아닙니다. 에니그마 설정을 재점검하고 해독 결과를 재확인하십시오."
+		"RECONNAISSANCE": "정찰(reconnaissance)이 아닙니다. 해독된 평문 두 번째 단어를 있는 그대로 읽으십시오.",
+		"REORGANIZATION": "재편성(reorganization)이 아닙니다. 에니그마 설정을 재점검하고 해독 결과를 재확인하십시오."
 	  }
 	}
   ],

@@ -97,7 +97,7 @@
 	},
 	{
 	  "id": "q2",
-	  "question": "파기 대상은 무엇입니까?",
+	  "question": "명령의 대상은 무엇입니까?",
 	  "answer_key": "EVIDENCE",
 	  "answer_display": "증거물 (EVIDENCE)",
 	  "choices": ["DISPATCH", "ARCHIVES", "EVIDENCE", "DOSSIERS"],

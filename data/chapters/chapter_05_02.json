@@ -58,7 +58,7 @@
 	"report_questions": [
 		{
 			"id": "rq_05_02_1",
-			"question": "해리슨이 유출한 정보의 핵심은?",
+			"question": "통신이 다루는 정보의 핵심은?",
 			"choices": ["ENIGMA", "LORENZ", "CIPHER", "PURPLE"],
 			"answer_key": "ENIGMA",
 			"wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
@@ -70,7 +70,7 @@
 		},
 		{
 			"id": "rq_05_02_2",
-			"question": "유출된 정보의 상태는?",
+			"question": "그 정보의 상태는?",
 			"choices": ["SURRENDERED", "CONFISCATED", "COMPROMISED", "NEUTRALIZED"],
 			"answer_key": "COMPROMISED",
 			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",

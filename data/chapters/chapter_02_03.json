@@ -89,7 +89,7 @@
     },
     {
       "id": "q3",
-      "question": "봉쇄 대상은 무엇입니까?",
+      "question": "조치의 대상은 무엇입니까?",
       "answer_key": "EXITS",
       "answer_display": "출구 (EXITS)",
       "choices": ["PORTS", "ROADS", "EXITS", "GATES"],

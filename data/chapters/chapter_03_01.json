@@ -73,7 +73,7 @@
     },
     {
       "id": "q2",
-      "question": "상륙 목표 방향은?",
+      "question": "작전의 목표 방향은?",
       "answer_key": "NORTH",
       "answer_display": "북쪽 (NORTH)",
       "choices": ["NORTH", "SOUTH", "FRONT", "FLANK"],
@@ -86,7 +86,7 @@
     },
     {
       "id": "q3",
-      "question": "상륙 지형은?",
+      "question": "작전의 목표 지형은?",
       "answer_key": "SHORE",
       "answer_display": "해안 (SHORE)",
       "choices": ["SHORE", "CLIFF", "RIVER", "RIDGE"],
