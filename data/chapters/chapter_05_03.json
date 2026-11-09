@@ -60,27 +60,15 @@
 	],
 	"report_questions": [
 		{
-			"id": "rq_05_03_1",
-			"question": "해독된 메시지에서 해리슨의 신분은?",
-			"choices": ["SLEUTH", "CIPHER", "DOUBLE", "COVERT"],
-			"answer_key": "DOUBLE",
-			"wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
-			"specific_wrong_feedback": {
-				"SLEUTH": "탐정(sleuth)이 아닙니다. 에니그마 설정을 정확히 입력하고 첫 단어를 재확인하십시오.",
-				"CIPHER": "암호(cipher)가 아닙니다. 해독 결과를 있는 그대로 읽으십시오. 첫 단어가 무엇입니까?",
-				"COVERT": "비밀(covert)이 아닙니다. 로터 II/IV/V와 위치 H-A-R을 모두 정확히 설정했는지 점검하십시오."
-			}
-		},
-		{
 			"id": "rq_05_03_2",
 			"question": "해리슨이 마지막 교신에서 알린 사태는?",
-			"choices": ["SPOTTED", "ESCAPED", "EXPOSED", "FLAGGED"],
+			"choices": ["SPOTTED", "TRACKED", "EXPOSED", "WATCHED"],
 			"answer_key": "EXPOSED",
 			"wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
 			"specific_wrong_feedback": {
 				"SPOTTED": "발견(spotted)이 아닙니다. 에니그마 설정을 모두 정확히 입력했는지 확인하십시오.",
-				"ESCAPED": "탈출(escaped)이 아닙니다. 반사판 B와 로터 II/IV/V를 정확히 입력하고 재해독하십시오.",
-				"FLAGGED": "표시(flagged)가 아닙니다. 로터 위치 H-A-R과 플러그보드 설정을 재확인하십시오."
+				"TRACKED": "추적(tracked)이 아닙니다. 반사판 B와 로터 II/IV/V를 정확히 입력하고 재해독하십시오.",
+				"WATCHED": "감시(watched)가 아닙니다. 로터 위치 H-A-R과 플러그보드 설정을 재확인하십시오."
 			}
 		}
 	],

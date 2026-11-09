@@ -89,15 +89,15 @@
     },
     {
       "id": "q3",
-      "question": "이 통신이 언급하는 요원의 신분은?",
-      "answer_key": "MOLE",
-      "answer_display": "내부 첩자 (MOLE)",
-      "choices": ["MOLE", "WOLF", "TOOL", "PAWN"],
+      "question": "통신에 따르면 이곳에 다녀간 것은 누구입니까?",
+      "answer_key": "ENEMY",
+      "answer_display": "적 (ENEMY)",
+      "choices": ["GUARD", "ENEMY", "SCOUT", "TROOP"],
       "wrong_feedback": "해독된 평문의 두 번째 단어를 다시 확인하십시오.",
       "specific_wrong_feedback": {
-        "WOLF": "늑대(wolf)는 이전 챕터의 키워드입니다. 해독된 평문에서 요원의 역할을 직접 가리키는 단어를 찾으십시오.",
-        "TOOL": "도구(tool)가 아닙니다. 암호문에서 반복되는 세 글자 패턴을 재추적하십시오.",
-        "PAWN": "졸(pawn)이 아닙니다. 해독된 평문에서 요원의 역할을 가리키는 단어를 찾으십시오."
+        "GUARD": "경비병(guard)이 아닙니다. 찢긴 전문 조각의 두 번째 낱말 TKTJE를 치환표로 다시 풀어 보십시오.",
+        "SCOUT": "정찰병(scout)이 아닙니다. T=E, K=N 대응부터 차례로 적용해 보십시오.",
+        "TROOP": "부대(troop)가 아닙니다. 해독된 평문 두 번째 낱말을 있는 그대로 읽으십시오."
       }
     }
   ],

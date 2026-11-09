@@ -72,26 +72,26 @@
       "id": "q2",
       "question": "그 장소의 번호는?",
       "answer_key": "SEVEN",
-      "answer_display": "일곱 번째 (SEVEN)",
-      "choices": ["FIFTH", "THIRD", "SEVEN", "EIGHT"],
+      "answer_display": "7번 (SEVEN)",
+      "choices": ["THREE", "FORTY", "SEVEN", "EIGHT"],
       "wrong_feedback": "해독된 평문의 마지막 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FIFTH": "다섯 번째가 아닙니다. 키워드 ROSE를 적용한 결과 마지막 단어를 재확인하십시오.",
-        "THIRD": "세 번째가 아닙니다. 해독 결과를 있는 그대로 읽으십시오.",
-        "EIGHT": "여덟 번째가 아닙니다. 키워드 적용 결과를 재확인하십시오."
+        "THREE": "3번이 아닙니다. 키워드 ROSE를 적용한 결과 마지막 단어를 재확인하십시오.",
+        "FORTY": "40번이 아닙니다. 해독 결과를 있는 그대로 읽으십시오.",
+        "EIGHT": "8번이 아닙니다. 키워드 적용 결과를 재확인하십시오."
       }
     },
     {
       "id": "q3",
-      "question": "두 요원이 취하기로 한 행동은 무엇입니까?",
+      "question": "통신이 지시한 행동은 무엇입니까?",
       "answer_key": "MEET",
       "answer_display": "접선 (MEET)",
-      "choices": ["MEET", "FLEE", "HIDE", "STAY"],
+      "choices": ["MEET", "WAIT", "LAND", "LOAD"],
       "wrong_feedback": "해독된 평문의 첫 번째 단어를 확인하십시오.",
       "specific_wrong_feedback": {
-        "FLEE": "탈출(flee) 명령이 아닙니다. ROSE를 키워드로 해독한 평문 첫 단어를 확인하십시오.",
-        "HIDE": "은신(hide) 명령이 아닙니다. 해독된 평문을 다시 읽으십시오.",
-        "STAY": "잔류(stay) 명령이 아닙니다. 해독된 평문 첫 단어를 재확인하십시오."
+        "WAIT": "대기(wait) 명령이 아닙니다. ROSE를 키워드로 해독한 평문 첫 단어를 확인하십시오.",
+        "LAND": "상륙(land) 명령이 아닙니다. 해독된 평문을 다시 읽으십시오.",
+        "LOAD": "적재(load) 명령이 아닙니다. 해독된 평문 첫 단어를 재확인하십시오."
       }
     }
   ],
